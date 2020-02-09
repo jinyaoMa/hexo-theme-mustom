@@ -12,7 +12,7 @@ const init = (params, callback) => {
       params.title && (element.querySelector('[p-page-title]').innerText = params.title);
       params.content && (element.querySelector('[p-page-main]').innerHTML = params.content);
 
-      let scripts = element.querySelectorAll('[p-page-main] script');
+      let scripts = element.querySelectorAll('#test script');
       let currentIndex = 0;
       (function run(){
         if (currentIndex < scripts.length) {
@@ -36,7 +36,7 @@ const init = (params, callback) => {
         }
       })();
 
-      element.querySelectorAll('[p-page-main] link[rel~="stylesheet"]').forEach(style => {
+      element.querySelectorAll('#test link[rel~="stylesheet"]').forEach(style => {
         let s = document.createElement('link');
         s.ref = "stylesheet";
         s.href = style.href;

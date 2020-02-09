@@ -273,7 +273,8 @@ const pjax = {
   _run() {
     if (this.queue.length) {
       this.isRunning = true;
-      this.queue.shift().work(o => {
+      let _do = this.queue.shift();
+      _do.work(o => {
         this._run();
       });
     } else {
@@ -281,10 +282,11 @@ const pjax = {
     }
   },
   run(url, callback) {
-    this.queue.push({
+    let that = this;
+    that.queue.push({
       callback,
       work(cb) {
-        let that = this;
+        let _that = this;
         let mainContent = root.querySelector('[m-content]');
         let parts = root.querySelector('meta[name="layout-parts"]');
         let keywords = root.querySelector('meta[name="keywords"]');
@@ -296,19 +298,21 @@ const pjax = {
           method: 'get',
           dataType: 'document',
           success(data) {
-            that.callback && that.callback(data);
+            _that.callback && _that.callback(data);
             cb && cb(data);
-            document.title = data.title;
-            parts.setAttribute('content', data.querySelector('meta[name="layout-parts"]').getAttribute('content'));
-            keywords.setAttribute('content', data.querySelector('meta[name="keywords"]').getAttribute('content'));
-            description.setAttribute('content', data.querySelector('meta[name="description"]').getAttribute('content'));
-            mainContent.innerHTML = data.querySelector('[m-content]').innerHTML;
-            final_load();
+            if (that.queue.length === 0) {
+              document.title = data.title;
+              parts.setAttribute('content', data.querySelector('meta[name="layout-parts"]').getAttribute('content'));
+              keywords.setAttribute('content', data.querySelector('meta[name="keywords"]').getAttribute('content'));
+              description.setAttribute('content', data.querySelector('meta[name="description"]').getAttribute('content'));
+              mainContent.innerHTML = data.querySelector('[m-content]').innerHTML;
+              final_load();
+            }
           }
         });
       }
     });
-    !this.isRunning && this._run();
+    !that.isRunning && that._run();
   }
 };
 

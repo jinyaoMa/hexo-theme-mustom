@@ -14,12 +14,13 @@ const init = (params, callback) => {
 
 const update = o => {
   if (!element) return;
+  let type = element.getAttribute('data-type');
   ajax({
     url: element.getAttribute('data-api'),
     method: 'get',
     dataType: 'json',
     data: {
-      c: element.getAttribute('data-type')
+      c: type === null || type === 'r' ? '' : type
     },
     success: data => {
       element.querySelector('[p-hitokoto-content]').innerText = data.hitokoto;

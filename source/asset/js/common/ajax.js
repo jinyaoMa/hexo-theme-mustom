@@ -7,7 +7,7 @@ const dataFormat = obj => {
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       const element = obj[key];
-      arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(element));
+      arr.push(window.encodeURIComponent(key) + '=' + window.encodeURIComponent(element));
     }
   }
   return arr.join('&');

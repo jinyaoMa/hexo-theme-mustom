@@ -33,7 +33,7 @@ const update = (content, offset) => {
     if (as.length) {
       as.forEach(a => {
         let id = a.getAttribute('data-id');
-        a.href = `javascript:scrollTo(0, document.querySelector('#${id}').offsetTop - ${offset})`;
+        a.href = `javascript:scrollTo(0, document.querySelector('[id="${id}"]').offsetTop - ${offset})`;
       });
 
       highlightId = null;
@@ -44,7 +44,7 @@ const update = (content, offset) => {
           if (h.offsetTop - offset + 1 > window.scrollY) {
             let match = h.href.match(/#(.+)$/);
             if (match) {
-              let id = match[1];
+              let id = window.decodeURI(match[1]).trim();
               if (highlightId) {
                 let highlight = main.querySelector(`.toc-link[data-id="${highlightId}"]`);
                 highlight && highlight.classList.remove('active');
