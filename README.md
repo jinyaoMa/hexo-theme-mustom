@@ -1,6 +1,61 @@
 # hexo-theme-mustom
 Hexo theme
 
+## 关于本主题
+
+- 主题只使用了 valine 评论
+- 主题 _config.yml 没有任何的开关，比如开关翻译功能、开关评论功能等等
+- 主题 _config.yml 里可以更换图片头像、链接、图标等等
+
+## 添加菜单项目
+
+在主题 _config.yml 中，按格式修改 menus下的项目
+
+``` yaml
+menus:
+  main: # 项目组
+    home: # 项目
+      url: / # 项目链接
+      icon: '<i class="fas fa-home fa-fw"></i>' # 项目图标
+    archive: # 项目
+      url: /archives/ # 项目链接
+      icon: '<i class="fas fa-archive fa-fw"></i>' # 项目图标
+    about: # 项目
+      url: /about/ # 项目链接
+      icon: '<i class="fas fa-user fa-fw"></i>' # 项目图标
+    links: # 新项目 <----------------------------------------------------
+      url: /links/  # 新项目链接 <----------------------------------------
+      icon: '<i class="fas fa-link fa-fw"></i>' # 新项目图标 <------------
+```
+
+接下来，在主题 source/asset/lang 文件夹中的 .yml 语言文件修改 menus 下的项目
+
+``` yaml
+menus:
+  main: # 对应_config.yml中的项目组
+    caption: 本站 # 项目组名称
+    items: # 对应_config.yml中的项目
+      home: 首页 # 项目名称
+      archive: 归档 # 项目名称
+      about: 关于 # 项目名称
+      links: 友链 # 新项目名称 <-----------------------------------------
+```
+
+## 更多
+
+``` yaml '' 主题_config.yml
+meting: # 对应meting.js设置
+  server: netease
+  type: playlist
+  id: "970057720"
+  theme: "#ff3300"
+  list_height: "297px" # 改这个之后还要跑source/asset/css/_common/dimension.styl里改$audioplayer_list_height
+  
+# 下面这两个可以参考 https://github.com/lavas-project/hexo-pwa
+manifest:
+serviceWorker:
+```
+
 ## 主目录 _config.yml 例子
 
 ``` yaml
