@@ -1,0 +1,30 @@
+[p-xdrawer]
+  width 2em
+  line-height 2
+  margin 0.5em
+  border-radius $gap
+  text-align center
+  transition background 0.6s, transform 0.6s
+  cursor pointer
+  user-select none
+  float left
+  position relative
+  &:after
+    content ''
+    position absolute
+    top $gap * 0.5
+    right $gap * 0.5
+    width $gap * 0.75
+    height $gap * 0.75
+    border-radius 50%
+    background var(--color-text)
+    transition opacity 0.6s
+    opacity 0
+  @media (min-width: $app_mobile_width)
+    &:hover
+      background var(--color-clear)
+    &:active
+      transform scale(0.9)
+  &.active
+    &:after
+      opacity 1

@@ -1,0 +1,39 @@
+@keyframes comment-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-comment]
+  overflow hidden
+  margin $gap * 3 0
+  border-radius $gap
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  animation comment-appear 0.6s ease
+
+[p-comment-caption]
+  user-select none
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+  i
+    margin-right $gap * 0.5
+
+[p-comment-valine]
+  padding $gap * 4
+
+@media (max-width: $app_mobile_width)
+  [p-comment]
+    margin 0
+    border none
+    border-bottom 1px solid var(--color-clear)
+    border-radius 0
+  [p-comment-caption]
+    text-align center
+    i
+      display none
+  [p-comment-valine]
+    padding $gap

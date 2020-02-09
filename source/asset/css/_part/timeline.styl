@@ -1,0 +1,107 @@
+@keyframes timeline-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-timeline]
+  overflow hidden
+  margin $gap * 3 0
+  border-radius $gap
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  animation timeline-appear 0.6s ease
+  user-select none
+[p-timeline-caption]
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+  i
+    margin-right $gap * 0.5
+[p-timeline-items]
+  padding $gap * 4
+  line-height 2
+  @media (min-width: $app_mobile_width)
+    a
+      display inline-block
+      &:after
+        content ''
+        display block
+        margin-top -1px
+        width 0
+        height 1px
+        background var(--color-link)
+        transition width 0.6s
+      &:hover
+        &:after
+          width 100%
+  [p-timeline-head], [p-timeline-row]
+    clear both
+  [p-timeline-year], [p-timeline-date]
+    width $timeline_col_left
+    float left
+    text-align right
+    padding $gap * 2 0
+    padding-right $gap * 3
+  [p-timeline-count], [p-timeline-content]
+    display inline-block
+    width s('calc(100% - %s)', $timeline_col_left)
+    border-left $gap * 0.5 solid var(--color-clear)
+    padding $gap * 2 0
+    padding-left $gap * 3
+  [p-timeline-year]
+    font-weight bold
+    font-size $font_size * 2
+    line-height $font_size * 3
+    background var(--color-clear)
+  [p-timeline-count]
+    font-size $font_size * 0.88
+    line-height $font_size * 3
+    height $font_size * 3 + $gap * 4
+    strong
+      text-decoration underline
+      color var(--color-error)
+  [p-timeline-title]
+    font-weight bold
+    @media (min-width: $app_mobile_width)
+      a
+        &:after
+          margin-top -2px
+          height 2px
+  [p-timeline-content]
+    user-select text
+  @media (min-width: $app_mobile_width)
+    [p-timeline-date]
+      position relative
+      &:after
+        content ''
+        position absolute
+        top s('calc(0.25em + %s)', $gap * 2)
+        right s('calc(-0.75em - %s)', $gap * 0.25)
+        height 1.5em
+        width 1.5em
+        border-radius 50%
+        background var(--color-clear)
+@media (max-width: $app_mobile_width)
+  [p-timeline]
+    margin 0
+    border-radius 0
+    border none
+  [p-timeline-caption]
+    text-align center
+    i
+      display none
+  [p-timeline-items]
+    padding 0
+    [p-timeline-head]
+      display none
+    [p-timeline-date], [p-timeline-content]
+      width 100%
+      text-align left
+      padding $gap
+      border-left none
+    [p-timeline-row]
+      padding $gap * 2 0
+      border-bottom 1px solid var(--color-clear)

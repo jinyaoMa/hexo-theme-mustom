@@ -1,0 +1,17 @@
+[p-xaside]
+  width 2em
+  line-height 2
+  margin calc(0.5em - 1px)
+  border-radius $gap
+  text-align center
+  transition background 0.6s, transform 0.6s
+  cursor pointer
+  user-select none
+  float right
+  @media (min-width: $app_mobile_width)
+    &:hover
+      background var(--color-clear)
+    &:active
+      transform scale(0.9)
+  &.active
+    transform rotate(180deg)

@@ -1,0 +1,55 @@
+@keyframes skin-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-skin]
+  overflow hidden
+  user-select none
+  width $drawer_width - $gap * 6
+  margin $gap * 3
+  border-radius $gap
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  white-space normal
+  animation skin-appear 0.6s ease
+  @media (max-width: $app_mobile_width)
+    display none
+
+[p-skin-caption]
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+
+[p-skin-items]
+  padding $gap
+
+[data-skin-key]
+  display inline-block
+  width 2.5em
+  height 2.5em
+  margin $gap * 0.5
+  border-radius 50%
+  border $gap * 0.5 solid var(--color-clear)
+  cursor pointer
+  position relative
+  &:after
+    content ''
+    position absolute
+    width 40%
+    height 40%
+    top 30%
+    left 30%
+    background var(--color-menus-hover)
+    border-radius 50%
+    opacity 0
+    transition opacity 0.2s
+  &:hover
+    &:after
+      opacity 0.5
+  &.active
+    &:after
+      opacity 1

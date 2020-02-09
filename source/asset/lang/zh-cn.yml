@@ -1,0 +1,108 @@
+sitename: 耀 の 个人网站
+brand:
+  name: jinyaoMa
+  slogan: "&quot;我只想安静地做笔记&quot;"
+  posts: 文章计数
+  categories: 分类计数
+  tags: 标签计数
+  github: 通过Github关注我
+  email: 通过邮件联系我
+  qq: 通过QQ联系我
+menus:
+  main:
+    caption: 本站
+    items:
+      home: 首页
+      archive: 归档
+      about: 关于
+  job:
+    caption: 工作
+    items:
+      resume: 简历
+      letter: 自荐信
+  others:
+    caption: 其他
+    items:
+      test: 测试
+skin:
+  caption: 皮肤
+  items:
+    default: 默认
+    colorful: 彩色
+settings:
+  caption: 设置
+  items:
+    langshift: English
+    night: 夜间模式
+    transfigure: 透明小人
+    lyride: 隐藏歌词
+    autoplay: 自动播放
+footer:
+  powered: 由 %s 强力驱动
+  theme: 主题 %s By %s
+  license: 知识共享署名-非商业用途-相同方式共享4.0国际许可协议
+panels:
+  categories: 分类
+  tags: 标签
+audioplayer: APlayer.js %s Meting.js
+hitokoto: 一言
+recentposts:
+  caption: 近期文章
+  date: 发布日期
+  updated: 更新日期
+  categories: 文章分类
+comment:
+  caption: 留言板
+  placeholder: ヾﾉ≧∀≦)o 来呀，快写点什么吧！
+translater:
+  copy: 复制
+  to: 翻译到
+  zh: 中文
+  en: English
+  jp: 日本語
+timeline:
+  caption: 文章档案
+  count: 共写有 <strong>%s</strong> 篇文章
+post:
+  caption: 文章
+  min2read: "%s 分钟"
+  date: 发布日期
+  updated: 更新日期
+  categories: 本文分类
+  wordcount: 本文字数
+  min2readt: 预计阅读时长
+  viewcount: 本文访问量
+  ending:
+    head: 以上文章结束
+    tail: 感谢您的阅读
+  friend:
+    text: 请多多留言，您的建议将大大提升我的创作质量！
+    button: 加我好友
+    qq: QQ
+    wechat: 微信
+  share:
+    title: 微信扫一扫：分享
+    helper: <p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>
+  license:
+    labels:
+      author: "本文作者: "
+      link: "本文链接: "
+      notice: "版权声明: "
+    text: 本站所有文章除特别声明外，均采用 %s 许可协议。转载请注明出处！
+page:
+  caption: 页面内容
+toc:
+  caption: 目录
+  noheadings: "?(￣△￣?) [没有目录]"
+search:
+  placeholder: 输入关键字
+  button: 搜索
+pather:
+  archive: 归档
+  catarchive: "归档 [分类]"
+  tagarchive: "归档 [标签]"
+  about: 关于
+  resume: 简历
+  letter: 自荐信
+  test: 测试
+  home: 首页

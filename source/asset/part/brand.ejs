@@ -1,0 +1,26 @@
+<div p-brand>
+  <div p-brand-head>
+    <img p-brand-avatar src="<%- theme.author.large %>">
+  </div>
+  <div p-brand-detail>
+    <div p-brand-name data-lang="brand.name"></div>
+    <div p-brand-slogan data-lang="brand.slogan"></div>
+  </div>
+  <div p-brand-counts>
+    <span p-brand-posts data-lang="brand.posts" data-lang-titled>
+      <%- theme.brand.icons.posts %>
+      <span p-brand-posts-count></span>
+    </span><span p-brand-categories data-lang="brand.categories" data-lang-titled>
+      <%- theme.brand.icons.categories %>
+      <span p-brand-categories-count></span>
+    </span><span p-brand-tags data-lang="brand.tags" data-lang-titled>
+      <%- theme.brand.icons.tags %>
+      <span p-brand-tags-count></span>
+    </span>
+  </div>
+  <div p-brand-contacts>
+    <% $forIn(theme.contact, (key, btn) => { %>
+    <a href="<%- btn.url %>" target="_blank" data-lang="brand.<%- key %>" data-lang-titled><%- btn.icon %></a>
+    <% }) %>
+  </div>
+</div>

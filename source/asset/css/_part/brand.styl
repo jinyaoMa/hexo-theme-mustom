@@ -1,0 +1,65 @@
+@keyframes brand-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-brand]
+  user-select none
+  overflow hidden
+  width $drawer_width - $gap * 6
+  margin $gap * 3
+  border-radius $gap
+  text-align center
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  white-space normal
+  animation brand-appear 0.6s ease
+
+[p-brand-avatar]
+  width s('calc(100% - %s)', $gap * 4)
+  margin $gap * 2
+  border-radius $gap
+
+[p-brand-name]
+  background var(--color-clear)
+  font-size 1.5em
+  line-height 2
+
+[p-brand-slogan]
+  line-height 3
+
+[p-brand-counts]
+  padding-bottom $gap * 1.25
+  line-height 2
+  font-size 0.88em
+  > span
+    display inline-block
+    padding 0 $gap
+    &:nth-child(even)
+      border-left 1px solid
+      border-right 1px solid
+    span
+      color var(--color-error)
+
+[p-brand-contacts]
+  padding-bottom $gap * 1.5
+  font-size 1.25em
+  line-height 2
+  a
+    display inline-block
+    width 2em
+    color var(--color-text)
+    border-radius $gap
+    @media (min-width: $app_mobile_width)
+      &:hover
+        background var(--color-clear)
+
+@media (max-width: $app_mobile_width)
+  [p-brand]
+    width 100%
+    margin 0
+    border none
+    border-bottom 1px solid var(--color-clear)
+    border-radius 0

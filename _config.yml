@@ -1,0 +1,165 @@
+hexo: //hexo.io
+theme:
+  name: Mustom
+  url: //github.com/jinyaoMa/hexo-theme-mustom
+  author: jinyaoMa
+  link: /
+license:
+  url: //creativecommons.org/licenses/by-nc-sa/4.0/
+  image: /asset/img/by-nc-sa.svg
+  name: BY-NC-SA
+  icon: '<i class="fab fa-creative-commons"></i>'
+favicon:
+  small: /asset/img/icon.small.png
+  medium: /asset/img/icon.medium.png
+  large: /asset/img/icon.large.png
+author:
+  small: /asset/img/author.small.png
+  medium: /asset/img/author.medium.png
+  large: /asset/img/author.large.png
+hitokoto:
+  icon: '<i class="fas fa-circle-notch fa-fw"></i>'
+  image: /asset/img/qf3cu.png
+  api: //v1.hitokoto.cn
+  type: r # a - Anime, b - Comic, c - Game, d - Novel, e - Myself, f - Internet, g - Other, r - Random
+  content: 感谢一言网(Hitokoto.cn)提供一句话服务
+  name: jinyaoMa
+brand:
+  icons:
+    posts: '<i class="fas fa-archive fa-fw"></i>'
+    categories: '<i class="fas fa-folder-open fa-fw"></i>'
+    tags: '<i class="fas fa-tags fa-fw"></i>'
+goingto:
+  icons:
+    top: '<i class="fas fa-arrow-up"></i>'
+    bottom: '<i class="fas fa-arrow-down"></i>'
+xdrawer:
+  icon: '<i class="fas fa-bars"></i>'
+xaside:
+  icon: '<i class="fas fa-chevron-right"></i>'
+xsearch:
+  icons:
+    search: '<i class="fas fa-search"></i>'
+    close: '<i class="fas fa-times"></i>'
+pather:
+  icon: '<i class="fas fa-home fa-fw"></i><i class="fas fa-grip-lines-vertical fa-fw"></i>'
+contact:
+  github:
+    url: //github.com/jinyaoMa
+    icon: '<i class="fab fa-github fa-fw"></i>'
+  email:
+    url: mailto:jinyao.ma@outlook.com
+    icon: '<i class="fas fa-envelope fa-fw"></i>'
+  qq:
+    url: tencent://message/?uin=907881445
+    icon: '<i class="fab fa-qq fa-fw"></i>'
+menus:
+  main:
+    home:
+      url: /
+      icon: '<i class="fas fa-home fa-fw"></i>'
+    archive:
+      url: /archives/
+      icon: '<i class="fas fa-archive fa-fw"></i>'
+    about:
+      url: /about/
+      icon: '<i class="fas fa-user fa-fw"></i>'
+  job:
+    resume:
+      url: /resume/
+      icon: '<i class="fas fa-paper-plane fa-fw"></i>'
+    letter:
+      url: /letter/
+      icon: '<i class="fas fa-file-contract fa-fw"></i>'
+  others:
+    test:
+      url: /test/
+      icon: '<i class="fas fa-code fa-fw"></i>'
+skin:
+  default: "#000000"
+  colorful: "linear-gradient(to bottom right,#ff3333 ,#66cc66 , #0099cc)"
+settings:
+  langshift: '<i class="fas fa-globe-asia fa-fw"></i>'
+  night: '<i class="fas fa-adjust fa-fw"></i>'
+  transfigure: '<i class="fas fa-robot fa-fw"></i>'
+  lyride: '<i class="fas fa-eye-slash fa-fw"></i>'
+  autoplay: '<i class="fas fa-play-circle fa-fw"></i>'
+footer:
+  icons:
+    copyright: '<i class="far fa-copyright fa-fw"></i>'
+    pv: '<i class="fas fa-eye fa-fw"></i>'
+    uv: '<i class="fas fa-user-tie fa-fw"></i>'
+    wd: '<i class="fas fa-file-word fa-fw"></i>'
+panels:
+  categories: '<i class="fas fa-folder-open fa-fw"></i>'
+  tags: '<i class="fas fa-tags fa-fw"></i>'
+audioplayer:
+  icons:
+    caption: '<i class="fas fa-music fa-fw"></i>'
+    plus: '<i class="fas fa-plus fa-fw"></i>'
+meting:
+  server: netease
+  type: playlist
+  id: "970057720"
+  theme: "#ff3300"
+  list_height: "297px"
+recentposts:
+  icons:
+    caption: '<i class="fas fa-clock fa-fw"></i>'
+    date: '<i class="fas fa-calendar-alt fa-fw"></i>'
+    updated: '<i class="fas fa-calendar-check fa-fw"></i>'
+    categories: '<i class="fas fa-folder-open fa-fw"></i>'
+comment:
+  icon: '<i class="fas fa-comments fa-fw"></i>'
+timeline:
+  icon: '<i class="fas fa-history fa-fw"></i>'
+post:
+  icons:
+    caption: '<i class="fas fa-file fa-fw"></i>'
+    date: '<i class="fas fa-calendar-alt fa-fw"></i>'
+    updated: '<i class="fas fa-calendar-check fa-fw"></i>'
+    categories: '<i class="fas fa-folder-open fa-fw"></i>'
+    wordcount: '<i class="fas fa-file-word fa-fw"></i>'
+    min2read: '<i class="fas fa-stopwatch fa-fw"></i>'
+    viewcount: '<i class="fas fa-eye fa-fw"></i>'
+    ending: '<i class="far fa-dot-circle fa-fw"></i>'
+  qrcode:
+    qq: /asset/img/qq.png
+    wechat: /asset/img/wechat.png
+page:
+  icon: '<i class="fas fa-file-alt fa-fw"></i>'
+toc:
+  icon: '<i class="fas fa-paragraph fa-fw"></i>'
+search:
+  close: '<i class="fas fa-times fa-fw"></i>'
+manifest:
+  path: /manifest.json
+  name: ma-jinyao.cn
+  short_name: jinyaoMa
+  icons:
+    - src: /asset/img/android-chrome-192x192.png
+      sizes: 192x192
+      type: image/png
+    - src: /asset/img/android-chrome-512x512.png
+      sizes: 512x512
+      type: image/png
+  start_url: /index.html
+  theme_color: "#ff3300"
+  background_color: "#ffffff"
+  display: standalone
+  orientation: portrait
+serviceWorker:
+  path: /sw.js
+  opts:
+    networkTimeoutSeconds: 5
+  routes:
+    - pattern: !!js/regexp /(baidu.com|hitokoto.cn|i-meto.com|lncld.net|busuanzi|music.126.net)/
+      strategy: networkOnly
+    - pattern: !!js/regexp /\/(api|asset\/lang)\/.+\.(json)$/
+      strategy: networkFirst
+    - pattern: !!js/regexp /\/asset\/part\/.+\.(html)$/
+      strategy: cacheFirst
+    - pattern: !!js/regexp /.+\.(js|css|jpg|jpeg|png|gif|svg|eot|ttf|woff|woff2|otf|mtn|moc|json)$/
+      strategy: cacheFirst
+    - pattern: !!js/regexp /\//
+      strategy: networkFirst

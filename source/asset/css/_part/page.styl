@@ -1,0 +1,49 @@
+@keyframes page-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-page]
+  overflow hidden
+  margin $gap * 3 0
+  border-radius $gap
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  animation page-appear 0.6s ease
+  user-select none
+
+[p-page-caption]
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+  i
+    margin-right $gap * 0.5
+
+[p-page-title]
+  font-size 2.5em
+  line-height 1.5em
+  padding 0.5em 0
+  margin $gap * 6
+  text-align center
+  border-bottom 1px solid var(--color-clear)
+
+[p-page-main]
+  padding $gap * 6
+  padding-top 0
+
+@media (max-width: $app_mobile_width)
+  [p-page]
+    margin 0
+    border-radius 0
+    border none
+  [p-page-caption]
+    text-align center
+    i
+      display none
+  [p-page-title]
+    margin 0 $gap
+  [p-page-main]
+    padding ($gap * 3)$gap

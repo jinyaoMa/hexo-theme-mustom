@@ -1,0 +1,91 @@
+@keyframes hitokoto-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-hitokoto]
+  overflow hidden
+  user-select none
+  margin $gap * 3 0
+  border-radius $gap
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  animation hitokoto-appear 0.6s ease
+  position relative
+  img
+    display inherit
+    width 100%
+    min-height 6em
+    transition opacity 0.6s
+
+[p-hitokoto-content], [p-hitokoto-name]
+  user-select text
+
+[p-hitokoto-caption]
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+  i
+    margin-right $gap * 0.5
+
+[p-hitokoto-from]
+  text-align center
+  padding 0 $gap * 4
+  position absolute
+  width 100%
+  max-height 6em
+  line-height 6
+  overflow hidden
+  white-space nowrap
+  text-overflow ellipsis
+  font-size 1.25em
+  &:before
+    content '-「 '
+  &:after
+    content ' 」-'
+
+[p-hitokoto-word]
+  text-align center
+  margin $gap * 2 ($gap * 4) $gap
+  padding $gap * 2
+  position relative
+  line-height 2
+  font-size 1.5em
+  &:before
+    content '『'
+    position absolute
+    left -0.5em
+    top 0
+  &:after
+    content '』'
+    position absolute
+    right -0.5em
+    bottom 0
+
+@media (max-width: $app_mobile_width)
+  [p-hitokoto]
+    margin 0
+    border none
+    border-bottom 1px solid var(--color-clear)
+    border-radius 0
+  [p-hitokoto-caption]
+    text-align center
+    i
+      display none
+  [p-hitokoto-from]
+    line-height 1.5
+    white-space normal
+    font-size 1em
+  [p-hitokoto-word]
+    margin $gap
+    line-height 1.75
+    font-size 1.25em
+
+@media (max-width: $app_mobile_width)
+  :root.night
+    [p-hitokoto]
+      img
+        opacity 0.8

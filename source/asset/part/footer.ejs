@@ -1,0 +1,28 @@
+<div p-footer>
+  <div p-footer-copyright>
+    <%- theme.footer.icons.copyright %>
+    <span p-footer-copyright-year><%= config.year ? config.year : '2019' %> - <%= (new Date()).getFullYear() %></span>
+    <span p-footer-copyright-author><%= config.author %></span>
+  </div>
+  <div p-footer-powered data-lang="footer.powered" data-lang-params="<%- $encodeHTML(`
+    <a target="_blank" href="${theme.hexo}">Hexo ${version}</a>
+  `) %>" data-lang-encoded></div>
+  <div p-footer-theme data-lang="footer.theme" data-lang-params="<%- $encodeHTML([`
+    <a target="_blank" href="${theme.theme.url}">${theme.theme.name}</a>
+  `,`
+    <a target="_blank" href="${theme.theme.link}">${theme.theme.author}</a target="_blank">
+  `]) %>" data-lang-encoded></div>
+  <div p-footer-count>
+    <%- theme.footer.icons.pv %>
+    <span p-footer-pv>∞</span>
+    <%- theme.footer.icons.uv %>
+    <span p-footer-uv>∞</span>
+    <%- theme.footer.icons.wd %>
+    <span p-footer-wd>∞</span>
+  </div>
+  <div p-footer-license>
+    <a href="<%- theme.license.url %>" data-lang="footer.license" data-lang-titled>
+      <img src="<%- theme.license.image %>">
+    </a>
+  </div>
+</div>

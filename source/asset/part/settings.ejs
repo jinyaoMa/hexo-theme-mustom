@@ -1,0 +1,12 @@
+<div p-settings>
+  <div p-settings-caption data-lang="settings.caption"></div>
+  <div p-settings-items>
+    <% $forIn(theme.settings, (key, icon) => { %>
+    <div data-settings-key="<%- key %>">
+      <%- icon %>
+      <span p-settings-items-name data-lang="settings.items.<%- key %>"></span>
+      <span p-settings-items-switch></span>
+    </div>
+    <% }); %>
+  </div>
+</div>

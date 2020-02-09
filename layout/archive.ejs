@@ -1,0 +1,13 @@
+<%- partial('_partial/frame', {
+  favicon: theme.favicon.small,
+  manifest: theme.manifest.path,
+  parts: JSON.stringify([
+    'timeline'
+  ]),
+  title: 'Archive / 归档 - ' + config.title,
+  author: config.author,
+  keywords: 'archive, 归档',
+  description: 'Archive / 归档 - ' + config.description,
+  google_site_verification: config.google_site_verification,
+  baidu_site_verification: config.baidu_site_verification
+}) %>

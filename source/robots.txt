@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /api/
+Disallow: /archives/
+Disallow: /asset/
+Disallow: /categories/
+Disallow: /pictures/
+Disallow: /tags/

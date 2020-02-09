@@ -1,0 +1,241 @@
+@keyframes post-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-post]
+  overflow hidden
+  margin $gap * 3 0
+  border-radius $gap
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  animation post-appear 0.6s ease
+  user-select none
+
+[p-post-caption]
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+  i
+    margin-right $gap * 0.5
+
+[p-post-main]
+  padding $gap * 6
+
+[p-post-title], [p-post-content]
+  user-select text
+
+[p-post-title]
+  font-size 2.5em
+  line-height 1.5em
+  padding 0.5em 0
+  text-align center
+  border-bottom 1px solid var(--color-clear)
+
+[p-post-meta]
+  padding 1em 0
+  line-height 2
+  text-align center
+  > div
+    display inline-block
+    margin 0 $gap
+  @media (min-width: $app_mobile_width)
+    a
+      display inline-block
+      &:after
+        content ''
+        display block
+        margin-top -1px
+        width 0
+        height 1px
+        background var(--color-link)
+        transition width 0.6s
+      &:hover
+        &:after
+          width 100%
+
+[p-post-content]
+  padding 3em 0
+
+[p-post-ending]
+  color var(--color-clear)
+  border-top $gap dashed
+  text-align center
+  font-size 1.5em
+  line-height 1.5em
+  padding 0.5em 0
+  margin 2em 0
+  > span
+    display inline-block
+  i
+    height 1.5em
+    line-height 1.5
+
+[p-post-friend]
+  text-align center
+
+[p-post-friend-text]
+  line-height 1.5
+  padding-bottom $gap * 2
+
+[p-post-friend-button]
+  cursor pointer
+  display inline-block
+  border-radius $gap * 0.5
+  color var(--color-background)
+  background var(--color-text)
+  font-size 1.5em
+  padding 0.5em
+  margin-bottom $gap * 2
+  transition all 0.3s
+  @media (min-width: $app_mobile_width)
+    &:hover
+      opacity 0.88
+    &:active
+      transform scale(0.95)
+
+[p-post-friend-qrcode]
+  display none
+  &.active
+    display block
+    animation post-appear 0.6s ease
+
+[p-post-friend-qrcode-qq], [p-post-friend-qrcode-qq], [p-post-friend-qrcode-wechat]
+  max-width $post_qrcode_width
+  margin 0 $gap * 2
+  width s('calc(100% - %s)', $gap * 4)
+  display inline-block
+  padding-bottom $gap * 2
+  div
+    line-height 2
+  img
+    max-width 100%
+
+[p-post-share]
+  text-align center
+  margin $gap * 4 0
+
+[p-post-license]
+  line-height 2
+  background var(--color-post-license-back)
+  padding $gap $gap * 1.5
+  border-left $gap * 0.5 solid var(--color-link)
+  margin $gap * 4 0
+  overflow-x auto
+  overflow-y hidden
+  white-space nowrap
+  &::-webkit-scrollbar
+    height $gap
+  &::-webkit-scrollbar-thumb
+    background var(--color-text)
+    opacity 0.5
+  .label
+    margin-right $gap
+    font-weight bold
+  @media (min-width: $app_mobile_width)
+    a
+      display inline-block
+      &:after
+        content ''
+        display block
+        margin-top -1px
+        width 0
+        height 1px
+        background var(--color-link)
+        transition width 0.6s
+      &:hover
+        &:after
+          width 100%
+
+[p-post-tags]
+  line-height 2
+  margin $gap * 4 0
+  text-align center
+  a
+    display inline-block
+    margin 0 $gap * 2
+    &:before
+      content '# '
+    @media (min-width: $app_mobile_width)
+      &:after
+        content ''
+        display block
+        margin-top -1px
+        width 0
+        height 1px
+        background var(--color-link)
+        transition width 0.6s
+      &:hover
+        &:after
+          width 100%
+
+[p-post-navigator]
+  padding $gap 0
+  line-height 2
+  text-align center
+  border-top 1px solid var(--color-clear)
+  > div
+    max-width 50%
+    position relative
+  @media (min-width: $app_mobile_width)
+    a
+      transition text-shadow 0.3s
+      &:hover
+        text-shadow 0 0 1px
+
+[p-post-navigator-prev]
+  text-align left
+  float left
+  padding 0 1em
+  &:after
+    content '<'
+    font-weight bold
+    position absolute
+    bottom 0
+    left 0
+    color var(--color-clear)
+
+[p-post-navigator-next]
+  text-align right
+  float right
+  padding 0 1em
+  &:after
+    content '>'
+    font-weight bold
+    position absolute
+    bottom 0
+    right 0
+    color var(--color-clear)
+
+[p-post-navigator-clear]
+  clear both
+
+@media (max-width: $app_mobile_width)
+  [p-post]
+    margin 0
+    border-radius 0
+    border none
+  [p-post-caption]
+    text-align center
+    i
+      display none
+  [p-post-main]
+    padding 0 $gap
+  [p-post-content]
+    padding 2em 0 3em 0
+  [p-post-ending]
+    margin 1em 0
+    font-size 0.8em
+  [p-post-license], [p-post-tags]
+    margin $gap * 2 0
+  [p-post-navigator]
+    margin $gap 0 0
+    > div
+      max-width 100%
+  [p-post-navigator-prev], [p-post-navigator-next]
+    text-align center
+    padding 0 1em
+    float none

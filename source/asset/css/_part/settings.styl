@@ -1,0 +1,95 @@
+@keyframes settings-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-settings]
+  overflow hidden
+  user-select none
+  width $drawer_width - $gap * 6
+  margin $gap * 3
+  border-radius $gap
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  white-space normal
+  animation settings-appear 0.6s ease
+
+[p-settings-caption]
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+
+[p-settings-items]
+  padding $gap 0
+
+[data-settings-key]
+  line-height 3
+  cursor pointer
+  white-space nowrap
+  overflow-x hidden
+  text-overflow ellipsis
+  *
+    pointer-events none
+  i
+    margin 0 $gap * 2
+  @media (min-width: $app_mobile_width)
+    &:hover
+      background var(--color-menus-hover)
+  [p-settings-items-switch]
+    display inline-block
+    float right
+    width 2.625em
+    height 1.5em
+    margin 0.75em $gap * 2
+    overflow hidden
+    position relative
+    @media (min-width: $app_mobile_width)
+      border-radius $gap * 0.5
+    &:before
+      content ''
+      position absolute
+      top 0
+      left 0
+      height 1.5em
+      width 1.5em
+      background var(--color-settings-switch-on)
+      transition transform 0.6s
+      transform scale(0.5)
+      z-index 2
+      @media (min-width: $app_mobile_width)
+        border-radius $gap * 0.5
+    &:after
+      content ''
+      position absolute
+      top 0
+      right 0
+      height 1.5em
+      width 1.5em
+      background var(--color-settings-switch-off)
+      transition transform 0.6s
+      transform scale(3)
+      z-index 1
+      @media (min-width: $app_mobile_width)
+        border-radius $gap * 0.5
+  &.active
+    [p-settings-items-switch]
+      &:before
+        transform scale(3)
+      &:after
+        transform scale(0.5)
+        z-index 2
+
+@media (max-width: $app_mobile_width)
+  [p-settings]
+    width 100%
+    margin 0
+    border none
+    border-bottom 1px solid var(--color-clear)
+    border-radius 0
+  [p-settings-caption]
+    text-align center
+  [data-settings-key='transfigure'], [data-settings-key='autoplay']
+    display none

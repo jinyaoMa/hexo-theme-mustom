@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="google-site-verification" content="<%= google_site_verification %>">
+  <meta name="baidu-site-verification" content="<%= baidu_site_verification %>">
+  <meta name="description" content="<%= description %>">
+  <meta name="keywords" content="<%= keywords %>">
+  <meta name="author" content="<%= author %>">
+  <meta name="layout-parts" content="<%= parts %>">
+  <link rel="shortcut icon" type="image/png" href="<%= favicon %>">
+  <link rel="manifest" href="<%= manifest %>">
+  <title><%= title %></title>
+  <%- $css('style') %>
+  <%- $nomjs('nomodule') %>
+  <%- $mjs('main') %>
+</head>
+
+<body>
+  <canvas m-evanyou-canvas></canvas>
+  <div m-launch></div>
+  <div m-spinner>
+    <div m-spinner-ring></div>
+  </div>
+  <div m-progress>
+    <div m-progress-current></div>
+  </div>
+  <!-- Outside App -->
+  <div m-app>
+    <div m-header>
+      <xdrawer></xdrawer>
+      <xsearch></xsearch>
+      <sitename></sitename>
+      <!-- END header -->
+    </div>
+    <div m-center>
+      <div m-drawer>
+        <brand></brand>
+        <menus></menus>
+        <skin></skin>
+        <settings></settings>
+        <!-- END drawer -->
+      </div>
+      <div m-frame>
+        <div m-main>
+          <div m-heaper>
+            <xaside></xaside>
+            <pather></pather>
+            <!-- END heaper -->
+          </div>
+          <translater></translater>
+          <div m-content>
+            <hitokoto></hitokoto>
+            <recentposts></recentposts>
+            <timeline></timeline>
+            <post></post>
+            <page></page>
+            <!-- END content -->
+          </div>
+          <comment></comment>
+          <!-- END main -->
+        </div>
+        <div m-aside>
+          <panels></panels>
+          <audioplayer></audioplayer>
+          <toc></toc>
+          <!-- END aside -->
+        </div>
+      </div>
+    </div>
+    <div m-footer>
+      <footer></footer>
+      <!-- END footer -->
+    </div>
+    <goingto></goingto>
+    <search></search>
+    <!-- END app -->
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+sitename: Mark の Personal Website
+brand:
+  name: jinyaoMa
+  slogan: "&quot;I just wanna note silently&quot;"
+  posts: Count of Posts
+  categories: Count of Categories
+  tags: Count of Tags
+  github: Fork me on Github
+  email: Contact me by Email
+  qq: Contact me by QQ
+menus:
+  main:
+    caption: MAIN
+    items:
+      home: Home
+      archive: Archive
+      about: About
+  job:
+    caption: JOB
+    items:
+      resume: Resume
+      letter: Cover Letter
+  others:
+    caption: OTHERS
+    items:
+      test: Test
+skin:
+  caption: SKIN
+  items:
+    default: Default
+    colorful: Colorful
+settings:
+  caption: SETTINGS
+  items:
+    langshift: 简体中文
+    night: Night Shift
+    transfigure: Trnsprnt Figure
+    lyride: Hide Lyric
+    autoplay: Autoplay
+footer:
+  powered: Powered by %s
+  theme: Theme %s By %s
+  license: Creative Commons Attribution-Noncommercial-ShareAlike 4.0 International license
+panels:
+  categories: CATEGORIES
+  tags: TAGS
+audioplayer: APlayer.js %s Meting.js
+hitokoto: HITOKOTO
+recentposts:
+  caption: RECENT POSTS
+  date: Release date
+  updated: Last update
+  categories: Post categories
+comment:
+  caption: MESSAGE BOARD
+  placeholder: ヾﾉ≧∀≦)o  ~  Come on，write something here!
+translater:
+  copy: COPY
+  to: TRANSLATE TO
+  zh: 中文
+  en: English
+  jp: 日本語
+timeline:
+  caption: POST ARCHIVE
+  count: have <strong>%s</strong> posts written this year
+post:
+  caption: POST
+  min2read: "%s min."
+  date: Release date
+  updated: Last update
+  categories: Categories of this post
+  wordcount: Word count of this post
+  min2readt: Estimated time for reading
+  viewcount: Visitor count of this post
+  ending:
+    head: The post above ended
+    tail: Thanks for your reading
+  friend:
+    text: Come on! Write some comments, and your suggestions will improve the quality of my creative!
+    button: FRIEND ME
+    qq: QQ
+    wechat: WeChat
+  share:
+    title: "WeChat: Scanning to Share"
+    helper: <p>Touch on Discover, then Scan QR</p><p>Code, and share to the Moments</p>
+  license:
+    labels:
+      author: "Post Author: "
+      link: "Post Link: "
+      notice: "Copyright Notice: "
+    text: All articles/posts in this website are licensed under %s unless stating additionally.
+page:
+  caption: PAGE CONTENT
+toc:
+  caption: TABLE OF CONTENTS
+  noheadings: "?(￣△￣?) [No Table of Contents]"
+search:
+  placeholder: Enter Keywords
+  button: Search
+pather:
+  archive: Archive
+  catarchive: "Archive [Categories]"
+  tagarchive: "Archive [Tags]"
+  about: About
+  resume: Resume
+  letter: Cover Letter
+  test: Test
+  home: Home

@@ -1,0 +1,102 @@
+@keyframes recentposts-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-recentposts]
+  overflow hidden
+  user-select none
+  margin $gap * 3 0
+  border-radius $gap
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  animation hitokoto-appear 0.6s ease
+  @media (min-width: $app_mobile_width)
+    a
+      display inline-block
+      &:after
+        content ''
+        display block
+        margin-top -1px
+        width 0
+        height 1px
+        background var(--color-link)
+        transition width 0.6s
+      &:hover
+        &:after
+          width 100%
+
+[p-recentposts-caption]
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+  i
+    margin-right $gap * 0.5
+
+[p-recentpost]:not(:first-child)
+  border-top 1px solid var(--color-clear)
+
+[p-recentpost]
+  padding $gap * 4
+  position relative
+  display table
+  width 100%
+
+[p-recentpost-cover]
+  position absolute
+  margin $gap * 2
+  margin-left 0
+  right 0
+  top 0
+  height s('calc(100% - %s)', $gap * 4)
+  max-width s('calc(30% - %s)', $gap * 2)
+  overflow hidden
+  div
+    display table
+    height 100%
+  span
+    display table-cell
+    vertical-align middle
+
+[p-recentpost-title], [p-recentpost-meta], [p-recentpost-excerpt]
+  max-width 70%
+  line-height 2
+
+[p-recentpost-title], [p-recentpost-excerpt]
+  user-select text
+
+[p-recentpost-title]
+  font-weight bold
+  white-space nowrap
+  overflow-x hidden
+  text-overflow ellipsis
+  @media (min-width: $app_mobile_width)
+    a
+      &:after
+        margin-top -2px
+        height 2px
+
+[p-recentpost-meta]
+  padding $gap 0
+
+@media (max-width: $app_mobile_width)
+  [p-recentposts]
+    margin 0
+    border none
+    border-bottom 1px solid var(--color-clear)
+    border-radius 0
+  [p-recentposts-caption]
+    text-align center
+    i
+      display none
+  [p-recentpost]
+    padding ($gap * 2) $gap
+  [p-recentpost-cover]
+    display none
+  [p-recentpost-title], [p-recentpost-meta], [p-recentpost-excerpt]
+    max-width initial
+  [p-recentpost-meta]
+    padding 0

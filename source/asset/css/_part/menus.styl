@@ -1,0 +1,57 @@
+@keyframes menus-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+[p-menus]
+  overflow hidden
+  user-select none
+  width $drawer_width - $gap * 6
+  margin $gap * 3
+  border-radius $gap
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  line-height 1
+  white-space normal
+  animation menus-appear 0.6s ease
+
+[p-menu-caption]
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+
+[p-menu-items]
+  padding $gap 0
+  a
+    display block
+    color var(--color-text)
+    line-height 3
+    white-space nowrap
+    overflow-x hidden
+    text-overflow ellipsis
+    @media (max-width: $app_mobile_width)
+      position relative
+      &:not(.active):after
+        content '>'
+        position absolute
+        right $gap * 2
+    i
+      margin 0 $gap * 2
+    @media (min-width: $app_mobile_width)
+      &:hover
+        background var(--color-menus-hover)
+    &.active
+      color var(--color-menus-active-text)
+      background var(--color-menus-active-background)
+
+@media (max-width: $app_mobile_width)
+  [p-menus]
+    width 100%
+    margin 0
+    border none
+    border-bottom 1px solid var(--color-clear)
+    border-radius 0
+  [p-menu-caption]
+    text-align center

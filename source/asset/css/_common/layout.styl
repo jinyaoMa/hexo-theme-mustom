@@ -1,0 +1,340 @@
+body, div, span, a, img, p, ul, ol, li, input
+  margin 0
+  padding 0
+  box-sizing border-box
+  transition color 0.2s, background 0.6s
+
+@font-face
+  font-family 'Source Han Sans CN'
+  src url('/asset/font/SourceHanSansCN.otf')
+
+body
+  font-family 'Source Han Sans CN', Arial, Helvetica, sans-serif
+  font-size $font_size
+  line-height 2
+  color var(--color-text)
+  background var(--color-body-back)
+  background-repeat no-repeat
+  background-size cover
+  background-attachment fixed
+  overflow-x hidden
+  overflow-y scroll
+
+a
+  text-decoration none
+  color var(--color-link)
+
+[m-evanyou-canvas]
+  position fixed
+  top s('calc(3em + %s)', $progress_height)
+  left 0
+  z-index -1
+  width 100%
+  height s('calc(100% - 6em - %s)', $progress_height * 2)
+  pointer-events none
+
+[m-launch]
+  user-select none
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background-color var(--color-link)
+  background-image url('/asset/img/author.medium.png')
+  background-repeat no-repeat
+  background-size 50vmin
+  background-position center
+  transition opacity 0.3s
+  z-index zIndex(0)
+  &.disabled
+    pointer-events none
+    opacity 0
+
+[m-spinner]
+  user-select none
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background var(--color-spinner-back)
+  opacity 0
+  pointer-events none
+  z-index zIndex(2)
+  @keyframes spinner-running
+    from
+      transform rotate(0deg)
+    to
+      transform rotate(360deg)
+  [m-spinner-ring]
+    width $gap * 6
+    height $gap * 6
+    border $gap solid var(--color-spinner-front)
+    border-top $gap solid transparent
+    position fixed
+    top s('calc(50% - %s)', $gap * 3)
+    left s('calc(50% - %s)', $gap * 3)
+    border-radius 50%
+  &.active
+    pointer-events all
+    transition opacity 0.2s
+    opacity 1
+    [m-spinner-ring]
+      animation spinner-running 1s infinite linear
+
+[m-progress]
+  position fixed
+  top 0
+  left 0
+  user-select none
+  height $progress_height
+  width 100%
+  background var(--color-progress-back)
+  z-index zIndex(1)
+
+[m-progress-current]
+  height 100%
+  width 0 // 50%
+  background var(--color-progress-front)
+  transition width 0.2s
+
+[m-app]
+  padding-top $progress_height
+  max-width $app_width
+  margin 0 auto
+  // background forestgreen
+
+[m-header]
+  position fixed
+  width $app_width
+  height 3em
+  line-height 3
+  overflow hidden
+  border 1px solid var(--color-clear)
+  border-top none
+  border-radius 0 0 $gap $gap
+  color var(--color-header-text)
+  background var(--color-header-background)
+  z-index zIndex(4)
+
+[m-center]
+  width 100%
+  margin-top 3em
+
+[m-drawer]
+  float left
+  width $drawer_width
+  white-space nowrap
+  text-overflow ellipsis
+  overflow-x hidden
+  // background lightgreen
+  @media (min-width: $app_mobile_width)
+    transition all 0.6s
+    &.sticky
+      float none
+      position fixed
+      bottom 0
+
+[m-frame]
+  float right
+  width s('calc(100% - %s)', $drawer_width)
+  @media (min-width: $app_mobile_width)
+    transition all 0.6s
+
+[m-aside]
+  width $aside_width
+  white-space nowrap
+  text-overflow ellipsis
+  overflow-x hidden
+  // background mediumspringgreen
+  @media (min-width: $app_mobile_width)
+    transition all 0.6s
+    &.sticky-bottom
+      position fixed
+      right s('calc(50% - %s)', $app_width * 0.5)
+      bottom 0
+    &.sticky-top
+      position fixed
+      right s('calc(50% - %s)', $app_width * 0.5)
+      top s('calc(3em + %s)', $progress_height)
+
+[m-main]
+  float left
+  min-width $main_min_width
+  width s('calc(100% - %s)', $aside_width)
+  @media (min-width: $app_mobile_width)
+    transition all 0.6s
+
+[m-footer]
+  clear both
+  overflow hidden
+  width s('calc(100% - %s)', $drawer_width + $aside_width)
+  margin 0 $aside_width 0 $drawer_width
+  background var(--color-background)
+  @media (min-width: $app_mobile_width)
+    transition all 0.6s
+    padding-bottom $font_size * 4 // Lyric height
+    border 1px solid var(--color-clear)
+    border-bottom none
+    border-radius $gap $gap 0 0
+  @media (max-width: $app_mobile_width)
+    padding-bottom s('calc(20vh + %s)', $gap * 2) // Lyric height
+
+[m-heaper]
+  width 100%
+  height 3em
+  line-height 3
+  background var(--color-background)
+  @media (min-width: $app_mobile_width)
+    margin $gap * 3 0
+    border-radius $gap
+    border 1px solid var(--color-clear)
+
+[m-content]
+  width 100%
+  @media (min-width: $app_mobile_width)
+    margin $gap * 3 0
+
+#live2d-widget
+  transition opacity 0.6s
+  z-index zIndex(3) !important
+
+.social-share
+  .social-share-icon
+    background white
+
+:root.closeDrawer
+  [m-drawer]
+    width 0
+    @media (max-width: $app_mobile_width)
+      height 0
+  [m-frame]
+    width 100%
+  @media (min-width: $app_mobile_width)
+    [m-main], [m-footer]
+      padding-left $gap * 2
+    [m-footer]
+      width s('calc(100% - %s)', $aside_width)
+      margin 0 $aside_width 0 0
+
+:root.closeAside
+  @media (min-width: $app_mobile_width)
+    [m-aside]
+      width 0
+    [m-main]
+      width 100%
+      padding-right $gap * 2
+    [m-footer]
+      width s('calc(100% - %s)', $drawer_width)
+      margin 0 0 0 $drawer_width
+      padding-right $gap * 2
+    &.closeDrawer
+      [m-footer]
+        width 100%
+        margin 0
+
+:root.transfigure
+  #live2d-widget
+    opacity 0.5 !important
+
+:root.lyride
+  .aplayer-lrc
+    opacity 0 !important
+  [m-footer]
+    padding-bottom 0 // Lyric height
+
+@media (max-width: $app_width)
+  [m-aside].sticky-bottom, [m-aside].sticky-top
+    right 0
+  [m-header]
+    width 100%
+
+@media (max-width: $app_mobile_width)
+  [m-app]
+    overflow-x hidden
+  [m-drawer], [m-frame], [m-aside], [m-main]
+    width 100%
+  :root.closeDrawer, :root.closeAside, :root.closeDrawer.closeAside
+    [m-main]
+      width 100%
+  [m-drawer].sticky, [m-aside].sticky-bottom, [m-aside].sticky-top
+    position initial
+    top auto
+    bottom auto
+    right auto
+  [m-header]
+    border none
+    border-bottom 1px solid var(--color-clear)
+    border-radius 0
+  [m-footer]
+    width 100%
+    margin 0
+    border none
+    border-top 1px solid var(--color-clear)
+    border-radius 0
+  [m-heaper]
+    display none
+  #live2d-widget
+    opacity 0 !important
+
+[data-lang] span
+  @keyframes appear
+    from
+      opacity 0
+    to
+      opacity 1
+  animation appear 0.6s
+
+.markdown-body
+  color var(--color-text)
+  a
+    display inline-block
+    &:after
+      content ''
+      display block
+      width 0
+      height 1px
+      margin-top -1px
+      background #0366d6
+      transition width 0.6s
+    &:hover
+      text-decoration none
+      &:after
+        width 100%
+
+:root.colorful
+  [m-evanyou-canvas]
+    display none
+  body:before
+    content '图片/Picture URL: https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+    position fixed
+    top 0
+    z-index -1
+    color white
+    writing-mode vertical-lr
+    font-size 8px
+    line-height 1.5
+    height 100%
+    text-align center
+
+:root.night
+  [m-evanyou-canvas]
+    display initial
+  .markdown-body
+    a
+      color #33dddd
+      &:after
+        background #33dddd
+
+@media (min-width: $app_mobile_width)
+  [m-header], [p-search-dialog-bar], [p-search-dialog-result]
+    box-shadow 0 0 $gap var(--color-clear), 0 $gap * 1.5 $gap * 3 $gap * -1.5 var(--color-clear)
+  [m-footer]
+    box-shadow 0 0 $gap * 0.5 var(--color-clear)
+  [m-heaper]
+    box-shadow 0 0 $gap * 0.5 var(--color-clear), 0 $gap $gap * 2 $gap * -1 var(--color-clear)
+  [p-brand], [p-menus], [p-skin], [p-settings], [p-panels], [p-audioplayer], [p-toc], [p-translater-bar], [p-comment], [p-hitokoto], [p-recentposts], [p-timeline], [p-post], [p-page]
+    box-shadow 0 0 $gap * 0.5 var(--color-clear), 0 $gap $gap * 2 $gap * -1 var(--color-clear)
+  [p-translater-result]
+    box-shadow 0 $gap $gap * 2 $gap * -1 var(--color-clear)
