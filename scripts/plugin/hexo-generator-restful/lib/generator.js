@@ -357,7 +357,7 @@ module.exports = function (cfg, site) {
 
   if (restful.pages) {
     apiData = apiData.concat(site.pages.data.map(function (page) {
-      if (page.path.split('/').length !== 1) {
+      if (page.path.split('/').length !== 1 && page.name) {
         var safename = page.name.replace(/[^a-zA-Z0-9]/ig, '-');
         var path = 'api/pages/' + safename + '.json';
   

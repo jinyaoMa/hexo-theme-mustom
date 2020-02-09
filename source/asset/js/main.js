@@ -76,12 +76,12 @@ const activateSpinner = flag => {
 
 const progress = {
   current: 0,
-  to(num){
+  to(num) {
     if (num < 0 || num > 100) return;
     root.querySelector('[m-progress-current]').style.width = num + '%';
     this.current = num;
   },
-  step(num){
+  step(num) {
     let next = this.current + num;
     if (next < 0 || next > 100) return;
     root.querySelector('[m-progress-current]').style.width = next + '%';
@@ -268,25 +268,36 @@ const final_load = o => util.layoutParts(parts => {
 });
 
 const pjax = {
-  isRun: false,
+  isRunning: false,
+  queue: [],
+  _run() {
+    if (this.queue.length) {
+      this.isRunning = true;
+      this.queue.shift().work(o => {
+        this._run();
+      });
+    } else {
+      this.isRunning = false;
+    }
+  },
   run(url, callback) {
-    let that = this;
-    if (!that.isRun) {
-      that.isRun = true;
-      let mainContent = root.querySelector('[m-content]');
-      let parts = root.querySelector('meta[name="layout-parts"]');
-      let keywords = root.querySelector('meta[name="keywords"]');
-      let description = root.querySelector('meta[name="description"]');
-      progress.to(60);
-      activateSpinner(true);
-      util.delay(200, o => {
+    this.queue.push({
+      callback,
+      work(cb) {
+        let that = this;
+        let mainContent = root.querySelector('[m-content]');
+        let parts = root.querySelector('meta[name="layout-parts"]');
+        let keywords = root.querySelector('meta[name="keywords"]');
+        let description = root.querySelector('meta[name="description"]');
+        progress.to(60);
+        activateSpinner(true);
         ajax({
           url,
           method: 'get',
           dataType: 'document',
           success(data) {
-            callback && callback(data);
-            that.isRun = false;
+            that.callback && that.callback(data);
+            cb && cb(data);
             document.title = data.title;
             parts.setAttribute('content', data.querySelector('meta[name="layout-parts"]').getAttribute('content'));
             keywords.setAttribute('content', data.querySelector('meta[name="keywords"]').getAttribute('content'));
@@ -295,14 +306,15 @@ const pjax = {
             final_load();
           }
         });
-      });
-    }
+      }
+    });
+    !this.isRunning && this._run();
   }
 };
 
 const linksStore = {
   noPopState: true,
-  setClick(e){
+  setClick(e) {
     e.preventDefault();
     let url = this.href;
     if (url !== window.location.href) {
@@ -321,6 +333,9 @@ const listen2Links = o => {
     };
     linksStore.noPopState = false;
   }
+  root.querySelectorAll('.highlight a:not([target="_blank"])').forEach(link => {
+    link.target = "_blank";
+  });
   root.querySelectorAll('a:not([target="_blank"]):not([data-listened="true"]):not(.toc-link)').forEach(link => {
     link.onclick = linksStore.setClick;
     link.setAttribute('data-listened', true);

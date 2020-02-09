@@ -1,3 +1,18 @@
+const dataFormat = obj => {
+  if (typeof obj !== 'object') {
+    return '';
+  }
+
+  let arr = [];
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const element = obj[key];
+      arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(element));
+    }
+  }
+  return arr.join('&');
+}
+
 /**
  * AJAX
  * 
@@ -6,7 +21,7 @@
 export default options => {
   if (!options.method || !options.url) return;
   let request = new XMLHttpRequest();
-  request.open(options.method, options.url);
+  request.open(options.method, options.url + '?' + dataFormat(options.data));
   request.timeout = 30000;
   if (options.method.toLowerCase() === 'post') {
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
