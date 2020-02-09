@@ -43,7 +43,8 @@ menus:
 
 ## 更多
 
-``` yaml '' 主题_config.yml
+修改主题 _config.yml，
+``` yaml
 meting: # 对应meting.js设置
   server: netease
   type: playlist
