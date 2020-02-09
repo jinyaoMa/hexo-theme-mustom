@@ -43,7 +43,7 @@ menus:
 
 ## 更多
 
-修改主题 _config.yml，
+修改主题 _config.yml
 ``` yaml
 meting: # 对应meting.js设置
   server: netease
@@ -55,6 +55,18 @@ meting: # 对应meting.js设置
 # 下面这两个可以参考 https://github.com/lavas-project/hexo-pwa
 manifest:
 serviceWorker:
+
+# 改post中二维码
+post:
+  qrcode:
+    qq: /asset/img/qq.png
+    wechat: /asset/img/wechat.png
+
+# 增加皮肤可以自行摸索（css中没有怎么分色，还是黑白好看，夜间模式更好看。。。）
+skin:
+  default: "#000000"
+  colorful: "linear-gradient(to bottom right,#ff3333 ,#66cc66 , #0099cc)"
+  newSkin: # 需要对应source/asset/css/_common/color.styl中的class
 ```
 
 ## 主目录 _config.yml 例子
