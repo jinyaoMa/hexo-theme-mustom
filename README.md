@@ -1,5 +1,6 @@
 # hexo-theme-mustom
-Hexo theme
+
+看效果点这里：[ma-jinyao.cn](//ma-jinyao.cn)
 
 ## 关于本主题
 
