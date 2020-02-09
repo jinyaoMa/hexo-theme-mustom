@@ -158,6 +158,7 @@ const final_load = o => util.layoutParts(parts => {
       window.clearInterval(looper);
       baiduPush();
       evanyou();
+      listen2Links();
       activateSpinner(false);
       applyConfig();
     }
@@ -299,11 +300,9 @@ const pjax = {
   }
 };
 
-const listen2Links = o => {
-  window.onpopstate = function (e) {
-    history.state && history.state.url && pjax.run(history.state.url);
-  };
-  let setClick = function (e) {
+const linksStore = {
+  noPopState: true,
+  setClick(e){
     e.preventDefault();
     let url = this.href;
     if (url !== window.location.href) {
@@ -312,8 +311,20 @@ const listen2Links = o => {
       });
     }
     xsearch.off();
-  };
-  root.querySelectorAll('a:not([target="_blank"]):not(.toc-link)').forEach(link => link.onclick = setClick);
+  }
+};
+
+const listen2Links = o => {
+  if (linksStore.noPopState) {
+    window.onpopstate = function (e) {
+      history.state && history.state.url && pjax.run(history.state.url);
+    };
+    linksStore.noPopState = false;
+  }
+  root.querySelectorAll('a:not([target="_blank"]):not([data-listened="true"]):not(.toc-link)').forEach(link => {
+    link.onclick = linksStore.setClick;
+    link.setAttribute('data-listened', true);
+  });
 };
 
 const listen2Title = o => {

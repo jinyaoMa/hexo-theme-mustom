@@ -42,7 +42,7 @@ xsearch:
     search: '<i class="fas fa-search"></i>'
     close: '<i class="fas fa-times"></i>'
 pather:
-  icon: '<i class="fas fa-home fa-fw"></i><i class="fas fa-grip-lines-vertical fa-fw"></i>'
+  icon: '<i class="fas fa-home fa-fw"></i>'
 contact:
   github:
     url: //github.com/jinyaoMa

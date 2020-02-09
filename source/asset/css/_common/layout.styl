@@ -306,17 +306,18 @@ a
 :root.colorful
   [m-evanyou-canvas]
     display none
-  body:before
-    content '图片/Picture URL: https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
-    position fixed
-    top 0
-    z-index -1
-    color white
-    writing-mode vertical-lr
-    font-size 8px
-    line-height 1.5
-    height 100%
-    text-align center
+  &:not(.night)
+    body:before
+      content '图片/Picture URL: https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+      position fixed
+      top 0
+      z-index -1
+      color white
+      writing-mode vertical-lr
+      font-size 8px
+      line-height 1.5
+      height 100%
+      text-align center
 
 :root.night
   [m-evanyou-canvas]
