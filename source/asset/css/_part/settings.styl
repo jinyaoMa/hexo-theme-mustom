@@ -39,7 +39,6 @@
     &:hover
       background var(--color-menus-hover)
   [p-settings-items-switch]
-    display inline-block
     float right
     width 2.625em
     height 1.5em
@@ -47,7 +46,7 @@
     overflow hidden
     position relative
     @media (min-width: $app_mobile_width)
-      border-radius $gap * 0.5
+      border-radius $gap
     &:before
       content ''
       position absolute
@@ -60,7 +59,7 @@
       transform scale(0.5)
       z-index 2
       @media (min-width: $app_mobile_width)
-        border-radius $gap * 0.5
+        border-radius $gap
     &:after
       content ''
       position absolute
@@ -73,7 +72,7 @@
       transform scale(3)
       z-index 1
       @media (min-width: $app_mobile_width)
-        border-radius $gap * 0.5
+        border-radius $gap
   &.active
     [p-settings-items-switch]
       &:before

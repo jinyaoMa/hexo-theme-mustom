@@ -4,8 +4,8 @@
     <% $forIn(theme.settings, (key, icon) => { %>
     <div data-settings-key="<%- key %>">
       <%- icon %>
+      <div p-settings-items-switch></div>
       <span p-settings-items-name data-lang="settings.items.<%- key %>"></span>
-      <span p-settings-items-switch></span>
     </div>
     <% }); %>
   </div>

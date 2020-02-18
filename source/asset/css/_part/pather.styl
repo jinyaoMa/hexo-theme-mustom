@@ -7,15 +7,8 @@
 [p-pather]
   user-select none
   animation pather-appear 0.6s ease
-  overflow-x auto
-  overflow-y hidden
-  white-space nowrap
-  &::-webkit-scrollbar
-    height $gap * 0.5
-  &::-webkit-scrollbar-thumb
-    background var(--color-clear)
-    opacity 0.6
-    border-radius $gap * 0.25
+  overflow hidden
+  height 3em
 
 [p-pather-home]
   float left
@@ -26,17 +19,22 @@
 
 [p-pather-queue]
   line-height 3
+  white-space nowrap
+  overflow-x hidden
+  overflow-y auto
+  height calc(3em - 2px)
   a
     display block
     float left
-    color var(--color-background)
-    background var(--color-text)
-    line-height 1.6
-    font-size $font_size * 0.75
-    padding 0 0.6em
-    margin ($font_size * 3 - $font_size * 0.75 * 1.6) * 0.5 0
-    border-radius 0.6em 0
-    margin-left 1em
-    transition all 0.6s
+    color var(--color-text)
+    background var(--color-clear)
+    line-height $font_size * 1.5
+    font-size $font_size - 2px
+    padding 0 $font_size * 0.5
+    margin $font_size * 0.75 - 1px 0
+    border-radius $font_size * 0.5 0
+    margin-left 0.75em
+    transition background 0.6s, color 0.2s
     &:hover
-      box-shadow 0 0 0.5em 2px var(--color-link)
+      color var(--color-background)
+      background var(--color-text)
