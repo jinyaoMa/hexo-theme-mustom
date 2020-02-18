@@ -148,6 +148,15 @@ autoprefixer: # 如果装了 hexo-autoprefixer
     - "*.min.css"
   overrideBrowserslist:
     - "last 2 versions"
+babelify: # 如果装了 hexo-renderer-babelify + @babel/preset-env
+  presets:
+    - "@babel/preset-env"
+  sourceMaps: true
+
+ignore:
+  #- "**/source/asset/js/common/*.js" # 如果装了 hexo-renderer-babelify
+  #- "**/source/asset/js/part/*.js" # 如果装了 hexo-renderer-babelify
+  #- "**/source/asset/js/plugin/!(L2Dwidget.0.min.js)" # 如果装了 hexo-renderer-babelify
 
 # 百度主动推送
 baidu_url_submit:
