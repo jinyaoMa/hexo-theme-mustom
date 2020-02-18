@@ -26,9 +26,8 @@ const update = langData => {
   let v = document.querySelector('.leancloud_visitors');
   if (v) {
     v.id = window.location.pathname.replace(/\/[^\/]+.html$/, '/');
-    let t = document.title.replace(/ - [^-]+$/, '').trim();
-    v.setAttribute('data-flag-title', t);
-    onupdate && onupdate(appid, appkey, langData, t);
+    v.setAttribute('data-flag-title', document.title.replace(/ - [^-]+$/, '').trim());
+    onupdate && onupdate(appid, appkey, langData);
   } else {
     onupdate && onupdate(appid, appkey, langData);
   }

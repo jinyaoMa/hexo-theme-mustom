@@ -447,7 +447,7 @@ util.run(next => { // DEFAULT
         pass: sdata.valine.pass,
         pointer: sdata.valine.pointer
       },
-      onupdate(appid, appkey, languageData, title = null) {
+      onupdate(appid, appkey, languageData) {
         let language = config.get('langshift') ? 'en' : 'zh-cn';
         if (languageData) {
           new Valine({
@@ -459,7 +459,7 @@ util.run(next => { // DEFAULT
             app_key: appkey,
             placeholder: languageData.comment.placeholder,
             lang: language,
-            path: title ? title : '/',
+            path: pathname().startsWith('/posts/') ? pathname().replace(/index.html$/, '') : '/',
             visitor: true
           });
         }
