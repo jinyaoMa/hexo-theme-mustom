@@ -35,6 +35,9 @@
     margin 0 $gap * -1.5
     padding 0 $gap * 1.5
     color var(--color-toc-link)
+    white-space nowrap
+    text-overflow ellipsis
+    overflow-x hidden
     @media (min-width: $app_mobile_width)
       &:hover
         background var(--color-clear)

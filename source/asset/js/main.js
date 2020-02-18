@@ -1,10 +1,8 @@
 import { L2Dwidget } from "./plugin/L2Dwidget.min.js";
-import "./plugin/APlayer.min.js";
-import "./plugin/Meting.min.js";
-import "./plugin/av-min.js";
-import "./plugin/Valine.min.js";
-import "./plugin/md5.min.js";
-import "./plugin/socialShare.min.js";
+import _run_APlayer from "./plugin/APlayer.min.js";
+import _run_Meting from "./plugin/Meting.min.js";
+import _run_AV from "./plugin/av-min.js";
+import _run_Valine from "./plugin/Valine.min.js";
 import evanyou from "./plugin/evanyou.js";
 import util from "./common/util.js";
 import lang from "./common/lang.js";
@@ -34,6 +32,10 @@ import recentposts from "./part/recentposts.js";
 import timeline from "./part/timeline.js";
 import post from "./part/post.js";
 import page from "./part/page.js";
+
+_run_APlayer();
+_run_AV();
+_run_Valine();
 
 const lock_wait = 600;
 
@@ -481,6 +483,7 @@ util.run(next => { // DEFAULT
     });
   });
   audioplayer.init(null, el => {
+    _run_Meting();
     checklist.audioplayer = true;
   });
   toc.init(null, el => {

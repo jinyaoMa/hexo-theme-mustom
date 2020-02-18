@@ -1,5 +1,6 @@
 import part from "../common/part.js";
 import util from "../common/util.js";
+import _run_socialShare from "../plugin/socialShare.min.js";
 
 let tag = 'post';
 let element = null;
@@ -8,6 +9,7 @@ const init = (params, callback) => {
   part(tag, el => {
     element = el;
     document.querySelector(tag).replaceWith(element);
+    _run_socialShare();
 
     if (params && params.post) {
       let post = params.post;
@@ -102,7 +104,7 @@ const updateShare = languageData => {
     element.querySelector('[p-post-share]').innerHTML = '';
     element.querySelector('[p-post-share]').appendChild(div);
     util.delay(600, o => {
-      socialShare(div, config)
+      window.socialShare(div, config);
     });
   }
 };

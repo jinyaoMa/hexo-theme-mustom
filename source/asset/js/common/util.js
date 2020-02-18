@@ -1,4 +1,7 @@
 import fetch from "./fetch.js";
+import _run_md5 from "../plugin/md5.min.js";
+
+_run_md5();
 
 const mobileRegex = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i;
 
