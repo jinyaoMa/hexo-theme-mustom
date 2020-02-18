@@ -446,8 +446,7 @@ util.run(next => { // DEFAULT
         pass: sdata.valine.pass,
         pointer: sdata.valine.pointer
       },
-      abbrMatch: sdata.abbrMatch,
-      onupdate(appid, appkey, languageData = null) {
+      onupdate(appid, appkey, languageData, title = null) {
         let language = config.get('langshift') ? 'en' : 'zh-cn';
         if (languageData) {
           new Valine({
@@ -459,24 +458,9 @@ util.run(next => { // DEFAULT
             app_key: appkey,
             placeholder: languageData.comment.placeholder,
             lang: language,
-            path: window.location.pathname.startsWith('/posts/') ? window.location.pathname : '/',
+            path: title ? title : '/',
             visitor: true
           });
-        } else {
-          lang(language, ldata => {
-            new Valine({
-              av: AV,
-              el: '[p-comment-valine]',
-              notify: false,
-              verify: false,
-              app_id: appid,
-              app_key: appkey,
-              placeholder: ldata.comment.placeholder,
-              lang: language,
-              path: window.location.pathname.startsWith('/posts/') ? window.location.pathname : '/',
-              visitor: true
-            });
-          }, false);
         }
       }
     }, el => {

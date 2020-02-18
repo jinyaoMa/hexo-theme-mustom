@@ -19,11 +19,12 @@ font-serif = Georgia, 'Times New Roman', serif
 font-mono = 'Source Code Pro', Consolas, Monaco, Menlo, Consolas, monospace
 font-size = $font_size
 line-height = 1.6em
+block-gap = $gap * 2
 article-padding = $gap * 6
 
 $code-block
   background highlight-background
-  margin 0 article-padding * -1
+  margin block-gap article-padding * -1
   padding 15px article-padding
   border-style solid
   border-color color-border

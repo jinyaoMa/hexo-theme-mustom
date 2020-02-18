@@ -25,6 +25,10 @@ const init = (params, callback) => {
         j !== 0 && categories.append(' , ');
         categories.appendChild(a);
       });
+      if (!post.categories.length) {
+        let c = element.querySelector('[p-post-categories]');
+        c && (c.style.display = 'none');
+      }
 
       element.querySelector('[p-post-friend-button]').onclick = e => {
         let qrcode = element.querySelector('[p-post-friend-qrcode]');

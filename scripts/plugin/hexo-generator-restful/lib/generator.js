@@ -163,7 +163,10 @@ module.exports = function (cfg, site) {
 
   if (restful.site) {
     // Encode baidu translate
-    let encodeBaiduTranslate = {};
+    let encodeBaiduTranslate = {
+      pass: '',
+      pointer: ''
+    };
     let baidu_translate = cfg.baidu_translate;
     if (baidu_translate && baidu_translate.appid && baidu_translate.appkey) {
       let appidLen = (baidu_translate.appid + '').length;
@@ -174,7 +177,10 @@ module.exports = function (cfg, site) {
       }
     }
     // Encode valine
-    let encodeValine = {};
+    let encodeValine = {
+      pass: '',
+      pointer: ''
+    };
     let valine = cfg.valine;
     if (valine && valine.appid && valine.appkey) {
       let appidLen = (valine.appid + '').length;

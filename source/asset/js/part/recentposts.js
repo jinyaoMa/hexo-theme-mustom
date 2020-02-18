@@ -38,6 +38,10 @@ const init = (params, callback) => {
           j !== 0 && categories.append(' , ');
           categories.appendChild(a);
         });
+        if (!params.posts[i].categories.length) {
+          let c = recentpost.querySelector('[p-recentpost-categories]');
+          c && (c.style.display = 'none');
+        }
         let excerpt = recentpost.querySelector('[p-recentpost-excerpt]');
         excerpt.innerHTML = params.posts[i].excerpt;
       });
