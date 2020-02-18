@@ -89,7 +89,7 @@ public_dir: docs # 方便使用Github Page
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
-code_dir: downloads/code
+code_dir: code # markdown使用include_code标签
 skip_render:
   - "*.html" # 如果在在主目录source文件夹里放了搜索引擎验证的.html文件
   - "CNAME" # 如果在在主目录source文件夹里放了CNAME文件
@@ -134,6 +134,9 @@ deploy:
     repo:
 
 all_minifier: true # 如果装了 hexo-all-minifier
+js_minifier: # 如果使用code_dir和include_code标签
+  exclude:
+    - "**/source/code/*.js"
 nofollow: # 如果装了 hexo-filter-nofollow
   enable: true
   field: post
