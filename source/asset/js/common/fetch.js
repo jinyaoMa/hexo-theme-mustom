@@ -5,12 +5,15 @@
  * @param {Object} params 
  * @param {Function} callback 
  * @param {Boolean} flush 
+ * @param {Number} timeout 
  */
-export default (url, params, callback, flush = false) => {
+export default (url, params, callback, flush = false, timeout = 5000) => {
   let script = document.createElement('script');
   let data = '';
   let cb = null;
   let result = null;
+  let isTimeout = true;
+  let isNotResulted = true;
   if (params) {
     for (const key in params) {
       if (params.hasOwnProperty(key)) {
@@ -32,15 +35,25 @@ export default (url, params, callback, flush = false) => {
     };
   }
   script.onload = function () {
-    if (result) {
+    if (result && isNotResulted) {
+      isTimeout = false;
       callback && callback(result);
     }
     flush && script.remove();
   }
   script.onerror = function (e) {
-    callback && callback(e);
+    if (isNotResulted) {
+      isTimeout = false;
+      callback && callback(e);
+    }
     flush && script.remove();
   }
+  window.setTimeout(o => {
+    if (isTimeout) {
+      isNotResulted = false;
+      callback && callback(null);
+    }
+  }, timeout);
   script.src = url + data;
   document.head.appendChild(script);
 }

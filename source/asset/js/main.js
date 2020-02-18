@@ -158,11 +158,11 @@ const final_load = o => util.layoutParts(parts => {
     });
     if (flag) {
       window.clearInterval(looper);
-      baiduPush();
       evanyou();
       listen2Links();
       activateSpinner(false);
       applyConfig();
+      baiduPush();
     }
   }, lock_wait);
   let stepping = 30 / Object.keys(checklist).length;
@@ -432,6 +432,7 @@ util.run(next => { // DEFAULT
     }, el => {
       checklist.brand = true;
     });
+    checklist.footer = true;
     fetch("//busuanzi.ibruce.info/busuanzi", {
       jsonpCallback: "BusuanziCallback_" + Math.floor(1099511627776 * Math.random())
     }, result => {
@@ -439,8 +440,6 @@ util.run(next => { // DEFAULT
         site_pv: result.site_pv,
         site_uv: result.site_uv,
         site_wd: sdata.word4site
-      }, el => {
-        checklist.footer = true;
       });
     }, true);
     comment.init({
