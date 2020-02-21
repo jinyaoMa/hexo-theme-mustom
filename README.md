@@ -8,7 +8,7 @@
 - 主题 _config.yml 没有任何的开关，比如开关翻译功能、开关评论功能等等
 - 主题 _config.yml 里可以更换图片头像、链接、图标等等
 
-## 添加菜单项目
+## 添加菜单项目（layout/page only）
 
 在主题 _config.yml 中，按格式修改 menus下的项目
 
@@ -46,8 +46,8 @@ menus:
 
 ``` js
   // Ctrl + F 找这段代码
-  if (/^\/(test)\//.test(pathname())) {
-    api('pages/test', ptdata => {
+  if (/^\/(letter)\//.test(pathname())) {
+    api('pages/letter', ptdata => {
       parts.includes('page') && page.init({
         title: ptdata.title,
         content: ptdata.content
