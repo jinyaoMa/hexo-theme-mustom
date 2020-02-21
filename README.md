@@ -42,6 +42,47 @@ menus:
       links: 友链 # 新项目名称 <-----------------------------------------
 ```
 
+其实还要改 source/asset/js/main.js ... 嘿嘿嘿
+
+``` js
+  // Ctrl + F 找这段代码
+  if (/^\/(test)\//.test(pathname())) {
+    api('pages/test', ptdata => {
+      parts.includes('page') && page.init({
+        title: ptdata.title,
+        content: ptdata.content
+      }, el => {
+        checklist.page = true;
+        progress.step(stepping);
+      });
+    });
+  }
+  
+  // 这里后面开始加代码，复制上面的
+  // 例子
+  if (/^\/(links)\//.test(pathname())) { // <----------------- links菜单项
+    api('pages/links', ptdata => {  // <---------------------- links菜单项
+      parts.includes('page') && page.init({
+        title: ptdata.title,
+        content: ptdata.content
+      }, el => {
+        checklist.page = true;
+        progress.step(stepping);
+      });
+    });
+  }
+```
+
+新建 page 'links' 的 index.md 里 Front-matter 还需要有 name 变量 ... 嘿嘿嘿
+
+``` yaml
+---
+title: Links
+layout: page
+name: links # 要与index.md外的文件夹同名
+---
+```
+
 ## 更多
 
 修改主题 _config.yml
@@ -91,6 +132,8 @@ archive_dir: archives
 category_dir: categories
 code_dir: code # markdown使用include_code标签
 skip_render:
+  - "code/*.*" # 排除code_dir
+  - "extension/**/*.html" # 排除extension
   - "*.html" # 如果在在主目录source文件夹里放了搜索引擎验证的.html文件
   - "CNAME" # 如果在在主目录source文件夹里放了CNAME文件
 
@@ -134,9 +177,6 @@ deploy:
     repo:
 
 all_minifier: true # 如果装了 hexo-all-minifier
-js_minifier: # 如果使用code_dir和include_code标签
-  exclude:
-    - "**/source/code/*.js"
 nofollow: # 如果装了 hexo-filter-nofollow
   enable: true
   field: post
