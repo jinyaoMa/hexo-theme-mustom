@@ -4,7 +4,7 @@
   to
     transform translateX(0)
 
-[p-goingto]
+.p-goingto
   overflow hidden
   position fixed
   right $gap * 2
@@ -12,13 +12,15 @@
   line-height 2.2
   user-select none
   animation goingto-appear 0.6s ease
+  @media (max-width: $app_mobile_width)
+    display none
 
-[p-goingto-top], [p-goingto-bottom]
+.p-goingto-top, .p-goingto-bottom
   margin $gap
   width 2em
   text-align center
   cursor pointer
-  border-radius $gap
+  border-radius $gap * 0.5
   background var(--color-background)
   transition box-shadow 0.2s
   &:hover

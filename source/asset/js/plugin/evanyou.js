@@ -1,7 +1,7 @@
 const evanyou = {
   draw: null,
-  init() {
-    let c = document.querySelector('[m-evanyou-canvas]'),
+  init(selector) {
+    let c = document.querySelector(selector),
       x = c.getContext('2d'),
       pr = window.devicePixelRatio || 1,
       /*devicePixelRatio
@@ -70,12 +70,13 @@ const evanyou = {
       q = [{ x: 0, y: h * .7 + f }, { x: 0, y: h * .7 - f }]
       while (q[1].x < w + f) d(q[0], q[1]); // w + f
     }
-
-    this.draw();
   }
 }
 
 
-export default o => {
-  evanyou.draw ? evanyou.draw() : evanyou.init();
+export default {
+  init: evanyou.init,
+  draw(){
+    typeof evanyou.draw === 'function' && evanyou.draw();
+  }
 }

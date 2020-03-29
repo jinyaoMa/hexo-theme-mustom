@@ -12,6 +12,8 @@ var $word4site = require('../../../helper/$word4site');
 
 var $encode = require('../../../helper/$encode');
 
+var $gallery = require('../../../helper/$gallery');
+
 function filterHTMLTags(str) {
   return str ? str
     .replace(/\r?\n|\r/g, '')
@@ -31,7 +33,7 @@ function fetchCover(str) {
   return covers ? covers[0] : null;
 }
 
-module.exports = function (cfg, site) {
+module.exports = function (cfg, site, hexo) {
 
   var restful = {
     site: true,
@@ -301,6 +303,11 @@ module.exports = function (cfg, site) {
   apiData.push({
     path: 'api/search.json',
     data: JSON.stringify(searchlist)
+  });
+
+  apiData.push({
+    path: 'gallery/content.json',
+    data: JSON.stringify($gallery(hexo.source_dir + 'gallery'))
   });
 
   if (cfg.manifest) {

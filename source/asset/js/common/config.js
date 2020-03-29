@@ -2,14 +2,16 @@ import storage from "./storage.js";
 
 const isMobile = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i.test(window.navigator.userAgent);
 
+const isChinese = /^(zh)/i.test(window.navigator.browserLanguage || window.navigator.language || 'zh');
+
 const config = Object.assign({
   closeDrawer: false,
   closeAside: false,
   skin: 'default',
-  langshift: false,
+  langshift: !isChinese,
   night: false,
   transfigure: false,
-  lyride: isMobile,
+  lyride: !isChinese || isMobile,
   autoplay: false
 }, storage.get('config'));
 

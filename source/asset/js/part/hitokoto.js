@@ -23,8 +23,8 @@ const update = o => {
       c: type === null || type === 'r' ? '' : type
     },
     success: data => {
-      element.querySelector('[p-hitokoto-content]').innerText = data.hitokoto;
-      element.querySelector('[p-hitokoto-name]').innerText = data.from;
+      element.querySelector('.p-hitokoto-content').innerText = data.hitokoto;
+      element.querySelector('.p-hitokoto-name').innerText = data.from;
     }
   });
 };

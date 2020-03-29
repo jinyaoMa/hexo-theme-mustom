@@ -4,12 +4,12 @@
   to
     opacity 1
 
-[p-brand]
+.p-brand
   user-select none
   overflow hidden
-  width $drawer_width - $gap * 6
-  margin $gap * 3
-  border-radius $gap
+  width $drawer_width - $gap * 8
+  margin $gap * 4
+  border-radius $gap * 0.5
   text-align center
   border 1px solid var(--color-clear)
   background var(--color-background)
@@ -17,22 +17,23 @@
   white-space normal
   animation brand-appear 0.6s ease
 
-[p-brand-avatar]
+.p-brand-avatar
   width s('calc(100% - %s)', $gap * 4)
   margin $gap * 2
-  border-radius $gap
+  border-radius $gap * 0.5
+  max-width $app_mobile_width * 0.5
 
-[p-brand-name]
+.p-brand-name
   background var(--color-clear)
   font-size 1.5em
   line-height 2
   white-space nowrap
 
-[p-brand-slogan]
+.p-brand-slogan
   line-height 3
   white-space nowrap
 
-[p-brand-counts]
+.p-brand-counts
   padding-bottom $gap * 1.25
   line-height 2
   font-size 0.88em
@@ -42,10 +43,8 @@
     &:nth-child(even)
       border-left 1px solid
       border-right 1px solid
-    span
-      color var(--color-error)
 
-[p-brand-contacts]
+.p-brand-contacts
   padding-bottom $gap * 1.5
   font-size 1.25em
   line-height 2
@@ -53,13 +52,13 @@
     display inline-block
     width 2em
     color var(--color-text)
-    border-radius $gap
-    @media (min-width: $app_mobile_width)
+    border-radius $gap * 0.5
+    @media (min-width: $app_mobile_width_min)
       &:hover
         background var(--color-clear)
 
 @media (max-width: $app_mobile_width)
-  [p-brand]
+  .p-brand
     width 100%
     margin 0
     border none

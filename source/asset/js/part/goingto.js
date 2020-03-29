@@ -9,8 +9,8 @@ let go2Top = null;
 let go2Bottom = null;
 
 const setup = o => {
-  let goingtoTop = element.querySelector('[p-goingto-top]');
-  let goingtoBottom = element.querySelector('[p-goingto-bottom');
+  let goingtoTop = element.querySelector('.p-goingto-top');
+  let goingtoBottom = element.querySelector('.p-goingto-bottom');
 
   cancelAnimationFrame(timerTop);
   cancelAnimationFrame(timerBottom);

@@ -4,19 +4,19 @@
   to
     opacity 1
 
-[p-panels]
+.p-panels
   overflow hidden
   user-select none
-  width $aside_width - $gap * 6
-  margin $gap * 3
-  border-radius $gap
+  width $aside_width - $gap * 8
+  margin $gap * 4
+  border-radius $gap * 0.5
   border 1px solid var(--color-clear)
   background var(--color-background)
   white-space normal
   animation panels-appear 0.6s ease
   font-size 0.88em
 
-[p-panel-caption]
+.p-panel-caption
   padding 0 $gap
   font-size 0.8em
   line-height 2.5
@@ -24,36 +24,36 @@
   i
     margin-right $gap * 0.5
 
-[p-panel-items]
-  padding ($gap * 2)$gap
+.p-panel-items
+  padding ($gap * 2) $gap
   line-height 1.5
   a
     display inline-block
     margin $gap * 0.88
     color var(--color-text)
-    @media (min-width: $app_mobile_width)
+    @media (min-width: $app_mobile_width_min)
       margin-top 0
       &:after
         content ''
         display block
-        margin-top -1px
+        margin-top 2px
         width 0
         height 1px
         background var(--color-text)
-        transition width 0.6s
+        transition width 0.3s ease
       &:hover
         opacity 1 !important
         &:after
           width 100%
 
 @media (max-width: $app_mobile_width)
-  [p-panels]
+  .p-panels
     width 100%
     margin 0
     border none
     border-bottom 1px solid var(--color-clear)
     border-radius 0
-  [p-panel-caption]
+  .p-panel-caption
     text-align center
     i
       display none

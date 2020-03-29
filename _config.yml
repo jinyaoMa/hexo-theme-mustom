@@ -19,7 +19,7 @@ author:
   large: /asset/img/author.large.png
 hitokoto:
   icon: '<i class="fas fa-circle-notch fa-fw"></i>'
-  image: /asset/img/qf3cu.png
+  image: /asset/img/qf3cu.huaji.png
   api: //v1.hitokoto.cn
   type: r # a - Anime, b - Comic, c - Game, d - Novel, e - Myself, f - Internet, g - Other, r - Random
   content: 感谢一言网(Hitokoto.cn)提供一句话服务
@@ -51,8 +51,12 @@ contact:
     url: mailto:jinyao.ma@outlook.com
     icon: '<i class="fas fa-envelope fa-fw"></i>'
   qq:
-    url: tencent://message/?uin=907881445
+    url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=907881445
     icon: '<i class="fab fa-qq fa-fw"></i>'
+menuicons:
+  main: '<i class="fas fa-sitemap fa-fw"></i>'
+  job: '<i class="fas fa-briefcase fa-fw"></i>'
+  others: '<i class="fas fa-ellipsis-h fa-fw"></i>'
 menus:
   main:
     home:
@@ -72,12 +76,18 @@ menus:
       url: /letter/
       icon: '<i class="fas fa-file-contract fa-fw"></i>'
   others:
-    test:
-      url: /test/
-      icon: '<i class="fas fa-code fa-fw"></i>'
+    records:
+      url: /records/
+      icon: '<i class="fas fa-edit fa-fw"></i>'
+    gallery:
+      url: /gallery/
+      icon: '<i class="fas fa-images fa-fw"></i>'
+skinicon: '<i class="fas fa-tshirt fa-fw"></i>'
 skin:
   default: "#000000"
+  gray: "#999999"
   colorful: "linear-gradient(to bottom right,#ff3333 ,#66cc66 , #0099cc)"
+settingsicon: '<i class="fas fa-cog fa-fw"></i>'
 settings:
   langshift: '<i class="fas fa-globe-asia fa-fw"></i>'
   night: '<i class="fas fa-adjust fa-fw"></i>'
@@ -86,7 +96,6 @@ settings:
   autoplay: '<i class="fas fa-play-circle fa-fw"></i>'
 footer:
   icons:
-    copyright: '<i class="far fa-copyright fa-fw"></i>'
     pv: '<i class="fas fa-eye fa-fw"></i>'
     uv: '<i class="fas fa-user-tie fa-fw"></i>'
     wd: '<i class="fas fa-file-word fa-fw"></i>'
@@ -132,6 +141,16 @@ toc:
   icon: '<i class="fas fa-paragraph fa-fw"></i>'
 search:
   close: '<i class="fas fa-times fa-fw"></i>'
+extension:
+  icons:
+    normal: /asset/img/start.png
+    reverse: /asset/img/start.reverse.png
+records:
+  icon: '<i class="fas fa-save fa-fw"></i>'
+  cover: /asset/img/qf3cu.temp.png
+  na: N/A
+gallery:
+  icon: '<i class="fas fa-image fa-fw"></i>'
 manifest:
   path: /manifest.json
   name: ma-jinyao.cn
@@ -144,7 +163,7 @@ manifest:
       sizes: 512x512
       type: image/png
   start_url: /index.html
-  theme_color: "#ff3300"
+  theme_color: "#000000"
   background_color: "#ffffff"
   display: standalone
   orientation: portrait
@@ -153,13 +172,11 @@ serviceWorker:
   opts:
     networkTimeoutSeconds: 5
   routes:
-    - pattern: !!js/regexp /(baidu.com|hitokoto.cn|i-meto.com|lncld.net|busuanzi|music.126.net|itooi.cn)/
+    - pattern: !!js/regexp /(baidu.com|google)/
       strategy: networkOnly
-    - pattern: !!js/regexp /\/(api|asset\/lang)\/.+\.(json)$/
-      strategy: networkFirst
     - pattern: !!js/regexp /\/asset\/part\/.+\.(html)$/
       strategy: cacheFirst
-    - pattern: !!js/regexp /.+\.(js|css|jpg|jpeg|png|gif|svg|eot|ttf|woff|woff2|otf|mtn|moc|json)$/
+    - pattern: !!js/regexp /.+\.(js|css|jpg|jpeg|png|gif|svg|webp|ico|eot|ttf|woff|woff2|otf|mtn|moc|json)$/
       strategy: cacheFirst
     - pattern: !!js/regexp /\//
       strategy: networkFirst

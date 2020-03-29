@@ -23,8 +23,8 @@ const show = o => {
 };
 
 const update = (content, offset) => {
-  let message = element.querySelector('[p-toc-message]');
-  let main = element.querySelector('[p-toc-list]');
+  let message = element.querySelector('.p-toc-message');
+  let main = element.querySelector('.p-toc-list');
   if (element && element.style.display !== 'none' && content) {
     message.style.display = 'none';
     main.innerHTML = content;
@@ -40,9 +40,23 @@ const update = (content, offset) => {
       document.removeEventListener('scroll', setScroll);
       setScroll = e => {
         let headerlinks = document.querySelectorAll('.headerlink');
-        headerlinks && util.forEach(headerlinks, h => {
-          if (h.offsetTop - offset + 1 > window.scrollY) {
+        headerlinks && util.forEach(headerlinks, (h, i) => {
+          let position = h.offsetTop - offset + 1;
+          if (position > window.scrollY && position < window.scrollY + window.innerHeight) {
             let match = h.href.match(/#(.+)$/);
+            if (match) {
+              let id = window.decodeURI(match[1]).trim();
+              if (highlightId) {
+                let highlight = main.querySelector(`.toc-link[data-id="${highlightId}"]`);
+                highlight && highlight.classList.remove('active');
+              }
+              let target = main.querySelector(`.toc-link[data-id="${id}"]`);
+              target && target.classList.add('active');
+              highlightId = id;
+            }
+            return true;
+          } else if (position > window.scrollY + window.innerHeight && i - 1 >= 0) {
+            let match = headerlinks[i - 1].href.match(/#(.+)$/);
             if (match) {
               let id = window.decodeURI(match[1]).trim();
               if (highlightId) {

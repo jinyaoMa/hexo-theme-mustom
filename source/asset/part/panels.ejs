@@ -1,11 +1,11 @@
-<div p-panels>
+<div class="p-panels">
   <% $forIn(theme.panels, (name, icon) => { %>
-    <div p-panel data-key="<%- name %>">
-      <div p-panel-caption>
+    <div class="p-panel" data-key="<%- name %>">
+      <div class="p-panel-caption">
         <%- icon %>
         <span data-lang="panels.<%- name %>"></span>
       </div>
-      <div p-panel-items></div>
+      <div class="p-panel-items"></div>
     </div>
   <% }); %>
 </div>

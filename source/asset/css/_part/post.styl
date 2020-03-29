@@ -4,17 +4,17 @@
   to
     opacity 1
 
-[p-post]
+.p-post
   overflow hidden
-  margin $gap * 3 0
-  border-radius $gap
+  margin $gap * 4 0
+  border-radius $gap * 0.5
   border 1px solid var(--color-clear)
   background var(--color-background)
   line-height 1
   animation post-appear 0.6s ease
   user-select none
 
-[p-post-caption]
+.p-post-caption
   padding 0 $gap
   font-size 0.8em
   line-height 2.5
@@ -22,27 +22,27 @@
   i
     margin-right $gap * 0.5
 
-[p-post-main]
+.p-post-main
   padding $gap * 6
 
-[p-post-title], [p-post-content]
+.p-post-title, .p-post-content
   user-select text
 
-[p-post-title]
+.p-post-title
   font-size 2.85em
   line-height 1.5em
   padding 0.5em 0
   text-align center
   border-bottom 1px solid var(--color-clear)
 
-[p-post-meta]
+.p-post-meta
   padding 1em 0
   line-height 2
   text-align center
   > div
     display inline-block
     margin 0 $gap
-  @media (min-width: $app_mobile_width)
+  @media (min-width: $app_mobile_width_min)
     a
       display inline-block
       &:after
@@ -57,11 +57,11 @@
         &:after
           width 100%
 
-[p-post-content]
+.p-post-content
   padding 3em 0
 
-[p-post-ending]
-  color var(--color-clear)
+.p-post-ending
+  color var(--color-post-ending)
   border-top $gap dashed
   text-align center
   font-size 1.5em
@@ -74,14 +74,14 @@
     height 1.5em
     line-height 1.5
 
-[p-post-friend]
+.p-post-friend
   text-align center
 
-[p-post-friend-text]
+.p-post-friend-text
   line-height 1.5
   padding-bottom $gap * 2
 
-[p-post-friend-button]
+.p-post-friend-button
   cursor pointer
   display inline-block
   border-radius $gap * 0.5
@@ -91,19 +91,19 @@
   padding 0.5em
   margin-bottom $gap * 2
   transition all 0.3s
-  @media (min-width: $app_mobile_width)
+  @media (min-width: $app_mobile_width_min)
     &:hover
       opacity 0.88
     &:active
       transform scale(0.95)
 
-[p-post-friend-qrcode]
+.p-post-friend-qrcode
   display none
   &.active
     display block
     animation post-appear 0.6s ease
 
-[p-post-friend-qrcode-qq], [p-post-friend-qrcode-qq], [p-post-friend-qrcode-wechat]
+.p-post-friend-qrcode-qq, .p-post-friend-qrcode-qq, .p-post-friend-qrcode-wechat
   max-width $post_qrcode_width
   margin 0 $gap * 2
   width s('calc(100% - %s)', $gap * 4)
@@ -114,14 +114,14 @@
   img
     max-width 100%
 
-[p-post-share]
+.p-post-share
   text-align center
   margin $gap * 4 0
 
-[p-post-license]
+.p-post-license
   line-height 2
   background var(--color-post-license-back)
-  padding $gap $gap * 1.5
+  padding $gap 0
   border-left $gap * 0.5 solid var(--color-link)
   margin $gap * 4 0
   overflow-x auto
@@ -135,7 +135,10 @@
   .label
     margin-right $gap
     font-weight bold
-  @media (min-width: $app_mobile_width)
+  > div
+    width fit-content
+    padding 0 $gap * 1.5
+  @media (min-width: $app_mobile_width_min)
     a
       display inline-block
       &:after
@@ -150,7 +153,7 @@
         &:after
           width 100%
 
-[p-post-tags]
+.p-post-tags
   line-height 2
   margin $gap * 4 0
   text-align center
@@ -159,7 +162,7 @@
     margin 0 $gap * 2
     &:before
       content '# '
-    @media (min-width: $app_mobile_width)
+    @media (min-width: $app_mobile_width_min)
       &:after
         content ''
         display block
@@ -172,7 +175,7 @@
         &:after
           width 100%
 
-[p-post-navigator]
+.p-post-navigator
   padding $gap 0
   line-height 2
   text-align center
@@ -180,62 +183,68 @@
   > div
     max-width 50%
     position relative
-  @media (min-width: $app_mobile_width)
+  @media (min-width: $app_mobile_width_min)
     a
       transition text-shadow 0.3s
       &:hover
         text-shadow 0 0 1px
 
-[p-post-navigator-prev]
+.p-post-navigator-prev
   text-align left
   float left
   padding 0 1em
-  &:after
+  a:after
     content '<'
     font-weight bold
     position absolute
-    bottom 0
     left 0
-    color var(--color-clear)
+    top 0
+    @media (min-width: $app_mobile_width_min)
+      color var(--color-link)
+    @media (max-width: $app_mobile_width)
+      color var(--color-post-ending)
 
-[p-post-navigator-next]
+.p-post-navigator-next
   text-align right
   float right
   padding 0 1em
-  &:after
+  a:after
     content '>'
     font-weight bold
     position absolute
-    bottom 0
     right 0
-    color var(--color-clear)
+    top 0
+    @media (min-width: $app_mobile_width_min)
+      color var(--color-link)
+    @media (max-width: $app_mobile_width)
+      color var(--color-post-ending)
 
-[p-post-navigator-clear]
+.p-post-navigator-clear
   clear both
 
 @media (max-width: $app_mobile_width)
-  [p-post]
+  .p-post
     margin 0
     border-radius 0
     border none
-  [p-post-caption]
+  .p-post-caption
     text-align center
     i
       display none
-  [p-post-main]
+  .p-post-main
     padding 0 $gap
-  [p-post-content]
+  .p-post-content
     padding 2em 0 3em 0
-  [p-post-ending]
+  .p-post-ending
     margin 1em 0
     font-size 0.8em
-  [p-post-license], [p-post-tags]
+  .p-post-license, .p-post-tags
     margin $gap * 2 0
-  [p-post-navigator]
+  .p-post-navigator
     margin $gap 0 0
     > div
       max-width 100%
-  [p-post-navigator-prev], [p-post-navigator-next]
+  .p-post-navigator-prev, .p-post-navigator-next
     text-align center
     padding 0 1em
     float none

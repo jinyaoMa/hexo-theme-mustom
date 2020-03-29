@@ -1,0 +1,153 @@
+@keyframes records-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+.p-record
+  user-select none
+  background var(--color-background)
+  animation records-appear 0.6s ease
+  @media (min-width: $app_mobile_width_min)
+    margin $gap * 4 0
+    border-radius $gap * 0.5
+    border 1px solid var(--color-clear)
+
+.p-record-caption
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+  i
+    margin-right $gap * 0.5
+
+.p-record-frame
+  overflow hidden
+  padding $gap 0
+
+.p-record-main
+  white-space nowrap
+  overflow-x auto
+  overflow-y hidden
+  width 100%
+  &::-webkit-scrollbar
+    height $gap
+    background var(--color-clear)
+  &::-webkit-scrollbar-thumb
+    background var(--color-text)
+  &:after
+    content ''
+    display block
+    clear both
+
+.p-record-cover
+  float left
+  width $main_min_width + $gap
+  height $main_min_width
+  @media (min-width: $app_mobile_width_min)
+    padding 0 $gap * 4
+    margin $gap * 4 0
+  @media (max-width: $app_mobile_width)
+    padding 0 $gap * 2
+    margin $gap * 2 0
+  border-right $gap dashed var(--color-clear)
+  text-align center
+  img
+    display inline-block
+    max-width 100%
+    max-height $main_min_width
+    border-radius $gap * 0.5
+
+.p-record-content
+  display inline-block
+  @media (min-width: $app_mobile_width_min)
+    padding 0 $gap * 4
+    margin $gap * 4 0
+  @media (max-width: $app_mobile_width)
+    padding 0 $gap * 2
+    margin $gap * 2 0
+  width 100%
+  transition all 0.6s
+  max-width $app_width - $drawer_width - $aside_width - $main_min_width - $gap - 2px // outer border-width offset
+  max-height $main_min_width
+  overflow-x hidden
+  overflow-y auto
+  &::-webkit-scrollbar
+    width $gap
+  &::-webkit-scrollbar-thumb
+    background var(--color-clear)
+    border-radius $gap * 0.5
+  > div
+    line-height 2
+    min-height 2em
+    user-select text
+  .p-record-title
+    white-space normal
+    line-height 1.5
+    padding-bottom 0.25em
+    font-weight bold
+    .p-record-inner
+      font-size 1.25em
+
+.p-record-inner
+  font-size $font_size - 2px
+
+.p-record-label
+  font-weight bold
+
+.p-record-summary
+  white-space normal
+
+.p-record-type, .p-record-author, .p-record-source
+  text-overflow ellipsis
+  overflow hidden
+
+.p-record-summary
+  .p-record-inner
+    line-height 1.5
+    min-height 1.5em
+
+.p-record-progress
+  overflow-x hidden
+  .p-record-inner
+    min-height 2em
+    position relative
+    background var(--color-clear)
+    margin 0.25em 0
+
+.p-record-progress-current
+  position absolute
+  top 0
+  left 0
+  height 100%
+  width 100%
+  max-width 100%
+  min-width fit-content
+  box-sizing border-box
+  text-align right
+  color var(--color-records-progress-front)
+  padding 0 0.5em
+  font-style italic
+  font-weight bold
+  &.low
+    background var(--color-records-progress-back-l)
+  &.high
+    background var(--color-records-progress-back)
+
+@media (max-width: $app_mobile_width)
+  .p-record-caption
+    text-align center
+    i
+      display none
+
+:root.closeDrawer:not(.closeAside)
+  .p-record-content
+    max-width $app_width - $aside_width - $main_min_width - $gap * 3 - 2px // outer border-width offset
+
+:root.closeAside:not(.closeDrawer)
+  .p-record-content
+    max-width $app_width - $drawer_width - $main_min_width - $gap * 3 - 2px // outer border-width offset
+
+:root.closeDrawer.closeAside
+  .p-record-content
+    max-width $app_width - $main_min_width - $gap * 5 - 2px // outer border-width offset

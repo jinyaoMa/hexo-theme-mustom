@@ -15,56 +15,59 @@
   <link rel="shortcut icon" type="image/png" href="<%= favicon %>">
   <link rel="manifest" href="<%= manifest %>">
   <title><%= title %></title>
+  <%- adScript ? adScript : '' %>
+  <%- config.babelify ? '' : $nomjs('nomodule') %>
   <%- $css('style') %>
-  <%- $nomjs('nomodule') %>
   <%- $mjs('main') %>
 </head>
 
 <body>
-  <canvas m-evanyou-canvas></canvas>
-  <div m-launch></div>
-  <div m-spinner>
-    <div m-spinner-ring></div>
+  <canvas class="m-evanyou-canvas"></canvas>
+  <div class="m-launch"></div>
+  <div class="m-spinner">
+    <div class="m-spinner-ring"></div>
   </div>
-  <div m-progress>
-    <div m-progress-current></div>
+  <div class="m-progress">
+    <div class="m-progress-current"></div>
   </div>
   <!-- Outside App -->
-  <div m-app>
-    <div m-header>
+  <div class="m-app">
+    <div class="m-header">
       <xdrawer></xdrawer>
       <xsearch></xsearch>
       <sitename></sitename>
       <!-- END header -->
     </div>
-    <div m-center>
-      <div m-drawer>
+    <div class="m-center">
+      <div class="m-drawer">
         <brand></brand>
         <menus></menus>
         <skin></skin>
         <settings></settings>
         <!-- END drawer -->
       </div>
-      <div m-frame>
-        <div m-main>
-          <div m-heaper>
+      <div class="m-frame">
+        <div class="m-main">
+          <div class="m-heaper">
             <xaside></xaside>
             <pather></pather>
             <!-- END heaper -->
           </div>
           <translater></translater>
-          <div m-content>
+          <div class="m-content">
             <hitokoto></hitokoto>
             <recentposts></recentposts>
             <timeline></timeline>
             <post></post>
             <page></page>
+            <records></records>
+            <gallery></gallery>
             <!-- END content -->
           </div>
           <comment></comment>
           <!-- END main -->
         </div>
-        <div m-aside>
+        <div class="m-aside">
           <panels></panels>
           <audioplayer></audioplayer>
           <toc></toc>
@@ -72,11 +75,12 @@
         </div>
       </div>
     </div>
-    <div m-footer>
+    <div class="m-footer">
       <footer></footer>
       <!-- END footer -->
     </div>
     <goingto></goingto>
+    <extension></extension>
     <search></search>
     <!-- END app -->
   </div>

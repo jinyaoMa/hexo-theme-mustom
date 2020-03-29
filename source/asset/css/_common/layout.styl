@@ -24,7 +24,7 @@ a
   text-decoration none
   color var(--color-link)
 
-[m-evanyou-canvas]
+.m-evanyou-canvas
   position fixed
   top s('calc(3em + %s)', $progress_height)
   left 0
@@ -33,7 +33,7 @@ a
   height s('calc(100% - 6em - %s)', $progress_height * 2)
   pointer-events none
 
-[m-launch]
+.m-launch
   user-select none
   position fixed
   top 0
@@ -51,7 +51,7 @@ a
     pointer-events none
     opacity 0
 
-[m-spinner]
+.m-spinner
   user-select none
   position fixed
   top 0
@@ -67,7 +67,7 @@ a
       transform rotate(0deg)
     to
       transform rotate(360deg)
-  [m-spinner-ring]
+  .m-spinner-ring
     width $gap * 6
     height $gap * 6
     border $gap solid var(--color-spinner-front)
@@ -80,10 +80,10 @@ a
     pointer-events all
     transition opacity 0.2s
     opacity 1
-    [m-spinner-ring]
+    .m-spinner-ring
       animation spinner-running 1s infinite linear
 
-[m-progress]
+.m-progress
   position fixed
   top 0
   left 0
@@ -93,62 +93,66 @@ a
   background var(--color-progress-back)
   z-index zIndex(1)
 
-[m-progress-current]
+.m-progress-current
   height 100%
   width 0 // 50%
   background var(--color-progress-front)
   transition width 0.2s
 
-[m-app]
+.m-app
   padding-top $progress_height
   max-width $app_width
   margin 0 auto
   // background forestgreen
 
-[m-header]
+.m-header
   position fixed
-  width $app_width
+  left 0
+  width 100%
   height 3em
   line-height 3
   overflow hidden
-  border 1px solid var(--color-clear)
-  border-top none
-  border-radius 0 0 $gap $gap
+  border-bottom 1px solid var(--color-clear)
   color var(--color-header-text)
   background var(--color-header-background)
   z-index zIndex(4)
 
-[m-center]
+.m-center
   width 100%
   margin-top 3em
 
-[m-drawer]
+.m-drawer
   float left
   width $drawer_width
   white-space nowrap
   text-overflow ellipsis
   overflow-x hidden
   // background lightgreen
-  @media (min-width: $app_mobile_width)
+  @media (min-width: $app_mobile_width_min)
     transition all 0.6s
     &.sticky
       float none
       position fixed
       bottom 0
+  @media (min-width: $app_mobile_width_min)
+    position fixed
+    bottom 0
+    height s('calc(100vh - 3em - %s)', $progress_height)
+    overflow hidden
 
-[m-frame]
+.m-frame
   float right
   width s('calc(100% - %s)', $drawer_width)
-  @media (min-width: $app_mobile_width)
+  @media (min-width: $app_mobile_width_min)
     transition all 0.6s
 
-[m-aside]
+.m-aside
   width $aside_width
   white-space nowrap
   text-overflow ellipsis
   overflow-x hidden
   // background mediumspringgreen
-  @media (min-width: $app_mobile_width)
+  @media (min-width: $app_mobile_width_min)
     transition all 0.6s
     &.sticky-bottom
       position fixed
@@ -158,43 +162,42 @@ a
       position fixed
       right s('calc(50% - %s)', $app_width * 0.5)
       top s('calc(3em + %s)', $progress_height)
+  @media (min-width: $app_mobile_width_min)
+    position fixed
+    bottom 0
+    right s('calc(50% - %s)', $app_width * 0.5)
+    height s('calc(100vh - 3em - %s)', $progress_height)
+    overflow hidden
+  @media (min-width: $app_mobile_width_min) and (max-width: $app_width)
+    right 0
 
-[m-main]
+.m-main
   float left
   min-width $main_min_width
   width s('calc(100% - %s)', $aside_width)
-  @media (min-width: $app_mobile_width)
+  @media (min-width: $app_mobile_width_min)
     transition all 0.6s
 
-[m-footer]
+.m-footer
   clear both
-  overflow hidden
-  width s('calc(100% - %s)', $drawer_width + $aside_width)
-  margin 0 $aside_width 0 $drawer_width
-  background var(--color-background)
-  @media (min-width: $app_mobile_width)
+  width 100%
+  @media (min-width: $app_mobile_width_min)
     transition all 0.6s
-    padding-bottom $font_size * 4 // Lyric height
-    border 1px solid var(--color-clear)
-    border-bottom none
-    border-radius $gap $gap 0 0
-  @media (max-width: $app_mobile_width)
-    padding-bottom s('calc(20vh + %s)', $gap * 2) // Lyric height
 
-[m-heaper]
+.m-heaper
   width 100%
   height 3em
   line-height 3
   background var(--color-background)
-  @media (min-width: $app_mobile_width)
-    margin $gap * 3 0
-    border-radius $gap
+  @media (min-width: $app_mobile_width_min)
+    margin $gap * 4 0
+    border-radius $gap * 0.5
     border 1px solid var(--color-clear)
 
-[m-content]
+.m-content
   width 100%
-  @media (min-width: $app_mobile_width)
-    margin $gap * 3 0
+  @media (min-width: $app_mobile_width_min)
+    margin $gap * 4 0
 
 #live2d-widget
   transition opacity 0.6s
@@ -205,32 +208,32 @@ a
     background white
 
 :root.closeDrawer
-  [m-drawer]
+  .m-drawer
     width 0
     @media (max-width: $app_mobile_width)
       height 0
-  [m-frame]
+  .m-frame
     width 100%
-  @media (min-width: $app_mobile_width)
-    [m-main], [m-footer]
+  @media (min-width: $app_mobile_width_min)
+    .m-main, .m-footer
       padding-left $gap * 2
-    [m-footer]
+    .m-footer
       width s('calc(100% - %s)', $aside_width)
       margin 0 $aside_width 0 0
 
 :root.closeAside
-  @media (min-width: $app_mobile_width)
-    [m-aside]
+  @media (min-width: $app_mobile_width_min)
+    .m-aside
       width 0
-    [m-main]
+    .m-main
       width 100%
       padding-right $gap * 2
-    [m-footer]
+    .m-footer
       width s('calc(100% - %s)', $drawer_width)
       margin 0 0 0 $drawer_width
       padding-right $gap * 2
     &.closeDrawer
-      [m-footer]
+      .m-footer
         width 100%
         margin 0
 
@@ -241,39 +244,25 @@ a
 :root.lyride
   .aplayer-lrc
     opacity 0 !important
-  [m-footer]
-    padding-bottom 0 // Lyric height
 
 @media (max-width: $app_width)
-  [m-aside].sticky-bottom, [m-aside].sticky-top
+  .m-aside.sticky-bottom, .m-aside.sticky-top
     right 0
-  [m-header]
-    width 100%
 
 @media (max-width: $app_mobile_width)
-  [m-app]
+  .m-app
     overflow-x hidden
-  [m-drawer], [m-frame], [m-aside], [m-main]
+  .m-drawer, .m-frame, .m-aside, .m-main
     width 100%
   :root.closeDrawer, :root.closeAside, :root.closeDrawer.closeAside
-    [m-main]
+    .m-main
       width 100%
-  [m-drawer].sticky, [m-aside].sticky-bottom, [m-aside].sticky-top
+  .m-drawer.sticky, .m-aside.sticky-bottom, .m-aside.sticky-top
     position initial
     top auto
     bottom auto
     right auto
-  [m-header]
-    border none
-    border-bottom 1px solid var(--color-clear)
-    border-radius 0
-  [m-footer]
-    width 100%
-    margin 0
-    border none
-    border-top 1px solid var(--color-clear)
-    border-radius 0
-  [m-heaper]
+  .m-heaper
     display none
   #live2d-widget
     opacity 0 !important
@@ -288,34 +277,54 @@ a
 
 .markdown-body
   color var(--color-text)
-  a
-    display inline-block
-    &:after
-      content ''
-      display block
-      width 0
-      height 1px
-      margin-top -1px
-      background #0366d6
-      transition width 0.6s
-    &:hover
-      text-decoration none
-      &:after
-        width 100%
+  code
+    font-weight bold
   .highlight
     a
-      color var(--color-link)
+      display inline-block
+      color #03a9f4
       &:after
-        background var(--color-link)
+        content ''
+        display block
+        width 0
+        height 1px
+        margin-top -1px
+        background #03a9f4
+        transition width 0.6s
+      @media (min-width: $app_mobile_width_min)
+        &:hover
+          text-decoration none
+          &:after
+            width 100%
     figcaption
       line-height 1.5
+  img
+    border-radius $gap * 0.5
+    + em
+      font-size 0.5em
+      border-radius 1em
+      padding 0.25em 0.75em
+      border 1px solid
+      margin-bottom 0.5em
+      display inline-block
+      @media (min-width: $app_mobile_width_min)
+        opacity 0.25
+        &:hover
+          opacity 1
+          color #03a9f4
+    @media (min-width: $app_mobile_width_min)
+      &:hover
+        + em
+          opacity 1
+          color #03a9f4
 
 :root.colorful
-  [m-evanyou-canvas]
+  .m-evanyou-canvas
     display none
+  /*
   &:not(.night)
     body:before
-      content '图片/Picture URL: https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture'
+      content '图片/Picture URL: ' + $picurl
       position fixed
       top 0
       z-index -1
@@ -325,24 +334,24 @@ a
       line-height 1.5
       height 100%
       text-align center
+  */
 
 :root.night
-  [m-evanyou-canvas]
+  .m-evanyou-canvas
     display initial
   .markdown-body
     a
-      color #33dddd
-      &:after
-        background #33dddd
+      color #33ccff
 
-@media (min-width: $app_mobile_width)
-  [m-header], [p-search-dialog-bar], [p-search-dialog-result]
-    box-shadow 0 0 $gap var(--color-clear), 0 $gap * 1.5 $gap * 3 $gap * -1.5 var(--color-clear)
-  [m-footer]
-    box-shadow 0 0 $gap * 0.5 var(--color-clear)
-  [m-heaper]
-    box-shadow 0 0 $gap * 0.5 var(--color-clear), 0 $gap $gap * 2 $gap * -1 var(--color-clear)
-  [p-brand], [p-menus], [p-skin], [p-settings], [p-panels], [p-audioplayer], [p-toc], [p-translater-bar], [p-comment], [p-hitokoto], [p-recentposts], [p-timeline], [p-post], [p-page]
-    box-shadow 0 0 $gap * 0.5 var(--color-clear), 0 $gap $gap * 2 $gap * -1 var(--color-clear)
-  [p-translater-result]
-    box-shadow 0 $gap $gap * 2 $gap * -1 var(--color-clear)
+:root.gray:not(.night)
+  .m-evanyou-canvas
+    display none
+  @media (min-width: $app_mobile_width_min)
+    .m-header
+      box-shadow 0 0 4px 2px var(--color-shadow)
+    .p-translater-result
+      box-shadow 0 2px 1px 1px var(--color-shadow)
+    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-records, .p-gallery, .p-comment, .p-footer, .p-translater-bar, .p-search-dialog-bar, .p-search-dialog-result
+      box-shadow 0 1px 2px 1px var(--color-shadow)
+    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-records, .p-gallery, .p-comment, .p-footer, .p-search-dialog-bar, .p-search-dialog-result
+      border-width 0

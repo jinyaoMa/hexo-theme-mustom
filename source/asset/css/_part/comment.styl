@@ -4,16 +4,16 @@
   to
     opacity 1
 
-[p-comment]
+.p-comment
   overflow hidden
-  margin $gap * 3 0
-  border-radius $gap
+  margin $gap * 4 0
+  border-radius $gap * 0.5
   border 1px solid var(--color-clear)
   background var(--color-background)
   line-height 1
   animation comment-appear 0.6s ease
 
-[p-comment-caption]
+.p-comment-caption
   user-select none
   padding 0 $gap
   font-size 0.8em
@@ -22,18 +22,18 @@
   i
     margin-right $gap * 0.5
 
-[p-comment-valine]
+.p-comment-valine
   padding $gap * 4
 
 @media (max-width: $app_mobile_width)
-  [p-comment]
+  .p-comment
     margin 0
     border none
     border-bottom 1px solid var(--color-clear)
     border-radius 0
-  [p-comment-caption]
+  .p-comment-caption
     text-align center
     i
       display none
-  [p-comment-valine]
+  .p-comment-valine
     padding $gap

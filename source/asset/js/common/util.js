@@ -43,8 +43,10 @@ const getPageKey = o => {
     key = 'resume';
   } else if (pathname.startsWith('/letter/')) {
     key = 'letter';
-  } else if (pathname.startsWith('/test/')) {
-    key = 'test';
+  } else if (pathname.startsWith('/records/')) {
+    key = 'records';
+  } else if (pathname.startsWith('/gallery/')) {
+    key = 'gallery';
   } else if (pathname.startsWith('/posts/')) {
     key = 'posts';
   } else if (pathname.startsWith('/')) {

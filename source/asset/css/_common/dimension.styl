@@ -1,17 +1,21 @@
 zIndex(num)
   999999999 - num
-
+// https://api.ixiaowai.cn/gqapi/gqapi.php
+$picurl = 'https://source.unsplash.com/1920x1080/?wallpaper'
+// Dimensions
 $gap = 8px
 $font_size = 16px
 $progress_height = 0.6vmin
-$app_width = 1366px
-$drawer_width = 300px
-$aside_width = 300px
+$app_width = 1414px
+$drawer_width = 320px
+$aside_width = 320px
 $main_min_width = 320px
-$app_mobile_width = $drawer_width + $aside_width + $main_min_width * 1.1 // scrollbar offset
-
+$main_min_width_with_offset = $main_min_width + 32px // scrollbar offset
+$app_mobile_width = 1024px // $drawer_width + $aside_width + $main_min_width_with_offset
+$app_mobile_width_min = $app_mobile_width + 1px // for media min-width
 $audioplayer_height = 56px
 $audioplayer_list_height = (32px + 1px) * 9 // Meting.js list-max-height
 $timeline_col_left = 120px
 $post_qrcode_width = 300px
 $post_nav_width = 320px
+$extension_grid_width = 64px

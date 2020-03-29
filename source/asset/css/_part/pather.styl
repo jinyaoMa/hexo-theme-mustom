@@ -4,20 +4,20 @@
   to
     opacity 1
 
-[p-pather]
+.p-pather
   user-select none
   animation pather-appear 0.6s ease
   overflow hidden
   height 3em
 
-[p-pather-home]
+.p-pather-home
   float left
   line-height 1
-  padding $font_size - 1px
+  padding $font_size - 1px $font_size - 1px $font_size $font_size - 1px
   background var(--color-clear)
-  border-radius $gap 0 0 $gap
+  border-radius $gap * 0.5 0 0 ($gap * 0.5)
 
-[p-pather-queue]
+.p-pather-queue
   line-height 3
   white-space nowrap
   overflow-x hidden

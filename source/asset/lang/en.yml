@@ -18,23 +18,25 @@ menus:
   job:
     caption: JOB
     items:
-      resume: Resume
-      letter: Cover Letter
+      resume: Resume Tips
+      letter: Cover Letter Tips
   others:
     caption: OTHERS
     items:
-      test: Test
+      records: Records
+      gallery: Gallery
 skin:
   caption: SKIN
   items:
     default: Default
+    gray: Light Gray
     colorful: Colorful
 settings:
   caption: SETTINGS
   items:
     langshift: 简体中文
     night: Night Shift
-    transfigure: Trnsprnt Figure
+    transfigure: "*1/2 Figure"
     lyride: Hide Lyric
     autoplay: Autoplay
 footer:
@@ -51,6 +53,7 @@ recentposts:
   date: Release date
   updated: Last update
   categories: Post categories
+  more: MORE POSTS
 comment:
   caption: MESSAGE BOARD
   placeholder: ヾﾉ≧∀≦)o  ~  Come on，write something here!
@@ -90,7 +93,7 @@ post:
       notice: "Copyright Notice: "
     text: All articles/posts in this website are licensed under %s unless stating additionally.
 page:
-  caption: PAGE CONTENT
+  caption: PAGE
 toc:
   caption: TABLE OF CONTENTS
   noheadings: "?(￣△￣?) [No Table of Contents]"
@@ -102,7 +105,28 @@ pather:
   catarchive: "Archive [Categories]"
   tagarchive: "Archive [Tags]"
   about: About
-  resume: Resume
-  letter: Cover Letter
-  test: Test
+  resume: Resume Tips
+  letter: Cover Letter Tips
+  records: Records
+  gallery: Gallery
   home: Home
+records:
+  caption: SAVE
+  labels:
+    type: "Type:"
+    source: "Source:"
+    author: "Relevance:"
+    progress: "Progress:"
+    summary: "Summary:"
+  types:
+    default: Default
+    books: Books
+    article: Article
+    paper: Paper
+    newspaper: Newspaper
+    report: Report
+    picture: Picture
+    anime: Anime
+    video: Video
+    movie: Movie
+    audio: Audio

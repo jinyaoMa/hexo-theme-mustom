@@ -4,15 +4,28 @@
   to
     opacity 1
 
-[p-footer]
+.p-footer
   overflow hidden
   user-select none
   animation footer-appear 0.6s ease
-  padding $font_size
+  margin 0 auto
   text-align center
+  background var(--color-background)
+  transition all 0.6s
+  @media (min-width: $app_mobile_width_min)
+    border 1px solid var(--color-clear)
+    border-bottom none
+    border-radius $gap * 0.5
+    padding $font_size * 0.5
+    padding-bottom $font_size * 5
+    width s('calc(100% - %s)', $drawer_width + $aside_width)
+  @media (max-width: $app_mobile_width)
+    padding $font_size 0
+    padding-bottom s('calc(20vh + %s)', $font_size * 2)
+    border-top $gap * 0.5 solid var(--color-clear)
 
-[p-footer-powered], [p-footer-theme]
-  @media (min-width: $app_mobile_width)
+.p-footer-powered, .p-footer-theme
+  @media (min-width: $app_mobile_width_min)
     a
       display inline-block
       &:after
@@ -27,7 +40,7 @@
         &:after
           width 100%
 
-[p-footer-license]
+.p-footer-license
   font-size $font_size * 2
   line-height 1
   padding-top $gap
@@ -35,3 +48,14 @@
     display inline-block
     img
       height $font_size * 2
+
+:root.lyride
+  .p-footer
+    @media (min-width: $app_mobile_width_min)
+      padding-bottom $font_size * 0.75
+    @media (max-width: $app_mobile_width)
+      padding-bottom $font_size * 1.25
+
+:root.closeDrawer, :root.closeAside
+  .p-footer
+    width 100%

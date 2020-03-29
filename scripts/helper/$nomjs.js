@@ -27,7 +27,7 @@ const ERROR = '<!-- Error:Helper/$nomjs -->';
 const makeHtmlTag = (path, isExternal) => {
   if (typeof path === 'string') {
     if (isExternal) {
-      return '<script nomodule src="' + path + '"></script>';
+      return '<script nomodule async src="' + path + '"></script>';
     }
     if (!path.startsWith(START)) {
       if (!path.startsWith(FOLDER)) {
@@ -38,7 +38,7 @@ const makeHtmlTag = (path, isExternal) => {
     if (!path.endsWith(END)) {
       path = path + END;
     }
-    return '<script nomodule src="' + path + '?t=' + DATE + '"></script>';
+    return '<script nomodule async src="' + path + '?t=' + DATE + '"></script>';
   }
   return ERROR;
 };

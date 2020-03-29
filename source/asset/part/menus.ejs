@@ -1,12 +1,15 @@
-<div p-menus>
+<div class="p-menus">
   <% $forIn(theme.menus, (name, menu) => { %>
-  <div p-menu>
-    <div p-menu-caption data-lang="menus.<%- name %>.caption"></div>
-    <div p-menu-items>
+  <div class="p-menu">
+    <div class="p-menu-caption">
+      <%- theme.menuicons[name] %>
+      <span data-lang="menus.<%- name %>.caption"></span>
+    </div>
+    <div class="p-menu-items">
       <% $forIn(menu, (key, item) => { %>
       <a data-menu-key="<%- key %>" href="<%- item.url %>">
         <%- item.icon %>
-        <span p-menu-items-name data-lang="menus.<%- name %>.items.<%- key %>"></span>
+        <span class="p-menu-items-name" data-lang="menus.<%- name %>.items.<%- key %>"></span>
       </a>
       <% }); %>
     </div>

@@ -12,9 +12,9 @@ const messages = {
 };
 
 const setup = o => {
-  let searchResult = element.querySelector('[p-search-dialog-result]');
-  let input = element.querySelector('[p-search-dialog-input]');
-  let button = element.querySelector('[p-search-dialog-button]');
+  let searchResult = element.querySelector('.p-search-dialog-result');
+  let input = element.querySelector('.p-search-dialog-input');
+  let button = element.querySelector('.p-search-dialog-button');
 
   input.onkeydown = e => {
     if (e.code === 'Enter' || e.key === 'Enter') {
@@ -117,7 +117,7 @@ const init = (params, callback) => {
 
 const on = o => {
   if (element) {
-    let result = element.querySelector('[p-search-dialog-result]');
+    let result = element.querySelector('.p-search-dialog-result');
     let div = document.createElement('div');
     div.innerText = messages.initial;
     div.classList.add('message');
@@ -132,7 +132,7 @@ const off = o => {
   if (element) {
     element.classList.remove('active');
 
-    element.querySelector('[p-search-dialog-input]').value = '';
+    element.querySelector('.p-search-dialog-input').value = '';
   }
 };
 

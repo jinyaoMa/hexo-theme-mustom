@@ -12,5 +12,5 @@ hexo.config.archive_generator = {
 };
 
 hexo.extend.generator.register('restful', function (site) {
-  return generator(Object.assign({}, hexo.config, hexo.theme.config), site);
+  return generator(Object.assign({}, hexo.config, hexo.theme.config), site, hexo);
 });

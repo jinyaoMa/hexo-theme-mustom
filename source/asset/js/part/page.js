@@ -9,10 +9,15 @@ const init = (params, callback) => {
     document.querySelector(tag).replaceWith(element);
 
     if (params) {
-      params.title && (element.querySelector('[p-page-title]').innerText = params.title);
-      params.content && (element.querySelector('[p-page-main]').innerHTML = params.content);
+      params.title && (element.querySelector('.p-page-title').innerText = params.title);
+      if (params.content && params.content.trim() !== '') {
+        element.querySelector('.p-page-main').innerHTML = params.content;
+      } else {
+        element.querySelector('.p-page-title').style.borderWidth = 0;
+        element.querySelector('.p-page-main').style.display = 'none';
+      }
 
-      let scripts = element.querySelectorAll('#test script');
+      let scripts = element.querySelectorAll('script');
       let currentIndex = 0;
       (function run(){
         if (currentIndex < scripts.length) {
@@ -36,13 +41,13 @@ const init = (params, callback) => {
         }
       })();
 
-      element.querySelectorAll('#test link[rel~="stylesheet"]').forEach(style => {
+      element.querySelectorAll('link[rel~="stylesheet"]').forEach(style => {
         let s = document.createElement('link');
         s.ref = "stylesheet";
         s.href = style.href;
         style.parentElement.append(s);
         style.remove();
-      });;
+      });
     }
 
     callback && callback(element);

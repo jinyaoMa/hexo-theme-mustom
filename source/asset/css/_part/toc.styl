@@ -4,18 +4,18 @@
   to
     opacity 1
 
-[p-toc]
+.p-toc
   overflow hidden
   user-select none
-  width $aside_width - $gap * 6
-  margin $gap * 3
-  border-radius $gap
+  width $aside_width - $gap * 8
+  margin $gap * 4
+  border-radius $gap * 0.5
   border 1px solid var(--color-clear)
   background var(--color-background)
   white-space normal
   animation toc-appear 0.6s ease
 
-[p-toc-caption]
+.p-toc-caption
   padding 0 $gap
   font-size 0.8em
   line-height 2.5
@@ -23,9 +23,18 @@
   i
     margin-right $gap * 0.5
 
-[p-toc-main]
+.p-toc-main
   padding $gap * 1.5
   font-size 0.88em
+  @media (min-width: $app_mobile_width_min)
+    max-height s('calc(100vh - 5.5em - %s - %s)', $gap * 8 + 3px, $progress_height)
+    overflow-y auto
+    &::-webkit-scrollbar
+      width $gap
+    &::-webkit-scrollbar-thumb
+      background var(--color-text)
+
+.p-toc-list
   pointer-events none
   ol
     list-style none
@@ -38,7 +47,7 @@
     white-space nowrap
     text-overflow ellipsis
     overflow-x hidden
-    @media (min-width: $app_mobile_width)
+    @media (min-width: $app_mobile_width_min)
       &:hover
         background var(--color-clear)
       &.active
@@ -46,16 +55,16 @@
         color var(--color-toc-active-text)
 
 @media (max-width: $app_mobile_width)
-  [p-toc]
+  .p-toc
     width 100%
     margin 0
     border none
     border-bottom 1px solid var(--color-clear)
     border-radius 0
-  [p-toc-caption]
+  .p-toc-caption
     text-align center
     i
       display none
-  [p-toc-message]
+  .p-toc-message
     text-align center
     font-size 0.88em

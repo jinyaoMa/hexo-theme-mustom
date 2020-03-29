@@ -8,9 +8,9 @@ const init = (params, callback) => {
     element = el;
     document.querySelector(tag).replaceWith(element);
     if (params) {
-      element.querySelector('[p-brand-posts-count]').innerText = params.numOfPosts;
-      element.querySelector('[p-brand-categories-count]').innerText = params.numOfCategories;
-      element.querySelector('[p-brand-tags-count]').innerText = params.numOfTags;
+      element.querySelector('.p-brand-posts-count').innerText = params.numOfPosts;
+      element.querySelector('.p-brand-categories-count').innerText = params.numOfCategories;
+      element.querySelector('.p-brand-tags-count').innerText = params.numOfTags;
     }
     callback && callback(element);
   });

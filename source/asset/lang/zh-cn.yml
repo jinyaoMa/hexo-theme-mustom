@@ -18,16 +18,18 @@ menus:
   job:
     caption: 工作
     items:
-      resume: 简历
-      letter: 自荐信
+      resume: 简历小贴士
+      letter: 求职信小贴士
   others:
     caption: 其他
     items:
-      test: 测试
+      records: 记录
+      gallery: 图库
 skin:
   caption: 皮肤
   items:
     default: 默认
+    gray: 亮灰
     colorful: 彩色
 settings:
   caption: 设置
@@ -51,6 +53,7 @@ recentposts:
   date: 发布日期
   updated: 更新日期
   categories: 文章分类
+  more: 更多文章
 comment:
   caption: 留言板
   placeholder: ヾﾉ≧∀≦)o 来呀，快写点什么吧！
@@ -90,7 +93,7 @@ post:
       notice: "版权声明: "
     text: 本站所有文章除特别声明外，均采用 %s 许可协议。转载请注明出处！
 page:
-  caption: 页面内容
+  caption: 页面
 toc:
   caption: 目录
   noheadings: "?(￣△￣?) [没有目录]"
@@ -102,7 +105,28 @@ pather:
   catarchive: "归档 [分类]"
   tagarchive: "归档 [标签]"
   about: 关于
-  resume: 简历
-  letter: 自荐信
-  test: 测试
+  resume: 简历小贴士
+  letter: 求职信小贴士
+  records: 记录
+  gallery: 图库
   home: 首页
+records:
+  caption: 存档
+  labels:
+    type: "类型："
+    source: "来源："
+    author: "相关："
+    progress: "进度："
+    summary: "总结："
+  types:
+    default: 默认
+    books: 书籍
+    article: 文章
+    paper: 论文
+    newspaper: 报纸
+    report: 报告
+    picture: 图片
+    anime: 动漫
+    video: 视频
+    movie: 电影
+    audio: 音频

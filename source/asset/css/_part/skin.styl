@@ -4,12 +4,12 @@
   to
     opacity 1
 
-[p-skin]
+.p-skin
   overflow hidden
   user-select none
-  width $drawer_width - $gap * 6
-  margin $gap * 3
-  border-radius $gap
+  width $drawer_width - $gap * 8
+  margin $gap * 4
+  border-radius $gap * 0.5
   border 1px solid var(--color-clear)
   background var(--color-background)
   line-height 1
@@ -18,13 +18,15 @@
   @media (max-width: $app_mobile_width)
     display none
 
-[p-skin-caption]
+.p-skin-caption
   padding 0 $gap
   font-size 0.8em
   line-height 2.5
   background var(--color-clear)
+  i
+    margin-right $gap * 0.5
 
-[p-skin-items]
+.p-skin-items
   padding $gap
 
 [data-skin-key]

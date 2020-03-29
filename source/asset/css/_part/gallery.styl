@@ -1,0 +1,46 @@
+@keyframes gallery-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+.p-gallery-item
+  user-select none
+  background var(--color-background)
+  animation gallery-appear 0.6s ease
+  overflow hidden
+  @media (min-width: $app_mobile_width_min)
+    margin $gap * 4 0
+    border-radius $gap * 0.5
+    border 1px solid var(--color-clear)
+
+.p-gallery-caption
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+  i
+    margin-right $gap * 0.5
+  @media (max-width: $app_mobile_width)
+    text-align center
+    i
+      display none
+
+.p-gallery-image
+  text-align center
+  a, img
+    display block
+  a
+    background var(--color-gallery)
+    @media (max-width: $app_mobile_width)
+      padding $gap
+    @media (min-width: $app_mobile_width_min)
+      padding $gap * 3
+      &:hover
+        background var(--color-gallery-hover)
+  img
+    max-width 100%
+    margin 0 auto

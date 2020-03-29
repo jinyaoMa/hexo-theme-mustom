@@ -1,86 +1,171 @@
 :root
-  --color-text lighten(#000000, 20%)
+  --color-text #333333
   --color-background #ffffff
   --color-link #ff3300
-  --color-clear darken(#ffffff, 9%)
-  --color-error brown
+  --color-clear #f3f3f3
+  --color-shadow transparent
+  --color-error #993333
   --color-body-back #ffffff
-  --color-header-text lighten(#000000, 20%)
+  --color-header-text #333333
   --color-header-background #ffffff
-  --color-spinner-front lighten(#000000, 20%)
+  --color-spinner-front #333333
   --color-spinner-back #ffffffee
-  --color-progress-front lighten(#000000, 20%)
-  --color-progress-back darken(#ffffff, 6%)
-  --color-goingto-shadow lighten(#000000, 20%)
-  --color-menus-hover darken(#ffffff, 6%)
+  --color-progress-front #333333
+  --color-progress-back #eeeeee
+  --color-goingto-shadow #333333
+  --color-menus-hover #eeeeee
   --color-menus-active-text #ffffff
-  --color-menus-active-background lighten(#000000, 20%)
-  --color-settings-switch-on lighten(#000000, 20%)
-  --color-settings-switch-off lighten(#000000, 88%)
-  --color-audioplayer-lrc lighten(#000000, 33%)
-  --color-audioplayer-lrc-current lighten(#000000, 6%)
-  --color-audioplayer-lrc-background linear-gradient(180deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.8))
+  --color-menus-active-background #333333
+  --color-settings-switch-on #333333
+  --color-settings-switch-off #dddddd
+  --color-audioplayer-lrc #555555
+  --color-audioplayer-lrc-current #111111
+  --color-audioplayer-lrc-background linear-gradient(180deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, 0.8))
   --color-audioplayer-lrc-mobile-back #ffffffee
-  --color-post-license-back #ff330009
-  --color-toc-link lighten(#000000, 20%)
+  --color-post-license-back #ff330011
+  --color-post-ending #dddddd
+  --color-toc-link #333333
   --color-toc-active-text #ffffff
-  --color-toc-active-background lighten(#000000, 20%)
+  --color-toc-active-background #333333
   --color-search-highlight #00cc99
+  --color-extension-front #333333
+  --color-extension-back #ffffff
+  --color-extension-hover #eeeeee
+  --color-records-progress-back #99cc33
+  --color-records-progress-back-l #ffcc33
+  --color-records-progress-front #333333
+  --color-gallery #dddddd
+  --color-gallery-hover #cccccc
+  --color-recentposts-more-front #0099FF
+  --color-recentposts-more-back #ffffff
+
+:root.gray
+  --color-text #333333
+  --color-background #ffffff
+  --color-link #ff3300
+  --color-clear #dddddd
+  --color-shadow #33333366
+  --color-error #993333
+  --color-body-back #eeeeee
+  --color-header-text #333333
+  --color-header-background #ffffff
+  --color-spinner-front #333333
+  --color-spinner-back #ffffffee
+  --color-progress-front #333333
+  --color-progress-back #eeeeee
+  --color-goingto-shadow #333333
+  --color-menus-hover #eeeeee
+  --color-menus-active-text #ffffff
+  --color-menus-active-background #333333
+  --color-settings-switch-on #333333
+  --color-settings-switch-off #dddddd
+  --color-audioplayer-lrc #555555
+  --color-audioplayer-lrc-current #111111
+  --color-audioplayer-lrc-background linear-gradient(180deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, 0.8))
+  --color-audioplayer-lrc-mobile-back #ffffffee
+  --color-post-license-back #ff330011
+  --color-post-ending #dddddd
+  --color-toc-link #333333
+  --color-toc-active-text #ffffff
+  --color-toc-active-background #333333
+  --color-search-highlight #00cc99
+  --color-extension-front #333333
+  --color-extension-back #ffffff
+  --color-extension-hover #eeeeee
+  --color-records-progress-back #99cc33
+  --color-records-progress-back-l #ffcc33
+  --color-records-progress-front #333333
+  --color-gallery #dddddd
+  --color-gallery-hover #cccccc
+  --color-recentposts-more-front #0099FF
+  --color-recentposts-more-back #ffffff
 
 :root.colorful
-  --color-text lighten(#000000, 20%)
-  --color-background #ffffffcc
+  --color-text #000000
+  --color-background #ffffffdd
   --color-link #ff3300
-  --color-clear #99ccff
+  --color-clear #ffffff
+  --color-shadow transparent
   --color-error brown
-  --color-body-back url('https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture')
-  --color-header-text lighten(#000000, 20%)
+  --color-body-back url($picurl)
+  --color-header-text #000000
   --color-header-background #ffffff
-  --color-spinner-front lighten(#000000, 20%)
+  --color-spinner-front #000000
   --color-spinner-back #ffffffee
   --color-progress-front #ff3300
-  --color-progress-back darken(#ffffff, 6%)
-  --color-goingto-shadow lighten(#ff0033, 33%)
-  --color-menus-hover darken(#ffeeee, 6%)
+  --color-progress-back #ffffffdd
+  --color-goingto-shadow #000000
+  --color-menus-hover #ffffff99
   --color-menus-active-text #ffffff
-  --color-menus-active-background #ff3399
-  --color-settings-switch-on #3399ff
-  --color-settings-switch-off #aaccff
-  --color-audioplayer-lrc lighten(#000000, 33%)
-  --color-audioplayer-lrc-current lighten(#000000, 6%)
-  --color-audioplayer-lrc-background linear-gradient(180deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.8))
+  --color-menus-active-background #0099ff
+  --color-settings-switch-on #333333
+  --color-settings-switch-off #99CC33
+  --color-audioplayer-lrc #333333
+  --color-audioplayer-lrc-current #000000
+  --color-audioplayer-lrc-background linear-gradient(180deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, 0.8))
   --color-audioplayer-lrc-mobile-back #ffffffee
-  --color-post-license-back #ff330009
-  --color-toc-link #339966
+  --color-post-license-back #ff330011
+  --color-post-ending #009999
+  --color-toc-link #000000
   --color-toc-active-text #ffffff
   --color-toc-active-background #339966
   --color-search-highlight #00cc99
+  --color-records-progress-back #99cc33
+  --color-records-progress-back-l #ffcc33
+  --color-records-progress-front #000000
+  --color-gallery #FF009966
+  --color-gallery-hover #CC0066
+  --color-recentposts-more-front #0099FF
+  --color-recentposts-more-back #ffffff
 
 :root.night
-  --color-text darken(#ffffff, 20%)
-  --color-background #0c0c0cee
+  --color-text #cccccc
+  --color-background #000000cc
   --color-link #ff3399
-  --color-clear #2d2d2d
+  --color-clear #333333
+  --color-shadow #333333
   --color-error #ff3333
   --color-body-back #000000
-  --color-header-text darken(#ffffff, 20%)
-  --color-header-background #0c0c0c
-  --color-spinner-front darken(#ffffff, 20%)
+  --color-header-text #cccccc
+  --color-header-background #222222
+  --color-spinner-front #cccccc
   --color-spinner-back #000000ee
   --color-progress-front #ff3300
-  --color-progress-back lighten(#0c0c0c, 12%)
-  --color-goingto-shadow darken(#ffffff, 20%)
-  --color-menus-hover lighten(#000000, 12%)
+  --color-progress-back #cccccc
+  --color-goingto-shadow #cccccc
+  --color-menus-hover #333333
   --color-menus-active-text #000000
-  --color-menus-active-background darken(#ffffff, 20%)
-  --color-settings-switch-on darken(#ffffff, 20%)
-  --color-settings-switch-off lighten(#000000, 12%)
-  --color-audioplayer-lrc darken(#ffffff, 66%)
-  --color-audioplayer-lrc-current darken(#ffffff, 6%)
-  --color-audioplayer-lrc-background linear-gradient(180deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.4))
-  --color-audioplayer-lrc-mobile-back #0c0c0cee
-  --color-post-license-back #ff330009
-  --color-toc-link darken(#ffffff, 20%)
-  --color-toc-active-text #0c0c0c
-  --color-toc-active-background darken(#ffffff, 20%)
+  --color-menus-active-background #cccccc
+  --color-settings-switch-on #cccccc
+  --color-settings-switch-off #444444
+  --color-audioplayer-lrc #aaaaaa
+  --color-audioplayer-lrc-current #eeeeee
+  --color-audioplayer-lrc-background linear-gradient(180deg, hsla(0, 0%, 100%, 0) 0, hsla(0, 0%, 100%, 0.4))
+  --color-audioplayer-lrc-mobile-back #000000ee
+  --color-post-license-back #ff330011
+  --color-post-ending #444444
+  --color-toc-link #cccccc
+  --color-toc-active-text #000000
+  --color-toc-active-background #cccccc
   --color-search-highlight #00cc99
+  --color-extension-front #eeeeee
+  --color-extension-back #000000
+  --color-extension-hover #333333
+  --color-records-progress-back #99cc33
+  --color-records-progress-back-l #ffcc33
+  --color-records-progress-front #000000
+  --color-gallery #111111
+  --color-gallery-hover #222222
+  --color-recentposts-more-front #0066cc
+  --color-recentposts-more-back #ffffff
+
+.color_1
+  color #CC0033
+.color_2
+  color #00CCFF
+.color_3
+  color #00CC99
+.color_4
+  color #6666FF
+.color_5
+  color #996666

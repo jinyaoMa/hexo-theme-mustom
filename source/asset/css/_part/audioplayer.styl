@@ -4,18 +4,18 @@
   to
     opacity 1
 
-[p-audioplayer]
+.p-audioplayer
   user-select none
-  width $aside_width - $gap * 6
-  margin $gap * 3
-  border-radius $gap
+  width $aside_width - $gap * 8
+  margin $gap * 4
+  border-radius $gap * 0.5
   border 1px solid var(--color-clear)
   background var(--color-background)
   white-space normal
   animation panels-appear 0.6s ease
   overflow hidden
 
-[p-audioplayer-caption]
+.p-audioplayer-caption
   padding 0 $gap
   font-size 0.8em
   line-height 2.5
@@ -23,7 +23,7 @@
   > i
     margin-right $gap * 0.5
 
-[p-audioplayer-player]
+.p-audioplayer-player
   white-space normal
   max-height $audioplayer_height + $audioplayer_list_height
   .aplayer.aplayer-withlist
@@ -74,8 +74,12 @@
             line-height $font_size * 2 !important
             font-size $font_size * 1.5 !important
             color var(--color-audioplayer-lrc-current)
+            font-weight bold
+            text-shadow 0 0 $font_size var(--color-background)
     .aplayer-list
       ol
+        &::-webkit-scrollbar
+          width $gap
         &::-webkit-scrollbar-thumb
           border-radius 0
           background-color var(--color-text)
@@ -95,13 +99,12 @@
             padding-right $gap * 0.5
 
 @media (max-width: $app_mobile_width)
-  [p-audioplayer]
+  .p-audioplayer
     width 100%
     margin 0
     border none
-    border-bottom 1px solid var(--color-clear)
     border-radius 0
-  [p-audioplayer-caption]
+  .p-audioplayer-caption
     text-align center
     > i
       display none

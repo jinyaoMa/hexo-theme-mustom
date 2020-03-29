@@ -8,8 +8,8 @@ const init = (params, callback) => {
     element = el;
     document.querySelector(tag).replaceWith(element);
     if (params && params.categories && params.tags) {
-      let categories = element.querySelector('[data-key="categories"] [p-panel-items]');
-      let tags = element.querySelector('[data-key="tags"] [p-panel-items]');
+      let categories = element.querySelector('[data-key="categories"] .p-panel-items');
+      let tags = element.querySelector('[data-key="tags"] .p-panel-items');
       // Categories
       let maxLen = 0;
       params.categories.forEach(cat => {

@@ -27,7 +27,7 @@ const data = {
 
 const setContent = (show, content) => {
   if (element) {
-    let translaterResult = element.querySelector('[p-translater-result]');
+    let translaterResult = element.querySelector('.p-translater-result');
     if (show) {
       translaterResult.style.display = 'block';
       translaterResult.innerHTML = content;
@@ -41,7 +41,7 @@ const setContent = (show, content) => {
 };
 
 const setup = o => {
-  let target = document.querySelector('[m-main]');
+  let target = document.querySelector('.m-main');
 
   target.removeEventListener('mousedown', data.setMousedown);
   data.setMousedown = function (e) {
@@ -61,11 +61,11 @@ const setup = o => {
       let epath = e.path || (e.composedPath && e.composedPath());
       let rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
       element.style.transform = 'translateY(' + (window.scrollY + rect.y + rect.height - element.offsetTop + 8) + 'px)'; // set offset to target e.g. 8px
-      if (data.isPathIn(epath, element.querySelector('[p-translater-bar-copy]')) && query.length > 0) {
+      if (data.isPathIn(epath, element.querySelector('.p-translater-bar-copy')) && query.length > 0) {
         if (document.execCommand('copy')) {
           setContent(true, '<p>Copied! 复制成功！</p>');
         }
-      } else if (data.isPathIn(epath, element.querySelector('[p-translater-bar-zh]'))) {
+      } else if (data.isPathIn(epath, element.querySelector('.p-translater-bar-zh'))) {
         onstart(element);
         util.baiduTranslate(credential, query, 'zh', (data) => {
           onended(element);
@@ -75,7 +75,7 @@ const setup = o => {
             setContent(true, data.result);
           }
         });
-      } else if (data.isPathIn(epath, element.querySelector('[p-translater-bar-en]'))) {
+      } else if (data.isPathIn(epath, element.querySelector('.p-translater-bar-en'))) {
         onstart(element);
         util.baiduTranslate(credential, query, 'en', (data) => {
           onended(element);
@@ -85,7 +85,7 @@ const setup = o => {
             setContent(true, data.result);
           }
         });
-      } else if (data.isPathIn(epath, element.querySelector('[p-translater-bar-jp]'))) {
+      } else if (data.isPathIn(epath, element.querySelector('.p-translater-bar-jp'))) {
         onstart(element);
         util.baiduTranslate(credential, query, 'jp', (data) => {
           onended(element);

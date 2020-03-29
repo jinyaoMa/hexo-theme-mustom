@@ -11,6 +11,7 @@ import api from "./common/api.js";
 import config from "./common/config.js";
 import ajax from "./common/ajax.js";
 import goingto from "./part/goingto.js";
+import extension from "./part/extension.js";
 import search from "./part/search.js";
 import xdrawer from "./part/xdrawer.js";
 import xaside from "./part/xaside.js";
@@ -32,6 +33,8 @@ import recentposts from "./part/recentposts.js";
 import timeline from "./part/timeline.js";
 import post from "./part/post.js";
 import page from "./part/page.js";
+import records from "./part/records.js";
+import gallery from "./part/gallery.js";
 
 _run_APlayer();
 _run_AV();
@@ -66,27 +69,55 @@ const root = document.querySelector(':root');
 
 const pathname = o => window.location.pathname;
 
-const topping = o => root.querySelector('[m-center]').offsetTop + root.querySelector('[m-header]').offsetTop;
+const topping = o => root.querySelector('.m-center').offsetTop + root.querySelector('.m-header').offsetTop;
 
-const disableLaunch = flag => {
-  flag ? root.querySelector('[m-launch]').classList.add('disabled') : root.querySelector('[m-launch]').classList.remove('disabled');
+const launch = {
+  _close: null,
+  disable(flag) {
+    if (flag) {
+      let that = this;
+      let hidden;
+      if (typeof document.hidden !== 'undefined') { // Opera 12.10 and Firefox 18 and later support 
+        hidden = 'hidden';
+      } else if (typeof document.msHidden !== 'undefined') {
+        hidden = 'msHidden';
+      } else if (typeof document.webkitHidden !== 'undefined') {
+        hidden = 'webkitHidden';
+      } else {
+        hidden = 'nohiddren';
+      }
+      if (!document[hidden]) {
+        root.querySelector('.m-launch').classList.add('disabled');
+      } else {
+        that._close = window.setInterval(e => {
+          if (!document[hidden]) {
+            root.querySelector('.m-launch').classList.add('disabled');
+            window.clearInterval(that._close);
+            that._close = null;
+          }
+        }, lock_wait);
+      }
+    } else {
+      root.querySelector('.m-launch').classList.remove('disabled');
+    }
+  }
 };
 
 const activateSpinner = flag => {
-  flag ? root.querySelector('[m-spinner]').classList.add('active') : root.querySelector('[m-spinner]').classList.remove('active');
+  flag ? root.querySelector('.m-spinner').classList.add('active') : root.querySelector('.m-spinner').classList.remove('active');
 };
 
 const progress = {
   current: 0,
   to(num) {
     if (num < 0 || num > 100) return;
-    root.querySelector('[m-progress-current]').style.width = num + '%';
+    root.querySelector('.m-progress-current').style.width = num + '%';
     this.current = num;
   },
   step(num) {
     let next = this.current + num;
     if (next < 0 || next > 100) return;
-    root.querySelector('[m-progress-current]').style.width = next + '%';
+    root.querySelector('.m-progress-current').style.width = next + '%';
     this.current = next;
   }
 };
@@ -105,9 +136,9 @@ const applyConfig = o => {
 };
 
 const sticky = e => {
-  let main = root.querySelector('[m-main]');
-  let drawer = root.querySelector('[m-drawer]');
-  let aside = root.querySelector('[m-aside]');
+  let main = root.querySelector('.m-main');
+  let drawer = root.querySelector('.m-drawer');
+  let aside = root.querySelector('.m-aside');
   let topOffset = topping();
   drawer.classList.remove('sticky');
   aside.classList.remove('sticky-top');
@@ -140,6 +171,35 @@ const setSticky = o => {
   document.addEventListener('scroll', sticky);
 };
 
+const fixMainHeight = o => {
+  util.runOnDesktop(p => {
+    let main = root.querySelector('.m-main');
+    let drawer = root.querySelector('.m-drawer');
+    let aside = root.querySelector('.m-aside');
+    let footer = root.querySelector('.m-footer');
+    let maxHeight = drawer.scrollHeight > aside.scrollHeight ? drawer.scrollHeight : aside.scrollHeight;
+    main.style.minHeight = (maxHeight - footer.offsetHeight) * 1.35 + 'px';
+  });
+};
+
+const scrolling = e => {
+  util.runOnDesktop(o => {
+    let aside = root.querySelector('.m-aside');
+    aside.scrollTop = window.scrollY * 0.65; // offset 0.35
+
+    let drawer = root.querySelector('.m-drawer');
+    //let content = root.querySelector('.m-content');
+    //let drawerTop = (drawer.scrollHeight - drawer.offsetHeight) * window.scrollY / (content.offsetHeight + content.offsetTop - window.innerHeight);
+    let drawerTop = window.scrollY * 0.65; // offset 0.35
+    drawer.scrollTop = drawerTop;
+  });
+};
+
+const setScrolling = o => {
+  document.removeEventListener('scroll', scrolling);
+  document.addEventListener('scroll', scrolling);
+};
+
 const final_load = o => util.layoutParts(parts => {
   let checklist = (o => {
     let result = {};
@@ -158,8 +218,9 @@ const final_load = o => util.layoutParts(parts => {
     });
     if (flag) {
       window.clearInterval(looper);
-      evanyou();
+      evanyou.draw();
       listen2Links();
+      launch.disable(true);
       activateSpinner(false);
       applyConfig();
       baiduPush();
@@ -176,7 +237,10 @@ const final_load = o => util.layoutParts(parts => {
 
     api('posts', pdata => {
       parts.includes('recentposts') && recentposts.init({
-        posts: pdata
+        posts: pdata,
+        onMore() {
+          listen2Links();
+        }
       }, el => {
         checklist.recentposts = true;
         progress.step(stepping);
@@ -187,7 +251,10 @@ const final_load = o => util.layoutParts(parts => {
   if (/^\/(posts)\//.test(pathname())) {
     api(pathname().substring(1, pathname().lastIndexOf('/')), pdata => {
       parts.includes('post') && post.init({
-        post: pdata
+        post: pdata,
+        onFriend() {
+          scrolling();
+        }
       }, el => {
         checklist.post = true;
         toc.show();
@@ -255,15 +322,53 @@ const final_load = o => util.layoutParts(parts => {
     });
   }
 
-  if (/^\/(test)\//.test(pathname())) {
-    api('pages/test', ptdata => {
+  if (/^\/(records)\//.test(pathname())) {
+    api('pages/records', pldata => {
       parts.includes('page') && page.init({
-        title: ptdata.title,
-        content: ptdata.content
+        title: pldata.title,
+        content: pldata.content
       }, el => {
         checklist.page = true;
         progress.step(stepping);
       });
+    });
+    ajax({
+      url: `/records/content.json`,
+      method: 'get',
+      dataType: 'json',
+      success(data) {
+        parts.includes('records') && records.init({
+          data
+        }, el => {
+          checklist.records = true;
+          progress.step(stepping);
+        });
+      }
+    });
+  }
+
+  if (/^\/(gallery)\//.test(pathname())) {
+    api('pages/gallery', pldata => {
+      parts.includes('page') && page.init({
+        title: pldata.title,
+        content: pldata.content
+      }, el => {
+        checklist.page = true;
+        progress.step(stepping);
+      });
+    });
+    ajax({
+      url: `/gallery/content.json`,
+      method: 'get',
+      dataType: 'json',
+      success(data) {
+        parts.includes('gallery') && gallery.init({
+          data
+        }, el => {
+          checklist.gallery = true;
+          progress.step(stepping);
+        });
+      }
     });
   }
 
@@ -289,7 +394,7 @@ const pjax = {
       callback,
       work(cb) {
         let _that = this;
-        let mainContent = root.querySelector('[m-content]');
+        let mainContent = root.querySelector('.m-content');
         let parts = root.querySelector('meta[name="layout-parts"]');
         let keywords = root.querySelector('meta[name="keywords"]');
         let description = root.querySelector('meta[name="description"]');
@@ -307,7 +412,7 @@ const pjax = {
               parts.setAttribute('content', data.querySelector('meta[name="layout-parts"]').getAttribute('content'));
               keywords.setAttribute('content', data.querySelector('meta[name="keywords"]').getAttribute('content'));
               description.setAttribute('content', data.querySelector('meta[name="description"]').getAttribute('content'));
-              mainContent.innerHTML = data.querySelector('[m-content]').innerHTML;
+              mainContent.innerHTML = data.querySelector('.m-content').innerHTML;
               final_load();
             }
           }
@@ -342,7 +447,7 @@ const listen2Links = o => {
   root.querySelectorAll('.highlight a:not([target="_blank"])').forEach(link => {
     link.target = "_blank";
   });
-  root.querySelectorAll('a:not([target="_blank"]):not([data-listened="true"]):not(.toc-link)').forEach(link => {
+  root.querySelectorAll('a:not([target="_blank"]):not([href*="extension/"]):not([data-listened="true"]):not(.toc-link)').forEach(link => {
     link.onclick = linksStore.setClick;
     link.setAttribute('data-listened', true);
   });
@@ -408,7 +513,8 @@ util.run(next => { // DEFAULT
     if (flag) {
       window.clearInterval(looper);
       progress.to(20);
-      setSticky();
+      //setSticky();
+      setScrolling();
       next();
     }
   }, lock_wait);
@@ -432,34 +538,36 @@ util.run(next => { // DEFAULT
     }, el => {
       checklist.brand = true;
     });
-    checklist.footer = true;
-    fetch("//busuanzi.ibruce.info/busuanzi", {
-      jsonpCallback: "BusuanziCallback_" + Math.floor(1099511627776 * Math.random())
-    }, result => {
-      footer.init({
-        site_pv: result.site_pv,
-        site_uv: result.site_uv,
-        site_wd: sdata.word4site
-      });
-    }, true);
+    footer.init(null, el => {
+      fetch("//busuanzi.ibruce.info/busuanzi", {
+        jsonpCallback: "BusuanziCallback_" + Math.floor(1099511627776 * Math.random())
+      }, result => {
+        footer.update({
+          site_pv: result && result.site_pv ? result.site_pv : '∞',
+          site_uv: result && result.site_uv ? result.site_uv : '∞',
+          site_wd: sdata && sdata.word4site ? sdata.word4site : '∞',
+        });
+      }, true);
+      checklist.footer = true;
+    });
     comment.init({
       valine: {
         pass: sdata.valine.pass,
         pointer: sdata.valine.pointer
       },
-      onupdate(appid, appkey, languageData) {
+      onupdate(appid, appkey, languageData, valineId) {
         let language = config.get('langshift') ? 'en' : 'zh-cn';
         if (languageData) {
           new Valine({
             av: AV,
-            el: '[p-comment-valine]',
+            el: `#${valineId}`,
             notify: false,
             verify: false,
             app_id: appid,
             app_key: appkey,
             placeholder: languageData.comment.placeholder,
             lang: language,
-            path: pathname().startsWith('/posts/') ? pathname().replace(/index.html$/, '') : '/',
+            path: pathname().replace(/index.html$/, ''),
             visitor: true
           });
         }
@@ -503,6 +611,7 @@ util.run(next => { // DEFAULT
   desktop(final) { // DESKTOP
     let checklist = {
       goingto: false,
+      extension: false,
       xdrawer: false,
       xaside: false,
       translater: false,
@@ -520,14 +629,27 @@ util.run(next => { // DEFAULT
       });
       if (flag) {
         window.clearInterval(looper);
-        disableLaunch(true);
         progress.to(60);
         final();
       }
     }, lock_wait);
 
+    evanyou.init('.m-evanyou-canvas');
+
     goingto.init(null, el => {
       checklist.goingto = true;
+    });
+    ajax({
+      url: `/extension/content.json`,
+      method: 'get',
+      dataType: 'json',
+      success(data) {
+        extension.init({
+          data
+        }, el => {
+          checklist.extension = true;
+        });
+      }
     });
     xdrawer.init({
       onclick(state) {
@@ -583,7 +705,9 @@ util.run(next => { // DEFAULT
           lang(flag ? 'en' : 'zh-cn', ldata => {
             comment.update(ldata);
             post.updateShare(ldata);
-            sticky();
+            //sticky();
+            scrolling();
+            fixMainHeight();
             listen2Links();
             listen2Title();
             progress.to(100);
@@ -592,6 +716,8 @@ util.run(next => { // DEFAULT
           flag ? root.classList.add('transfigure') : root.classList.remove('transfigure');
         } else if (key === 'lyride') {
           flag ? root.classList.add('lyride') : root.classList.remove('lyride');
+          scrolling();
+          fixMainHeight();
         } else if (key === 'autoplay') {
           flag && audioplayer.play();
         }
@@ -617,7 +743,7 @@ util.run(next => { // DEFAULT
       });
       if (flag) {
         window.clearInterval(looper);
-        disableLaunch(true);
+        launch.disable(true);
         progress.to(60);
         final();
       }
@@ -641,9 +767,7 @@ util.run(next => { // DEFAULT
           lang(flag ? 'en' : 'zh-cn', ldata => {
             comment.update(ldata);
             post.updateShare(ldata);
-            sticky();
             listen2Links();
-            listen2Title();
             progress.to(100);
           });
         } else if (key === 'lyride') {

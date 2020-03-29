@@ -1,6 +1,28 @@
-[p-sitename]
+@keyframes sitename-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+.p-sitename
   text-align center
   overflow-x hidden
   white-space nowrap
   text-overflow ellipsis
   user-select none
+  @media (min-width: $app_mobile_width_min)
+    &:hover
+      .p-sitename-icon
+        display inline-block
+      .p-sitename-text
+        display none
+
+.p-sitename-icon
+  height 3em
+  padding 0.5em 0
+  vertical-align bottom
+  animation sitename-appear 0.2s
+  display none
+
+.p-sitename-text
+  animation sitename-appear 0.2s

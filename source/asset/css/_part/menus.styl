@@ -4,25 +4,27 @@
   to
     opacity 1
 
-[p-menus]
+.p-menus
   overflow hidden
   user-select none
-  width $drawer_width - $gap * 6
-  margin $gap * 3
-  border-radius $gap
+  width $drawer_width - $gap * 8
+  margin $gap * 4
+  border-radius $gap * 0.5
   border 1px solid var(--color-clear)
   background var(--color-background)
   line-height 1
   white-space normal
   animation menus-appear 0.6s ease
 
-[p-menu-caption]
+.p-menu-caption
   padding 0 $gap
   font-size 0.8em
   line-height 2.5
   background var(--color-clear)
+  i
+    margin-right $gap * 0.5
 
-[p-menu-items]
+.p-menu-items
   padding $gap 0
   a
     display block
@@ -39,7 +41,7 @@
         right $gap * 2
     i
       margin 0 $gap * 2
-    @media (min-width: $app_mobile_width)
+    @media (min-width: $app_mobile_width_min)
       &:hover
         background var(--color-menus-hover)
     &.active
@@ -47,11 +49,13 @@
       background var(--color-menus-active-background)
 
 @media (max-width: $app_mobile_width)
-  [p-menus]
+  .p-menus
     width 100%
     margin 0
     border none
     border-bottom 1px solid var(--color-clear)
     border-radius 0
-  [p-menu-caption]
+  .p-menu-caption
     text-align center
+    i
+      display none

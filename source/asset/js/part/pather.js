@@ -1,5 +1,4 @@
 import part from "../common/part.js";
-import util from "../common/util.js";
 
 let tag = 'pather';
 let element = null;
@@ -22,7 +21,7 @@ const init = (params, callback) => {
 
 const update = o => {
   if (!element || !menus || !abbrMatch) return;
-  let queue = element.querySelector('[p-pather-queue]');
+  let queue = element.querySelector('.p-pather-queue');
   let pathname = window.location.pathname;
 
   queue.innerHTML = '';
@@ -46,9 +45,12 @@ const update = o => {
   } else if (/^\/(letter)\//.test(pathname)) {
     a.href = menus.job.letter.url;
     a.setAttribute('data-lang', 'pather.letter');
-  } else if (/^\/(test)\//.test(pathname)) {
-    a.href = menus.others.test.url;
-    a.setAttribute('data-lang', 'pather.test');
+  } else if (/^\/(records)\//.test(pathname)) {
+    a.href = menus.others.records.url;
+    a.setAttribute('data-lang', 'pather.records');
+  } else if (/^\/(gallery)\//.test(pathname)) {
+    a.href = menus.others.gallery.url;
+    a.setAttribute('data-lang', 'pather.gallery');
   } else {
     a.href = menus.main.home.url;
     a.setAttribute('data-lang', 'pather.home');

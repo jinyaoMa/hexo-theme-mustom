@@ -12,7 +12,8 @@
     page.categories && (result = result.concat(page.categories.map(cat => cat.name)));
     return result.join(', ');
   })(),
-  description: (page.content && page.content.replace(/(<\/?.+?\/?>)+/g, '|').replace('|', '...').substr(0, 147) + '...'),
+  description: (page.content && page.content.replace(/\n/g, '\s').replace(/(<\/?.+?\/?>)+/g, '|').replace('|', '...').substr(0, 147) + '...'),
   google_site_verification: config.google_site_verification,
-  baidu_site_verification: config.baidu_site_verification
+  baidu_site_verification: config.baidu_site_verification,
+  adScript: config.adScript
 }) %>
