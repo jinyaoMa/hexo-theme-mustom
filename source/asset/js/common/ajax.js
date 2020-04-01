@@ -32,9 +32,11 @@ export default options => {
   if (options.dataType) {
     request.responseType = options.dataType;
   }
-  request.addEventListener('readystatechange', () => {
+  request.addEventListener('readystatechange', (e) => {
     if (request.readyState === 4 && request.status === 200 && request.response) {
       options.success && options.success(request.response);
+    } else if (request.status === 404) {
+      options.error(e);
     }
   });
   if (options.error) {

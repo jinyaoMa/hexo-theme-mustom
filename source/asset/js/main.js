@@ -649,6 +649,9 @@ util.run(next => { // DEFAULT
         }, el => {
           checklist.extension = true;
         });
+      },
+      error() {
+        checklist.extension = true;
       }
     });
     xdrawer.init({
