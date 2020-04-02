@@ -65,6 +65,28 @@ const baiduPush = o => {
   fetch(url, null, null, true);
 };
 
+const live2d = callback => {
+  util.runOnMobile(callback);
+  L2Dwidget.on('create-canvas', name => {
+    callback && callback(name);
+  }).init({
+    model: {
+      scale: 1,
+      jsonPath: '/asset/live2d/haruto.model.json'
+    },
+    display: {
+      width: 200,
+      height: 400,
+      position: 'right',
+      hOffset: 50,
+      vOffset: 0
+    },
+    mobile: {
+      show: false
+    }
+  });
+};
+
 const root = document.querySelector(':root');
 
 const pathname = o => window.location.pathname;
@@ -220,7 +242,9 @@ const final_load = o => util.layoutParts(parts => {
       window.clearInterval(looper);
       evanyou.draw();
       listen2Links();
-      launch.disable(true);
+      util.runOnMobile(p => {
+        launch.disable(true);
+      });
       activateSpinner(false);
       applyConfig();
       baiduPush();
@@ -470,154 +494,25 @@ const listen2Title = o => {
   };
 };
 
-util.run(next => { // DEFAULT
-  L2Dwidget.init({
-    model: {
-      scale: 1,
-      jsonPath: '/asset/live2d/haruto.model.json'
-    },
-    display: {
-      width: 200,
-      height: 400,
-      position: 'right',
-      hOffset: 50,
-      vOffset: 0
-    },
-    mobile: {
-      show: false
-    }
-  });
-  progress.to(10);
-  activateSpinner(true);
+live2d(z => {
+  util.run(next => { // DEFAULT
+    progress.to(10);
+    activateSpinner(true);
+    util.runOnDesktop(p => {
+      launch.disable(true);
+    });
 
-  let checklist = {
-    xsearch: false,
-    sitename: false,
-    brand: false,
-    footer: false,
-    comment: false,
-    menus: false,
-    panels: false,
-    audioplayer: false,
-    toc: false,
-    search: false
-  };
-  let looper = window.setInterval(o => {
-    let flag = true;
-    util.forIn(checklist, value => {
-      if (value === false) {
-        flag = false;
-        return true;
-      }
-    });
-    if (flag) {
-      window.clearInterval(looper);
-      progress.to(20);
-      //setSticky();
-      setScrolling();
-      next();
-    }
-  }, lock_wait);
-
-  xsearch.init({
-    onclick(state) {
-      state ? search.on() : search.off();
-    }
-  }, el => {
-    checklist.xsearch = true;
-  });
-  sitename.init(null, el => {
-    checklist.sitename = true;
-  });
-  api('site', sdata => {
-    registerServiceWorker(sdata.swPath);
-    brand.init({
-      numOfPosts: sdata.numOfPosts,
-      numOfCategories: sdata.numOfCategories,
-      numOfTags: sdata.numOfTags
-    }, el => {
-      checklist.brand = true;
-    });
-    footer.init(null, el => {
-      fetch("//busuanzi.ibruce.info/busuanzi", {
-        jsonpCallback: "BusuanziCallback_" + Math.floor(1099511627776 * Math.random())
-      }, result => {
-        footer.update({
-          site_pv: result && result.site_pv ? result.site_pv : '∞',
-          site_uv: result && result.site_uv ? result.site_uv : '∞',
-          site_wd: sdata && sdata.word4site ? sdata.word4site : '∞',
-        });
-      }, true);
-      checklist.footer = true;
-    });
-    comment.init({
-      valine: {
-        pass: sdata.valine.pass,
-        pointer: sdata.valine.pointer
-      },
-      onupdate(appid, appkey, languageData, valineId) {
-        let language = config.get('langshift') ? 'en' : 'zh-cn';
-        if (languageData) {
-          new Valine({
-            av: AV,
-            el: `#${valineId}`,
-            notify: false,
-            verify: false,
-            app_id: appid,
-            app_key: appkey,
-            placeholder: languageData.comment.placeholder,
-            lang: language,
-            path: pathname().replace(/index.html$/, ''),
-            visitor: true
-          });
-        }
-      }
-    }, el => {
-      checklist.comment = true;
-    });
-  });
-  menus.init(null, el => {
-    checklist.menus = true;
-  });
-  api('categories', cdata => {
-    api('tags', tdata => {
-      panels.init({
-        categories: cdata,
-        tags: tdata
-      }, el => {
-        checklist.panels = true;
-      });
-    });
-  });
-  audioplayer.init(null, el => {
-    _run_Meting();
-    checklist.audioplayer = true;
-  });
-  toc.init(null, el => {
-    checklist.toc = true;
-  });
-  api('search', sdata => {
-    search.init({
-      search: sdata,
-      onsearch(k) {
-        listen2Links();
-      }
-    }, el => {
-      checklist.search = true;
-    });
-  });
-
-}, { // NEXT
-  desktop(final) { // DESKTOP
     let checklist = {
-      goingto: false,
-      extension: false,
-      xdrawer: false,
-      xaside: false,
-      translater: false,
-      skin: false,
-      settings: false,
-      pather: false
+      xsearch: false,
+      sitename: false,
+      brand: false,
+      footer: false,
+      comment: false,
+      menus: false,
+      panels: false,
+      audioplayer: false,
+      toc: false,
+      search: false
     };
     let looper = window.setInterval(o => {
       let flag = true;
@@ -629,163 +524,280 @@ util.run(next => { // DEFAULT
       });
       if (flag) {
         window.clearInterval(looper);
-        progress.to(60);
-        final();
+        progress.to(20);
+        //setSticky();
+        setScrolling();
+        next();
       }
     }, lock_wait);
 
-    evanyou.init('.m-evanyou-canvas');
-
-    goingto.init(null, el => {
-      checklist.goingto = true;
-    });
-    ajax({
-      url: `/extension/content.json`,
-      method: 'get',
-      dataType: 'json',
-      success(data) {
-        extension.init({
-          data
-        }, el => {
-          checklist.extension = true;
-        });
-      },
-      error() {
-        checklist.extension = true;
-      }
-    });
-    xdrawer.init({
+    xsearch.init({
       onclick(state) {
-        config.set('closeDrawer', state);
+        state ? search.on() : search.off();
       }
     }, el => {
-      checklist.xdrawer = true;
+      checklist.xsearch = true;
     });
-    xaside.init({
-      onclick(state) {
-        config.set('closeAside', state);
-      }
-    }, el => {
-      checklist.xaside = true;
+    sitename.init(null, el => {
+      checklist.sitename = true;
     });
     api('site', sdata => {
-      translater.init({
-        baidu_translate: {
-          pass: sdata.baidu_translate.pass,
-          pointer: sdata.baidu_translate.pointer
+      registerServiceWorker(sdata.swPath);
+      brand.init({
+        numOfPosts: sdata.numOfPosts,
+        numOfCategories: sdata.numOfCategories,
+        numOfTags: sdata.numOfTags
+      }, el => {
+        checklist.brand = true;
+      });
+      footer.init(null, el => {
+        fetch("//busuanzi.ibruce.info/busuanzi", {
+          jsonpCallback: "BusuanziCallback_" + Math.floor(1099511627776 * Math.random())
+        }, result => {
+          footer.update({
+            site_pv: result && result.site_pv ? result.site_pv : '∞',
+            site_uv: result && result.site_uv ? result.site_uv : '∞',
+            site_wd: sdata && sdata.word4site ? sdata.word4site : '∞',
+          });
+        }, true);
+        checklist.footer = true;
+      });
+      comment.init({
+        valine: {
+          pass: sdata.valine.pass,
+          pointer: sdata.valine.pointer
         },
-        onstart(el) {
-          activateSpinner(true);
-        },
-        onended() {
-          activateSpinner(false);
+        onupdate(appid, appkey, languageData, valineId) {
+          let language = config.get('langshift') ? 'en' : 'zh-cn';
+          if (languageData) {
+            new Valine({
+              av: AV,
+              el: `#${valineId}`,
+              notify: false,
+              verify: false,
+              app_id: appid,
+              app_key: appkey,
+              placeholder: languageData.comment.placeholder,
+              lang: language,
+              path: pathname().replace(/index.html$/, ''),
+              visitor: true
+            });
+          }
         }
       }, el => {
-        checklist.translater = true;
+        checklist.comment = true;
       });
-      pather.init({
-        abbrMatch: sdata.abbrMatch,
-        menus: sdata.menus
+    });
+    menus.init(null, el => {
+      checklist.menus = true;
+    });
+    api('categories', cdata => {
+      api('tags', tdata => {
+        panels.init({
+          categories: cdata,
+          tags: tdata
+        }, el => {
+          checklist.panels = true;
+        });
+      });
+    });
+    audioplayer.init(null, el => {
+      _run_Meting();
+      checklist.audioplayer = true;
+    });
+    toc.init(null, el => {
+      checklist.toc = true;
+    });
+    api('search', sdata => {
+      search.init({
+        search: sdata,
+        onsearch(k) {
+          listen2Links();
+        }
       }, el => {
-        checklist.pather = true;
+        checklist.search = true;
       });
     });
-    skin.init({
-      onclick(newKey) {
-        config.set('skin', newKey);
-      }
-    }, el => {
-      checklist.skin = true;
-    });
-    settings.init({
-      onclick(key, flag) {
-        if (key === 'night') {
-          flag ? root.classList.add('night') : root.classList.remove('night');
-        } else if (key === 'langshift') {
-          progress.to(90);
-          menus.update();
-          pather.update();
-          lang(flag ? 'en' : 'zh-cn', ldata => {
-            comment.update(ldata);
-            post.updateShare(ldata);
-            //sticky();
+
+  }, { // NEXT
+    desktop(final) { // DESKTOP
+      let checklist = {
+        goingto: false,
+        extension: false,
+        xdrawer: false,
+        xaside: false,
+        translater: false,
+        skin: false,
+        settings: false,
+        pather: false
+      };
+      let looper = window.setInterval(o => {
+        let flag = true;
+        util.forIn(checklist, value => {
+          if (value === false) {
+            flag = false;
+            return true;
+          }
+        });
+        if (flag) {
+          window.clearInterval(looper);
+          progress.to(60);
+          final();
+        }
+      }, lock_wait);
+
+      evanyou.init('.m-evanyou-canvas');
+
+      goingto.init(null, el => {
+        checklist.goingto = true;
+      });
+      ajax({
+        url: `/extension/content.json`,
+        method: 'get',
+        dataType: 'json',
+        success(data) {
+          extension.init({
+            data
+          }, el => {
+            checklist.extension = true;
+          });
+        },
+        error() {
+          checklist.extension = true;
+        }
+      });
+      xdrawer.init({
+        onclick(state) {
+          config.set('closeDrawer', state);
+        }
+      }, el => {
+        checklist.xdrawer = true;
+      });
+      xaside.init({
+        onclick(state) {
+          config.set('closeAside', state);
+        }
+      }, el => {
+        checklist.xaside = true;
+      });
+      api('site', sdata => {
+        translater.init({
+          baidu_translate: {
+            pass: sdata.baidu_translate.pass,
+            pointer: sdata.baidu_translate.pointer
+          },
+          onstart(el) {
+            activateSpinner(true);
+          },
+          onended() {
+            activateSpinner(false);
+          }
+        }, el => {
+          checklist.translater = true;
+        });
+        pather.init({
+          abbrMatch: sdata.abbrMatch,
+          menus: sdata.menus
+        }, el => {
+          checklist.pather = true;
+        });
+      });
+      skin.init({
+        onclick(newKey) {
+          config.set('skin', newKey);
+        }
+      }, el => {
+        checklist.skin = true;
+      });
+      settings.init({
+        onclick(key, flag) {
+          if (key === 'night') {
+            flag ? root.classList.add('night') : root.classList.remove('night');
+          } else if (key === 'langshift') {
+            progress.to(90);
+            menus.update();
+            pather.update();
+            lang(flag ? 'en' : 'zh-cn', ldata => {
+              comment.update(ldata);
+              post.updateShare(ldata);
+              //sticky();
+              scrolling();
+              fixMainHeight();
+              listen2Links();
+              listen2Title();
+              progress.to(100);
+            });
+          } else if (key === 'transfigure') {
+            flag ? root.classList.add('transfigure') : root.classList.remove('transfigure');
+          } else if (key === 'lyride') {
+            flag ? root.classList.add('lyride') : root.classList.remove('lyride');
             scrolling();
             fixMainHeight();
-            listen2Links();
-            listen2Title();
-            progress.to(100);
-          });
-        } else if (key === 'transfigure') {
-          flag ? root.classList.add('transfigure') : root.classList.remove('transfigure');
-        } else if (key === 'lyride') {
-          flag ? root.classList.add('lyride') : root.classList.remove('lyride');
-          scrolling();
-          fixMainHeight();
-        } else if (key === 'autoplay') {
-          flag && audioplayer.play();
+          } else if (key === 'autoplay') {
+            flag && audioplayer.play();
+          }
+          config.set(key, flag);
         }
-        config.set(key, flag);
-      }
-    }, el => {
-      checklist.settings = true;
-    });
-
-  },
-  mobile(final) { // MOBILE
-    let checklist = {
-      xdrawer: false,
-      settings: false
-    };
-    let looper = window.setInterval(o => {
-      let flag = true;
-      util.forIn(checklist, value => {
-        if (value === false) {
-          flag = false;
-          return true;
-        }
+      }, el => {
+        checklist.settings = true;
       });
-      if (flag) {
-        window.clearInterval(looper);
-        launch.disable(true);
-        progress.to(60);
-        final();
-      }
-    }, lock_wait);
 
-    xdrawer.init({
-      onclick(state) {
-        config.set('closeDrawer', state);
-        root.scrollTop = 0;
-      }
-    }, el => {
-      checklist.xdrawer = true;
-    });
-    settings.init({
-      onclick(key, flag) {
-        if (key === 'night') {
-          flag ? root.classList.add('night') : root.classList.remove('night');
-        } else if (key === 'langshift') {
-          progress.to(90);
-          menus.update();
-          lang(flag ? 'en' : 'zh-cn', ldata => {
-            comment.update(ldata);
-            post.updateShare(ldata);
-            listen2Links();
-            progress.to(100);
-          });
-        } else if (key === 'lyride') {
-          flag ? root.classList.add('lyride') : root.classList.remove('lyride');
+    },
+    mobile(final) { // MOBILE
+      let checklist = {
+        xdrawer: false,
+        settings: false
+      };
+      let looper = window.setInterval(o => {
+        let flag = true;
+        util.forIn(checklist, value => {
+          if (value === false) {
+            flag = false;
+            return true;
+          }
+        });
+        if (flag) {
+          window.clearInterval(looper);
+          progress.to(60);
+          final();
         }
-        config.set(key, flag);
-      }
-    }, el => {
-      checklist.settings = true;
-    });
+      }, lock_wait);
 
-  }
-}, (final) => { // FINAL
-  history.replaceState({
-    url: window.location.href
-  }, document.title, window.location.href);
-  final_load();
+      xdrawer.init({
+        onclick(state) {
+          config.set('closeDrawer', state);
+          root.scrollTop = 0;
+        }
+      }, el => {
+        checklist.xdrawer = true;
+      });
+      settings.init({
+        onclick(key, flag) {
+          if (key === 'night') {
+            flag ? root.classList.add('night') : root.classList.remove('night');
+          } else if (key === 'langshift') {
+            progress.to(90);
+            menus.update();
+            lang(flag ? 'en' : 'zh-cn', ldata => {
+              comment.update(ldata);
+              post.updateShare(ldata);
+              listen2Links();
+              progress.to(100);
+            });
+          } else if (key === 'lyride') {
+            flag ? root.classList.add('lyride') : root.classList.remove('lyride');
+          }
+          config.set(key, flag);
+        }
+      }, el => {
+        checklist.settings = true;
+      });
+
+    }
+  }, (final) => { // FINAL
+    history.replaceState({
+      url: window.location.href
+    }, document.title, window.location.href);
+    final_load();
+  });
 });
