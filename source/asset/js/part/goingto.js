@@ -2,7 +2,6 @@ import part from "../common/part.js";
 
 let tag = 'goingto';
 let element = null;
-let step = 0;
 let timerTop = null;
 let timerBottom = null;
 let go2Top = null;
@@ -20,22 +19,21 @@ const setup = o => {
   // Set go2Top
   goingtoTop.removeEventListener('click', go2Top);
   go2Top = function () {
-    let target = document.querySelector(':root');
-    let scrollHeight = target.scrollHeight;
-    let viewHeight = window.innerHeight;
-    step = Math.floor(scrollHeight / viewHeight) * 64; // set speed here, e.g. 16
+    let decay = 0.9;
+
+    cancelAnimationFrame(timerBottom);
+    timerBottom = null;
 
     cancelAnimationFrame(timerTop);
-    cancelAnimationFrame(timerBottom);
-    timerTop = null;
-    timerBottom = null;
     timerTop = requestAnimationFrame(function fn() {
-      if (target.scrollTop > 0) {
-        target.scrollTo(0, target.scrollTop - step);
+      if (window.scrollY > 1) {
+        window.scrollTo(0, window.scrollY * decay);
         timerTop = requestAnimationFrame(fn);
       } else {
+        window.scrollTo(0, 0);
         cancelAnimationFrame(timerTop);
         timerTop = null;
+        //console.log('TOP!');
       }
     });
   };
@@ -44,30 +42,32 @@ const setup = o => {
   // Set go2Bottom
   goingtoBottom.removeEventListener('click', go2Bottom);
   go2Bottom = function () {
-    let target = document.querySelector(':root');
-    let scrollHeight = target.scrollHeight;
-    let viewHeight = window.innerHeight;
-    let len = scrollHeight - viewHeight;
-    step = Math.floor(scrollHeight / viewHeight) * 64; // set speed here, e.g. 16
+    let growth = 0.1;
+    let min = 1;
+    let total = document.body.scrollHeight - window.innerHeight;
+    let left = total;
 
     cancelAnimationFrame(timerTop);
-    cancelAnimationFrame(timerBottom);
     timerTop = null;
-    timerBottom = null;
+
+    cancelAnimationFrame(timerBottom);
     timerBottom = requestAnimationFrame(function fn() {
-      if (target.scrollTop < len) {
-        target.scrollTo(0, target.scrollTop + step);
+      if (left > 1) {
+        window.scrollTo(0, window.scrollY + left * growth + min);
+        left = total - window.scrollY;
         timerBottom = requestAnimationFrame(fn);
       } else {
+        window.scrollTo(0, document.body.scrollHeight);
         cancelAnimationFrame(timerBottom);
         timerBottom = null;
+        //console.log('BOTTOM!');
       }
     });
   };
   goingtoBottom.addEventListener('click', go2Bottom);
 };
 
-const init = (params, callback)=> {
+const init = (params, callback) => {
   part(tag, el => {
     element = el;
     document.querySelector(tag).replaceWith(element);
