@@ -4,7 +4,7 @@
 
 如果想用 [ma-jinyao.cn](//ma-jinyao.cn) 里 菜单-其他 下 pages 的 parts，可以参考 [我的博客](https://github.com/jinyaoMa/ma-jinyao.cn) 主目录下 source 里的文件、Front-matter 和目录结构。
 
-_Hexo 主目录 \_config.yml 模版在页面底下__
+_Hexo 主目录 \_config.yml 模版在页面底下_
 
 ## 关于本主题
 
