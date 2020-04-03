@@ -51,7 +51,7 @@ const update = list => {
         li.appendChild(ul);
 
         container.appendChild(li);
-        li.onclick = e => {
+        div.onclick = e => {
           if (li.classList.contains('active')) {
             ul.innerHTML = '';
             li.classList.remove('active');
