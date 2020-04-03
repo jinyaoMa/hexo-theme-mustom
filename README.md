@@ -63,6 +63,7 @@ hexo new page "新页面名称"
 ```
 
 如果想自定义新 parts 的话，请根据 source/asset 里的文件目录结构自行摸索
+添加新 parts 之后，需要在 layout/_partial/frame.ejs 中插入对应 part 名称的标签
 
 ## 更多
 
