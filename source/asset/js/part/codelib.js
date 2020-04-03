@@ -58,9 +58,12 @@ const update = list => {
           } else {
             onstart && onstart();
             ajax({
-              url: `//api.github.com/repos/jinyaoMa/code-lib/contents/${item.path}`,
+              url: `//api.github.com/repos/jinyaoMa/code-lib/contents/${encodeURIComponent(item.path)}`,
               method: 'get',
               dataType: 'json',
+              headers: {
+                accept: 'application/vnd.github+json'
+              },
               success(data) {
                 if (data && data.length) {
                   data.forEach(itm => {
