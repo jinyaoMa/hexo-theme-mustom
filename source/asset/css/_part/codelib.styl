@@ -1,0 +1,98 @@
+@keyframes codelib-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+.p-codelib
+  user-select none
+  overflow hidden
+  background var(--color-background)
+  animation codelib-appear 0.6s ease
+  @media (min-width: $app_mobile_width_min)
+    margin $gap * 4 0
+    border-radius $gap * 0.5
+    border 1px solid var(--color-clear)
+  @media (max-width: $app_mobile_width)
+    padding-bottom $gap
+  ul
+    list-style none
+
+.p-codelib-caption
+  padding 0 $gap
+  font-size 0.8em
+  line-height 2.5
+  background var(--color-clear)
+  i
+    margin-right $gap * 0.5
+
+.p-codelib-readme
+  user-select text
+  @media (min-width: $app_mobile_width_min)
+    padding $gap * 6
+  @media (max-width: $app_mobile_width)
+    padding $gap * 5 $gap * 2
+  h1:first-of-type
+    text-align center
+    padding-bottom 0.5em
+    @media (min-width: $app_mobile_width_min)
+      margin-bottom $gap * 6
+    @media (max-width: $app_mobile_width)
+      margin-bottom $gap * 5
+
+.p-codelib-list
+  > li:not(:first-child)
+    border-top 1px solid var(--color-clear)
+  > li.active
+    .codelib-cat:after
+      transform rotate(-135deg)
+      top 1.25em
+  a
+    color var(--color-codelib-text)
+    &:hover
+      text-decoration underline
+
+.codelib-cat
+  @media (min-width: $app_mobile_width_min)
+    padding 0 $gap * 6 0 ($gap * 4)
+  @media (max-width: $app_mobile_width)
+    padding 0 $gap * 3 0 ($gap * 2)
+  line-height 2.5
+  background var(--color-recentposts-more-front)
+  color var(--color-recentposts-more-back)
+  cursor pointer
+  overflow hidden
+  text-overflow ellipsis
+  position relative
+  &:after
+    content ''
+    display block
+    position absolute
+    @media (min-width: $app_mobile_width_min)
+      right $gap * 4
+    @media (max-width: $app_mobile_width)
+      right $gap * 2
+    top 0.95em
+    height 0.35em
+    width 0.35em
+    transform rotate(45deg)
+    border-right 0.1em solid
+    border-bottom 0.1em solid
+
+.codelib-inner
+  @media (min-width: $app_mobile_width_min)
+    padding 0 $gap * 4
+  @media (max-width: $app_mobile_width)
+    padding 0 $gap * 2
+  line-height 2.5
+  > li:not(:first-child)
+    border-top 1px solid var(--color-recentposts-more-front)
+  > li
+    text-overflow ellipsis
+    overflow hidden
+
+@media (max-width: $app_mobile_width)
+  .p-codelib-caption
+    text-align center
+    i
+      display none

@@ -26,13 +26,20 @@ export default options => {
   if (options.method.toLowerCase() === 'post') {
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   }
+  if (options.headers) {
+    for (const key in options.headers) {
+      if (options.headers.hasOwnProperty(key)) {
+        request.setRequestHeader(key, options.headers[key]);
+      }
+    }
+  }
   if (options.timeout) {
     request.timeout = options.timeout;
   }
   if (options.dataType) {
     request.responseType = options.dataType;
   }
-  request.addEventListener('readystatechange', (e) => {
+  request.addEventListener('readystatechange', () => {
     if (request.readyState === 4 && request.status === 200 && request.response) {
       options.success && options.success(request.response);
     } else if (request.status === 404) {

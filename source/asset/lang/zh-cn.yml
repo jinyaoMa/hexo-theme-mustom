@@ -23,6 +23,7 @@ menus:
   others:
     caption: 其他
     items:
+      library: 代码库
       records: 记录
       gallery: 图库
 skin:
@@ -107,6 +108,7 @@ pather:
   about: 关于
   resume: 简历小贴士
   letter: 求职信小贴士
+  library: 代码库
   records: 记录
   gallery: 图库
   home: 首页
@@ -130,3 +132,5 @@ records:
     video: 视频
     movie: 电影
     audio: 音频
+codelib:
+  caption: 代码

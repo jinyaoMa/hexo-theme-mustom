@@ -1,4 +1,5 @@
 import part from "../common/part.js";
+import util from "../common/util.js";
 
 let tag = 'pather';
 let element = null;
@@ -36,24 +37,20 @@ const update = o => {
   } else if (/^\/(tags)\//.test(pathname)) {
     a.href = menus.main.archive.url;
     a.setAttribute('data-lang', 'pather.tagarchive');
-  } else if (/^\/(about)\//.test(pathname)) {
-    a.href = menus.main.about.url;
-    a.setAttribute('data-lang', 'pather.about');
-  } else if (/^\/(resume)\//.test(pathname)) {
-    a.href = menus.job.resume.url;
-    a.setAttribute('data-lang', 'pather.resume');
-  } else if (/^\/(letter)\//.test(pathname)) {
-    a.href = menus.job.letter.url;
-    a.setAttribute('data-lang', 'pather.letter');
-  } else if (/^\/(records)\//.test(pathname)) {
-    a.href = menus.others.records.url;
-    a.setAttribute('data-lang', 'pather.records');
-  } else if (/^\/(gallery)\//.test(pathname)) {
-    a.href = menus.others.gallery.url;
-    a.setAttribute('data-lang', 'pather.gallery');
-  } else {
+  } else if (/^(\/|\/index.html)$/.test(pathname)) {
     a.href = menus.main.home.url;
     a.setAttribute('data-lang', 'pather.home');
+  } else {
+    let matches = pathname.match(/^\/([a-zA-Z0-9_\-]+)/);
+    if (matches.length === 2) {
+      util.forIn(menus, menu => {
+        if (menu.hasOwnProperty(matches[1])) {
+          a.href = menu[matches[1]].url;
+          return true;
+        }
+      });
+      a.setAttribute('data-lang', `pather.${matches[1]}`);
+    }
   }
   queue.appendChild(a);
 

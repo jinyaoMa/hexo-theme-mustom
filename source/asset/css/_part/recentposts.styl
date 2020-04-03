@@ -25,13 +25,14 @@
 .p-recentposts-more
   text-align center
   cursor pointer
-  line-height 3
   border-top 1px solid var(--color-clear)
-  color var(--color-recentposts-more-front)
   @media (max-width: $app_mobile_width)
+    line-height 2.5
     color var(--color-recentposts-more-back)
     background var(--color-recentposts-more-front)
   @media (min-width: $app_mobile_width_min)
+    line-height 3
+    color var(--color-recentposts-more-front)
     &:hover
       color var(--color-recentposts-more-back)
       background var(--color-recentposts-more-front)

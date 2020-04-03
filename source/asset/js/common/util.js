@@ -37,20 +37,13 @@ const getPageKey = o => {
   let pathname = window.location.pathname;
   if (/^\/(archives|categories|tags)\//.test(pathname)) {
     key = 'archive';
-  } else if (pathname.startsWith('/about/')) {
-    key = 'about';
-  } else if (pathname.startsWith('/resume/')) {
-    key = 'resume';
-  } else if (pathname.startsWith('/letter/')) {
-    key = 'letter';
-  } else if (pathname.startsWith('/records/')) {
-    key = 'records';
-  } else if (pathname.startsWith('/gallery/')) {
-    key = 'gallery';
-  } else if (pathname.startsWith('/posts/')) {
-    key = 'posts';
-  } else if (pathname.startsWith('/')) {
+  } else if (/^(\/|\/index.html)$/.test(pathname)) {
     key = 'home';
+  } else {
+    let matches = pathname.match(/^\/([a-zA-Z0-9_\-]+)/);
+    if (matches.length === 2) {
+      key = matches[1];
+    }
   }
   return key;
 };

@@ -58,8 +58,8 @@
       width 100%
       pointer-events none
       z-index zIndex(9)
-      height $font_size * 3
-      padding $gap 0
+      height $font_size * 3 + $gap
+      padding 0 0 $gap 0
       transition opacity 0.6s
       &:before
         background none
@@ -70,12 +70,14 @@
         user-select none
         p
           color var(--color-audioplayer-lrc)
+          opacity 0.9
           &.aplayer-lrc-current
-            line-height $font_size * 2 !important
-            font-size $font_size * 1.5 !important
+            line-height $font_size * 2.5 !important
+            font-size $font_size * 2 !important
             color var(--color-audioplayer-lrc-current)
             font-weight bold
             text-shadow 0 0 $font_size var(--color-background)
+            transition none
     .aplayer-list
       ol
         &::-webkit-scrollbar

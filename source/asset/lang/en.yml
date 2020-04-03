@@ -23,6 +23,7 @@ menus:
   others:
     caption: OTHERS
     items:
+      library: Code Library
       records: Records
       gallery: Gallery
 skin:
@@ -107,6 +108,7 @@ pather:
   about: About
   resume: Resume Tips
   letter: Cover Letter Tips
+  library: Code Library
   records: Records
   gallery: Gallery
   home: Home
@@ -130,3 +132,5 @@ records:
     video: Video
     movie: Movie
     audio: Audio
+codelib:
+  caption: CODE

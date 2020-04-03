@@ -76,6 +76,9 @@ menus:
       url: /letter/
       icon: '<i class="fas fa-file-contract fa-fw"></i>'
   others:
+    library:
+      url: /library/
+      icon: '<i class="fas fa-box fa-fw"></i>'
     records:
       url: /records/
       icon: '<i class="fas fa-edit fa-fw"></i>'
@@ -151,6 +154,8 @@ records:
   na: N/A
 gallery:
   icon: '<i class="fas fa-image fa-fw"></i>'
+codelib:
+  icon: '<i class="fas fa-code fa-fw"></i>'
 manifest:
   path: /manifest.json
   name: ma-jinyao.cn

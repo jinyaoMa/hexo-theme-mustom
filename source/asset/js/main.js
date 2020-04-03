@@ -33,6 +33,7 @@ import recentposts from "./part/recentposts.js";
 import timeline from "./part/timeline.js";
 import post from "./part/post.js";
 import page from "./part/page.js";
+import codelib from "./part/codelib.js";
 import records from "./part/records.js";
 import gallery from "./part/gallery.js";
 
@@ -270,92 +271,97 @@ const final_load = o => util.layoutParts(parts => {
         progress.step(stepping);
       });
     });
-  }
 
-  if (/^\/(posts)\//.test(pathname())) {
-    api(pathname().substring(1, pathname().lastIndexOf('/')), pdata => {
-      parts.includes('post') && post.init({
-        post: pdata,
-        onFriend() {
-          scrolling();
-        }
-      }, el => {
-        checklist.post = true;
-        toc.show();
-        toc.update(pdata.toc, topping());
-        progress.step(stepping);
-      });
-    });
   } else {
     toc.hide();
+
+    if (/^\/(posts)\//.test(pathname())) {
+      api(pathname().substring(1, pathname().lastIndexOf('/')), pdata => {
+        parts.includes('post') && post.init({
+          post: pdata,
+          onFriend() {
+            scrolling();
+          }
+        }, el => {
+          checklist.post = true;
+          toc.show();
+          toc.update(pdata.toc, topping());
+          progress.step(stepping);
+        });
+      });
+
+    } else if (/^\/(categories|tags)\//.test(pathname())) {
+      api(pathname().substring(1, pathname().lastIndexOf('/')), pdata => {
+        parts.includes('timeline') && timeline.init({
+          posts: pdata.postlist
+        }, el => {
+          checklist.timeline = true;
+          progress.step(stepping);
+        });
+      });
+
+    } else if (/^\/(archives)\//.test(pathname())) {
+      api('posts', pdata => {
+        parts.includes('timeline') && timeline.init({
+          posts: pdata
+        }, el => {
+          checklist.timeline = true;
+          progress.step(stepping);
+        });
+      });
+
+    } else { // Additional Pages
+      let matches = pathname().match(/^\/([a-zA-Z0-9_\-]+)/);
+      if (matches.length === 2) {
+        api(`pages/${matches[1]}`, padata => {
+          parts.includes('page') && page.init({
+            title: padata.title,
+            content: padata.content
+          }, el => {
+            checklist.page = true;
+            progress.step(stepping);
+          });
+        });
+      }
+    }
   }
 
-  if (/^\/(categories|tags)\//.test(pathname())) {
-    api(pathname().substring(1, pathname().lastIndexOf('/')), pdata => {
-      parts.includes('timeline') && timeline.init({
-        posts: pdata.postlist
-      }, el => {
-        checklist.timeline = true;
-        progress.step(stepping);
-      });
-    });
-  } else if (/^\/(archives)\//.test(pathname())) {
-    api('posts', pdata => {
-      parts.includes('timeline') && timeline.init({
-        posts: pdata
-      }, el => {
-        checklist.timeline = true;
-        progress.step(stepping);
-      });
-    });
-  }
-
-  if (/^\/(about)\//.test(pathname())) {
-    api('pages/about', padata => {
-      parts.includes('page') && page.init({
-        title: padata.title,
-        content: padata.content
-      }, el => {
-        checklist.page = true;
-        progress.step(stepping);
-      });
-    });
-  }
-
-  if (/^\/(resume)\//.test(pathname())) {
-    api('pages/resume', prdata => {
-      parts.includes('page') && page.init({
-        title: prdata.title,
-        content: prdata.content
-      }, el => {
-        checklist.page = true;
-        progress.step(stepping);
-      });
+  // Extra Operations
+  if (/^\/(library)\//.test(pathname())) {
+    ajax({
+      url: '//api.github.com/repos/jinyaoMa/code-lib/readme',
+      method: 'get',
+      headers: {
+        accept: 'application/vnd.github.v3.html'
+      },
+      success(data) {
+        parts.includes('codelib') && codelib.init({
+          readme: data,
+          onstart() {
+            activateSpinner(true);
+          },
+          onended() {
+            activateSpinner(false);
+          }
+        }, el => {
+          ajax({
+            url: '//api.github.com/repos/jinyaoMa/code-lib/contents',
+            method: 'get',
+            dataType: 'json',
+            headers: {
+              accept: 'application/vnd.github+json'
+            },
+            success(list) {
+              codelib.update(list);
+              checklist.codelib = true;
+              progress.step(stepping);
+            }
+          });
+        });
+      }
     });
   }
-
-  if (/^\/(letter)\//.test(pathname())) {
-    api('pages/letter', pldata => {
-      parts.includes('page') && page.init({
-        title: pldata.title,
-        content: pldata.content
-      }, el => {
-        checklist.page = true;
-        progress.step(stepping);
-      });
-    });
-  }
-
   if (/^\/(records)\//.test(pathname())) {
-    api('pages/records', pldata => {
-      parts.includes('page') && page.init({
-        title: pldata.title,
-        content: pldata.content
-      }, el => {
-        checklist.page = true;
-        progress.step(stepping);
-      });
-    });
     ajax({
       url: `/records/content.json`,
       method: 'get',
@@ -370,17 +376,7 @@ const final_load = o => util.layoutParts(parts => {
       }
     });
   }
-
   if (/^\/(gallery)\//.test(pathname())) {
-    api('pages/gallery', pldata => {
-      parts.includes('page') && page.init({
-        title: pldata.title,
-        content: pldata.content
-      }, el => {
-        checklist.page = true;
-        progress.step(stepping);
-      });
-    });
     ajax({
       url: `/gallery/content.json`,
       method: 'get',
