@@ -40,50 +40,29 @@ menus:
       archive: 归档 # 项目名称
       about: 关于 # 项目名称
       links: 友链 # 新项目名称 <-----------------------------------------
+# ...
+pather:
+  links: 友链 # 新项目名称 <-----------------------------------------
 ```
 
-其实还要改 source/asset/js/main.js ... 嘿嘿嘿
-
-``` js
-  // Ctrl + F 找这段代码
-  if (/^\/(letter)\//.test(pathname())) {
-    api('pages/letter', ptdata => {
-      parts.includes('page') && page.init({
-        title: ptdata.title,
-        content: ptdata.content
-      }, el => {
-        checklist.page = true;
-        progress.step(stepping);
-      });
-    });
-  }
-  
-  // 这里后面开始加代码，复制上面的
-  // 例子
-  if (/^\/(links)\//.test(pathname())) { // <----------------- links菜单项
-    api('pages/links', ptdata => {  // <---------------------- links菜单项
-      parts.includes('page') && page.init({
-        title: ptdata.title,
-        content: ptdata.content
-      }, el => {
-        checklist.page = true;
-        progress.step(stepping);
-      });
-    });
-  }
-```
-
-新建 page 'links' 的 index.md 里 Front-matter 还需要有 name 变量 ... 嘿嘿嘿
+使用这个 scaffold 生成新 page
 
 ``` yaml
 ---
-title: Links
+title: {{ title }}
 layout: page
-name: links # 要与index.md外的文件夹同名
+name: {{ title }} # this name should be the same as folder name
+parts: 
+  - page
+  - # custom parts
 ---
 ```
 
-突然发现要改的地方太多了 ... 自行摸索吧
+``` bash
+hexo new page "新页面名称"
+```
+
+如果想自定义新 parts 的话，请根据 source/asset 里的文件目录结构自行摸索
 
 ## 更多
 
