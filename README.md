@@ -2,6 +2,8 @@
 
 看效果点这里：[ma-jinyao.cn](//ma-jinyao.cn)
 
+如果想用 [ma-jinyao.cn](//ma-jinyao.cn) 里 菜单-其他 下 pages 的 parts，可以参考 [我的博客](https://github.com/jinyaoMa/ma-jinyao.cn) 主目录下 source 里的文件、Front-matter 和目录结构。
+
 ## 关于本主题
 
 - 主题只使用了 valine 评论
