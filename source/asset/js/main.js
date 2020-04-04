@@ -253,6 +253,10 @@ const final_load = o => util.layoutParts(parts => {
   }, lock_wait);
   let stepping = 30 / Object.keys(checklist).length;
 
+  if (!/^\/(posts)\//.test(pathname())) {
+    toc.hide();
+  }
+
   if (/^\/(index.html)?$/.test(pathname())) {
     parts.includes('hitokoto') && hitokoto.init(null, el => {
       hitokoto.update();
@@ -272,57 +276,53 @@ const final_load = o => util.layoutParts(parts => {
       });
     });
 
-  } else {
-    toc.hide();
+  } else if (/^\/(posts)\//.test(pathname())) {
+    api(pathname().substring(1, pathname().lastIndexOf('/')), pdata => {
+      parts.includes('post') && post.init({
+        post: pdata,
+        onFriend() {
+          scrolling();
+        }
+      }, el => {
+        checklist.post = true;
+        toc.show();
+        toc.update(pdata.toc, topping());
+        progress.step(stepping);
+      });
+    });
 
-    if (/^\/(posts)\//.test(pathname())) {
-      api(pathname().substring(1, pathname().lastIndexOf('/')), pdata => {
-        parts.includes('post') && post.init({
-          post: pdata,
-          onFriend() {
-            scrolling();
-          }
+  } else if (/^\/(categories|tags)\//.test(pathname())) {
+    api(pathname().substring(1, pathname().lastIndexOf('/')), pdata => {
+      parts.includes('timeline') && timeline.init({
+        posts: pdata.postlist
+      }, el => {
+        checklist.timeline = true;
+        progress.step(stepping);
+      });
+    });
+
+  } else if (/^\/(archives)\//.test(pathname())) {
+    api('posts', pdata => {
+      parts.includes('timeline') && timeline.init({
+        posts: pdata
+      }, el => {
+        checklist.timeline = true;
+        progress.step(stepping);
+      });
+    });
+
+  } else { // Additional Pages
+    let matches = pathname().match(/^\/([a-zA-Z0-9_\-]+)/);
+    if (matches.length === 2) {
+      api(`pages/${matches[1]}`, padata => {
+        parts.includes('page') && page.init({
+          title: padata.title,
+          content: padata.content
         }, el => {
-          checklist.post = true;
-          toc.show();
-          toc.update(pdata.toc, topping());
+          checklist.page = true;
           progress.step(stepping);
         });
       });
-
-    } else if (/^\/(categories|tags)\//.test(pathname())) {
-      api(pathname().substring(1, pathname().lastIndexOf('/')), pdata => {
-        parts.includes('timeline') && timeline.init({
-          posts: pdata.postlist
-        }, el => {
-          checklist.timeline = true;
-          progress.step(stepping);
-        });
-      });
-
-    } else if (/^\/(archives)\//.test(pathname())) {
-      api('posts', pdata => {
-        parts.includes('timeline') && timeline.init({
-          posts: pdata
-        }, el => {
-          checklist.timeline = true;
-          progress.step(stepping);
-        });
-      });
-
-    } else { // Additional Pages
-      let matches = pathname().match(/^\/([a-zA-Z0-9_\-]+)/);
-      if (matches.length === 2) {
-        api(`pages/${matches[1]}`, padata => {
-          parts.includes('page') && page.init({
-            title: padata.title,
-            content: padata.content
-          }, el => {
-            checklist.page = true;
-            progress.step(stepping);
-          });
-        });
-      }
     }
   }
 
