@@ -42,8 +42,8 @@ export default options => {
   request.addEventListener('readystatechange', () => {
     if (request.readyState === 4 && request.status === 200 && request.response) {
       options.success && options.success(request.response);
-    } else if (request.status === 404) {
-      options.error(e);
+    } else if (request.status > 400) {
+      options.error(request.status);
     }
   });
   if (options.error) {

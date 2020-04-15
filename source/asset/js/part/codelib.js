@@ -6,6 +6,10 @@ let element = null;
 let onstart = null;
 let onended = null;
 
+// fontawesome icon - <i class="fas fa-file-code fa-fw"></i>
+const fileicon = document.createElement('i');
+fileicon.className = 'far fa-file-code';
+
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
@@ -20,7 +24,17 @@ const init = (params, callback) => {
         dom.querySelectorAll('a:not([aria-hidden])').forEach(a => {
           a.target = '_blank';
         });
-        element.querySelector('.p-codelib-readme').appendChild(dom.body.firstElementChild);
+
+        let readme = element.querySelector('.p-codelib-readme');
+        let more = element.querySelector('.p-codelib-more');
+        more.onclick = e => {
+          if (readme.classList.contains('active')) {
+            readme.classList.remove('active');
+          } else {
+            readme.classList.add('active');
+          }
+        };
+        readme.insertBefore(dom.body.firstElementChild, more);
       }
       params.onstart && (onstart = params.onstart);
       params.onended && (onended = params.onended);
@@ -57,6 +71,7 @@ const update = list => {
             li.classList.remove('active');
           } else {
             onstart && onstart();
+
             ajax({
               url: `//api.github.com/repos/jinyaoMa/code-lib/contents/${encodeURIComponent(item.path)}`,
               method: 'get',
@@ -73,6 +88,7 @@ const update = list => {
                       inA.target = '_blank';
                       inA.innerText = itm.name;
                       inA.href = itm.html_url;
+                      inLi.appendChild(fileicon.cloneNode(true));
                       inLi.appendChild(inA);
                       ul.appendChild(inLi);
                     }

@@ -60,7 +60,7 @@ comment:
   placeholder: ヾﾉ≧∀≦)o 来呀，快写点什么吧！
 translater:
   copy: 复制
-  to: 翻译到
+  to: 划词翻译
   zh: 中文
   en: English
   jp: 日本語
@@ -133,4 +133,8 @@ records:
     movie: 电影
     audio: 音频
 codelib:
-  caption: 代码
+  captions:
+    log: 更新历史
+    stack: 代码栈
+  more: 展开
+  less: 收起

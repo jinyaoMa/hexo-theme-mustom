@@ -30,8 +30,10 @@ a
   left 0
   z-index -1
   width 100%
-  height s('calc(100% - 6em - %s)', $progress_height * 2)
+  height s('calc(100% - 3em - %s)', $progress_height)
   pointer-events none
+  background-color var(--color-background)
+  visibility hidden
 
 .m-launch
   user-select none
@@ -116,6 +118,8 @@ a
   color var(--color-header-text)
   background var(--color-header-background)
   z-index zIndex(4)
+  &.shadow
+    box-shadow 0 0 $gap * 0.5 $gap * 0.25 var(--color-body-back)
 
 .m-center
   width 100%
@@ -300,13 +304,14 @@ a
     figcaption
       line-height 1.5
   img
+    display block
     border-radius $gap * 0.5
     + em
       font-size 0.5em
       border-radius 1em
       padding 0.25em 0.75em
       border 1px solid
-      margin-bottom 0.5em
+      margin 0.5em 0
       display inline-block
       @media (min-width: $app_mobile_width_min)
         opacity 0.25
@@ -318,6 +323,8 @@ a
         + em
           opacity 1
           color #03a9f4
+  table
+    word-break keep-all
 
 :root.colorful
   .m-evanyou-canvas
@@ -341,6 +348,13 @@ a
   .markdown-body
     a
       color #33ccff
+    img
+      filter brightness(0.8)
+    table
+      tr
+        background-color var(--color-background)
+        &:nth-child(2n)
+          background-color var(--color-clear)
 
 :root.gray:not(.night)
   .m-evanyou-canvas
@@ -350,7 +364,7 @@ a
       box-shadow 0 0 4px 2px var(--color-shadow)
     .p-translater-result
       box-shadow 0 2px 1px 1px var(--color-shadow)
-    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-translater-bar, .p-search-dialog-bar, .p-search-dialog-result
+    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-translater-bar, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib
       box-shadow 0 1px 2px 1px var(--color-shadow)
-    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-search-dialog-bar, .p-search-dialog-result
+    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib
       border-width 0

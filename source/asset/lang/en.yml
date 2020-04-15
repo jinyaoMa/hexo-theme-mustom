@@ -60,7 +60,7 @@ comment:
   placeholder: ヾﾉ≧∀≦)o  ~  Come on，write something here!
 translater:
   copy: COPY
-  to: TRANSLATE TO
+  to: HIGHLIGHT N TRANSLATE
   zh: 中文
   en: English
   jp: 日本語
@@ -133,4 +133,8 @@ records:
     movie: Movie
     audio: Audio
 codelib:
-  caption: CODE
+  captions:
+    log: LOG
+    stack: STACK
+  more: MORE
+  less: LESS

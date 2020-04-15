@@ -5,13 +5,13 @@ const isMobile = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|
 const isChinese = /^(zh)/i.test(window.navigator.browserLanguage || window.navigator.language || 'zh');
 
 const config = Object.assign({
-  closeDrawer: false,
+  closeDrawer: isMobile,
   closeAside: false,
   skin: 'default',
   langshift: !isChinese,
   night: false,
   transfigure: false,
-  lyride: !isChinese || isMobile,
+  lyride: true,
   autoplay: false
 }, storage.get('config'));
 

@@ -13,8 +13,6 @@
     margin $gap * 4 0
     border-radius $gap * 0.5
     border 1px solid var(--color-clear)
-  @media (max-width: $app_mobile_width)
-    padding-bottom $gap
   ul
     list-style none
 
@@ -27,11 +25,10 @@
     margin-right $gap * 0.5
 
 .p-codelib-readme
-  user-select text
   @media (min-width: $app_mobile_width_min)
-    padding $gap * 6
+    padding $gap * 6 ($gap * 4)
   @media (max-width: $app_mobile_width)
-    padding $gap * 5 $gap * 2
+    padding $gap * 5 ($gap)
   h1:first-of-type
     text-align center
     padding-bottom 0.5em
@@ -39,6 +36,50 @@
       margin-bottom $gap * 6
     @media (max-width: $app_mobile_width)
       margin-bottom $gap * 5
+  .md
+    user-select text
+    overflow hidden
+    @media (min-width: $app_mobile_width_min)
+      max-height s('calc(100vh - %s - 3em - %s)', $progress_height, $gap * 24 + $font_size * 2)
+      padding 0 $gap * 2
+    @media (max-width: $app_mobile_width)
+      max-height s('calc(100vh - %s - 3em - %s)', $progress_height, $gap * 10 + $font_size * 4)
+      padding 0 $gap
+    position relative
+    &:after
+      content ''
+      position absolute
+      bottom 0
+      left 0
+      height 1em
+      width 100%
+      background linear-gradient(180deg, #ffffff00 0, var(--color-recentposts-more-front))
+  &.active
+    .md
+      max-height none
+      &:after
+        visibility hidden
+    .p-codelib-more
+      background var(--color-link)
+      margin-top 2em
+      border-radius 1.25em
+    .codelib-more
+      display none
+    .codelib-less
+      display inline
+
+.p-codelib-more
+  font-size 0.85em
+  line-height 2.5
+  text-align center
+  cursor pointer
+  width 100%
+  background var(--color-recentposts-more-front)
+  color var(--color-recentposts-more-back)
+  border-radius 0 0 1.25em 1.25em
+
+.codelib-less
+  display none
 
 .p-codelib-list
   > li:not(:first-child)
@@ -90,6 +131,10 @@
   > li
     text-overflow ellipsis
     overflow hidden
+    white-space nowrap
+  i
+    margin-right 0.75em
+    color var(--color-codelib-text)
 
 @media (max-width: $app_mobile_width)
   .p-codelib-caption

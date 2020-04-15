@@ -114,6 +114,12 @@ const init = (params, callback) => {
         style.parentElement.append(s);
         style.remove();
       });
+
+      let fns = element.querySelectorAll('[href^="#fn"]');
+      fns.forEach(fn => {
+        fn.classList.add('footnote');
+        fn.href = `javascript:scrollTo(0, document.querySelector('${fn.href.replace(window.location.href, '')}').offsetTop - ${params.offset || 96})`;
+      });
     }
 
     callback && callback(element);

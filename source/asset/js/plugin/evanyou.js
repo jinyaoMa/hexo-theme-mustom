@@ -41,7 +41,7 @@ const evanyou = {
       */
       x.lineTo(k, n)
       x.closePath()
-      r -= u / -50
+      r -= u / -22
       x.fillStyle = '#' + (v(r) * 127 + 128 << 16 | v(r + u / 3) * 127 + 128 << 8 | v(r + u / 3 * 2) * 127 + 128).toString(16)
       /*ColorSelectionAlgorithm
       * v=Math.cos,u=2*Math.Pi,r = n * Math.PI/25(n=0,1,2...)
@@ -66,17 +66,152 @@ const evanyou = {
     }
 
     this.draw = function () {
+      c.style.visibility = 'visible'
       x.clearRect(0, 0, w, h) // clear all rect
       q = [{ x: 0, y: h * .7 + f }, { x: 0, y: h * .7 - f }]
-      while (q[1].x < w + f) d(q[0], q[1]); // w + f
+      while (q[1].x < w + f) d(q[0], q[1]) // w + f
     }
   }
 }
 
+const wave = {
+  draw: null,
+  animate: null,
+  hide: null,
+  clear() {
+    window.cancelAnimationFrame(this.animate)
+    this.animate = null
+  },
+  init(selector) {
+    let WAVE_HEIGHT = 200 //波浪变化高度
+    let SCALE = 0.2 // 绘制速率
+    let CYCLE = 360 / SCALE
+    let TIME = 0
+
+    let c = document.querySelector(selector)
+    let width = window.innerWidth
+    let height = window.innerHeight
+
+    let x = c.getContext("2d")
+    c.width = width
+    c.height = height
+
+    let colors = {
+      op: ['66', '99', 'cc'],
+      now: [],
+      r: 0,
+      d: 5 * 16 * 30 * 2, // 5/c, 1f/16ms, 30fps, 2 times slower
+      num: -1,
+      roll() {
+        let that = this
+        let u = Math.PI * 2,
+          v = Math.cos
+        for (let i = 0; i < that.op.length; i++) {
+          if (that.r > 1 || that.r < 0) {
+            that.d *= -1
+          }
+          that.r += u / that.d
+          that.now[i] = '#' + (v(that.r) * 127 + 128 << 16 | v(that.r + u / 3) * 127 + 128 << 8 | v(that.r + u / 3 * 2) * 127 + 128).toString(16) + that.op[i]
+        }
+      },
+      isNext(num) {
+        if (this.num !== num) {
+          this.num = num
+          return true
+        }
+        return false
+      }
+    }
+
+    function _draw() {
+      x.clearRect(0, 0, width, height)
+
+      TIME = (TIME + 1) % CYCLE
+      let angle = SCALE * TIME // 当前正弦角度
+      let dAngle = 45 // 两个波峰相差的角度
+      //if (colors.isNext(Math.floor(TIME * 5 / CYCLE))) {
+        colors.roll()
+      //}
+
+      x.beginPath()
+      x.moveTo(0, height * 0.77 + distance(WAVE_HEIGHT, angle, 0))
+      x.bezierCurveTo(
+        width * 0.6,
+        height * 0.77 + distance(WAVE_HEIGHT, angle, dAngle),
+        width * 0.4,
+        height * 0.77 + distance(WAVE_HEIGHT, angle, 2 * dAngle),
+        width,
+        height * 0.66 + distance(WAVE_HEIGHT, angle, 3 * dAngle)
+      )
+      x.lineTo(width, height)
+      x.lineTo(0, height)
+      x.fillStyle = colors.now[2]
+      x.fill()
+
+      x.beginPath()
+      x.moveTo(0, height * 0.77 + distance(WAVE_HEIGHT, angle, -15))
+      x.bezierCurveTo(
+        width * 0.55,
+        height * 0.77 + distance(WAVE_HEIGHT, angle, dAngle - 15),
+        width * 0.45,
+        height * 0.77 + distance(WAVE_HEIGHT, angle, 2 * dAngle - 30),
+        width,
+        height * 0.66 + distance(WAVE_HEIGHT, angle, 3 * dAngle - 45)
+      )
+      x.lineTo(width, height)
+      x.lineTo(0, height)
+      x.fillStyle = colors.now[1]
+      x.fill()
+
+      x.beginPath()
+      x.moveTo(0, height * 0.77 + distance(WAVE_HEIGHT, angle, -30))
+      x.bezierCurveTo(
+        width * 0.5,
+        height * 0.77 + distance(WAVE_HEIGHT, angle, dAngle - 30),
+        width * 0.5,
+        height * 0.77 + distance(WAVE_HEIGHT, angle, 2 * dAngle - 60),
+        width,
+        height * 0.66 + distance(WAVE_HEIGHT, angle, 3 * dAngle - 90)
+      )
+      x.lineTo(width, height)
+      x.lineTo(0, height)
+      x.fillStyle = colors.now[0]
+      x.fill()
+
+      function distance(height, currAngle, diffAngle) {
+        return height * Math.cos((((currAngle - diffAngle) % 360) * Math.PI) / 180)
+      }
+    }
+
+    let that = this
+    that.draw = function () {
+      c.style.visibility = 'visible'
+      that.animate = window.requestAnimationFrame(function fn() {
+        _draw()
+        that.animate = requestAnimationFrame(fn)
+      })
+    }
+    that.hide = function () {
+      that.clear()
+      c.style.visibility = 'hidden'
+    }
+  }
+}
 
 export default {
-  init: evanyou.init,
-  draw(){
-    typeof evanyou.draw === 'function' && evanyou.draw();
+  init(s) {
+    evanyou.init(s)
+    wave.init(s)
+  },
+  draw(opt) {
+    wave.clear()
+    if (opt.toLowerCase() === 'wave') {
+      typeof wave.draw === 'function' && wave.draw()
+    } else {
+      typeof evanyou.draw === 'function' && evanyou.draw()
+    }
+  },
+  hide() {
+    wave.hide()
   }
 }

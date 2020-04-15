@@ -3,11 +3,29 @@ import part from "../common/part.js";
 let tag = 'audioplayer';
 let element = null;
 
+const _check = o => {
+  if (!element) return;
+  let timeout = 19999;
+  let step = 600;
+  let looper = window.setInterval(o => {
+    let mjs = element.querySelector('meting-js');
+    if (!mjs.aplayer) {
+      timeout -= step;
+    }
+    if (timeout < 0) {
+      window.clearInterval(looper);
+      mjs.innerText = 'Σ(っ °Д °;)っ [ METING API ERROR ]！';
+      mjs.style.cssText = 'display:block;padding:12px;font-size:0.88em;color:brown;text-align:center;white-space:nowrap';
+    }
+  }, step);
+};
+
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
     document.querySelector(tag).replaceWith(element);
     callback && callback(element);
+    _check();
   });
 };
 

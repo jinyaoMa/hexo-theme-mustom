@@ -155,7 +155,13 @@ records:
 gallery:
   icon: '<i class="fas fa-image fa-fw"></i>'
 codelib:
-  icon: '<i class="fas fa-code fa-fw"></i>'
+  icons:
+    log: '<i class="fab fa-readme fa-fw"></i>'
+    stack: '<i class="fas fa-layer-group fa-fw"></i>'
+xcanvas:
+  icons:
+    normal: '<i class="fas fa-video"></i>'
+    close: '<i class="fas fa-video-slash"></i>'
 manifest:
   path: /manifest.json
   name: ma-jinyao.cn
