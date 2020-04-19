@@ -24,7 +24,7 @@ const update = o => {
     },
     success: data => {
       element.querySelector('.p-hitokoto-content').innerText = data.hitokoto;
-      element.querySelector('.p-hitokoto-name').innerText = data.from;
+      element.querySelector('.p-hitokoto-name').innerText = data.from_who;
     }
   });
 };

@@ -47,10 +47,10 @@ const update = (content, offset) => {
             if (match) {
               let id = window.decodeURI(match[1]).trim();
               if (highlightId) {
-                let highlight = main.querySelector(`.toc-link[data-id="${highlightId}"]`);
+                let highlight = main.querySelector(`.toc-link[data-id*="${highlightId}"]`);
                 highlight && highlight.classList.remove('active');
               }
-              let target = main.querySelector(`.toc-link[data-id="${id}"]`);
+              let target = main.querySelector(`.toc-link[data-id*="${id}"]`);
               target && target.classList.add('active');
               highlightId = id;
             }
@@ -60,10 +60,10 @@ const update = (content, offset) => {
             if (match) {
               let id = window.decodeURI(match[1]).trim();
               if (highlightId) {
-                let highlight = main.querySelector(`.toc-link[data-id="${highlightId}"]`);
+                let highlight = main.querySelector(`.toc-link[data-id*="${highlightId}"]`);
                 highlight && highlight.classList.remove('active');
               }
-              let target = main.querySelector(`.toc-link[data-id="${id}"]`);
+              let target = main.querySelector(`.toc-link[data-id*="${id}"]`);
               target && target.classList.add('active');
               highlightId = id;
             }

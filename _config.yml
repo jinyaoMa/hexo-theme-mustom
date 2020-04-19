@@ -21,7 +21,7 @@ hitokoto:
   icon: '<i class="fas fa-circle-notch fa-fw"></i>'
   image: /asset/img/qf3cu.huaji.png
   api: //v1.hitokoto.cn
-  type: r # a - Anime, b - Comic, c - Game, d - Novel, e - Myself, f - Internet, g - Other, r - Random
+  type: i # https://developer.hitokoto.cn/sentence/#请求参数
   content: 感谢一言网(Hitokoto.cn)提供一句话服务
   name: jinyaoMa
 brand:
@@ -51,7 +51,7 @@ contact:
     url: mailto:jinyao.ma@outlook.com
     icon: '<i class="fas fa-envelope fa-fw"></i>'
   qq:
-    url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=907881445
+    url: tencent://Message/?uin=907881445
     icon: '<i class="fab fa-qq fa-fw"></i>'
 menuicons:
   main: '<i class="fas fa-sitemap fa-fw"></i>'
@@ -191,3 +191,8 @@ serviceWorker:
       strategy: cacheFirst
     - pattern: !!js/regexp /\//
       strategy: networkFirst
+adframe:
+  icons:
+    qrcode: '<i class="fas fa-qrcode"></i>'
+    close: '<i class="fas fa-times-circle"></i>'
+  ad: /ad.png

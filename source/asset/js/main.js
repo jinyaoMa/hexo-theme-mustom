@@ -38,6 +38,7 @@ import codelib from "./part/codelib.js";
 import records from "./part/records.js";
 import gallery from "./part/gallery.js";
 import xcanvas from "./part/xcanvas.js";
+import adframe from "./part/adframe.js";
 
 _run_APlayer();
 _run_AV();
@@ -644,7 +645,8 @@ live2d(z => {
         settings: false,
         pather: false,
         audioplayer: false,
-        xcanvas: false
+        xcanvas: false,
+        adframe: false
       };
       let looper = window.setInterval(o => {
         let flag = true;
@@ -714,6 +716,9 @@ live2d(z => {
         error() {
           checklist.extension = true;
         }
+      });
+      adframe.init(null, el => {
+        checklist.adframe = true;
       });
       xdrawer.init({
         onclick(state) {

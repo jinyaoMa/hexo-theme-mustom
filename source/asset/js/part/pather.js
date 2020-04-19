@@ -71,7 +71,7 @@ const update = o => {
       if (name.trim() !== '') {
         let a = document.createElement('a');
         a.href = current = current + name + '/';
-        a.innerText = a.title = name.replace('-', ' ');
+        a.innerText = a.title = window.decodeURIComponent(name).replace('-', ' ');
         queue.appendChild(a);
       }
     });
@@ -84,7 +84,7 @@ const update = o => {
       if (name.trim() !== '') {
         let a = document.createElement('a');
         a.href = current = current + name + '/';
-        a.innerText = a.title = name.replace('-', ' ');
+        a.innerText = a.title = window.decodeURIComponent(name).replace('-', ' ');
         queue.appendChild(a);
       }
     });

@@ -282,6 +282,13 @@ a
 
 .markdown-body
   color var(--color-text)
+  h1, h2, h3, h4, h5, h6
+    padding-top 0.5em
+  .headerlink
+    pointer-events none
+    user-select none
+    &:before
+      content '¶ '
   code
     font-weight bold
   .highlight

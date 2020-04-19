@@ -1,0 +1,57 @@
+@keyframes adframe-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+.p-adframe
+  position fixed
+  left $gap * 3
+  bottom $gap * 7 + $font_size * 2
+  z-index 3
+  user-select none
+  animation adframe-appear 0.6s ease
+  @media (max-width: $app_mobile_width)
+    display none
+  &.close
+    .p-adframe-qrcode
+      display block
+    .p-adframe-close, .p-adframe-content
+      display none
+
+.p-adframe-qrcode
+  height $font_size * 2 + $gap
+  width $font_size * 2 + $gap
+  text-align center
+  line-height $font_size * 2 + $gap
+  font-size 1.35em
+  background-color var(--color-background)
+  border-radius 50%
+  display none
+  cursor pointer
+  animation adframe-appear 0.6s ease
+  &:hover
+    box-shadow 0 0 $gap * 0.5 var(--color-goingto-shadow)
+  &:active
+    box-shadow inset 0 0 $gap * 0.25 1px var(--color-goingto-shadow)
+
+.p-adframe-close
+  position absolute
+  top $gap
+  right $gap
+  cursor pointer
+  i
+    display block
+    color var(--color-link)
+
+.p-adframe-content
+  min-width 20vw
+  min-height 20vh
+  max-width 66vmin
+  background-color var(--color-background)
+  border-radius 0.5em
+  border $gap * 0.5 solid
+  img
+    width 100%
+    display block
+
