@@ -24,7 +24,11 @@ const update = o => {
     },
     success: data => {
       element.querySelector('.p-hitokoto-content').innerText = data.hitokoto;
-      element.querySelector('.p-hitokoto-name').innerText = data.from_who;
+      if (data.from_who === undefined || data.from_who === null || data.from_who.trim() === '') {
+        element.querySelector('.p-hitokoto-name').innerText = data.from;
+      } else {
+        element.querySelector('.p-hitokoto-name').innerText = data.from_who;
+      }
     }
   });
 };
