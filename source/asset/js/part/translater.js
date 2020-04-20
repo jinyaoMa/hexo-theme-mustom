@@ -61,7 +61,7 @@ const setup = o => {
       let epath = e.path || (e.composedPath && e.composedPath());
       let rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
       element.classList.add('moved');
-      element.style.transform = 'translateY(' + (window.scrollY + rect.y + rect.height - element.offsetTop + 8) + 'px)'; // set offset to target e.g. 8px
+      element.style.transform = 'translateY(' + (window.scrollY + rect.y + rect.height - element.offsetTop + 16) + 'px)'; // set offset to target e.g. 8px
       if (data.isPathIn(epath, element.querySelector('.p-translater-bar-copy')) && query.length > 0) {
         if (document.execCommand('copy')) {
           setContent(true, '<p>Copied! 复制成功！</p>');
