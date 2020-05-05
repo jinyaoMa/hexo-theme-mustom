@@ -2,6 +2,8 @@
 
 看效果点这里：[ma-jinyao.cn](//ma-jinyao.cn)
 
+想用最新版的主题的话，可以把我的[整个网站](//github.com/jinyaoMa/ma-jinyao.cn)下载下来慢慢改
+
 更详细的使用指南：[Hexo主题Mustom使用指南](//ma-jinyao.cn/posts/49651/)
 
 如果想用 [ma-jinyao.cn](//ma-jinyao.cn) 里 菜单-其他 下 pages 的 parts，可以参考 [我的博客](https://github.com/jinyaoMa/ma-jinyao.cn) 主目录下 source 里的文件、Front-matter 和目录结构。
