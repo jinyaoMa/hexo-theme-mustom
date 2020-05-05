@@ -6,19 +6,7 @@
 
 var ejs = require('ejs');
 var $forIn = require('../helper/$forIn');
-
-const $encodeHTML = strings => {
-  let result = [];
-  if (typeof strings === 'object') {
-    strings.forEach(string => {
-      result.push(encodeURI(string.trim()));
-    });
-    result = encodeURI(JSON.stringify(result));
-  } else {
-    result = encodeURI(strings.trim());
-  }
-  return result;
-};
+var $encodeHTML = require('../helper/$encodeHTML');
 
 module.exports = function (data, options) {
   if (!options) {

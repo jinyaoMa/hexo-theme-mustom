@@ -5,6 +5,17 @@ _run_md5();
 
 const mobileRegex = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i;
 
+const getChromeVersion = o => {
+  if (/Chrome/i.test(window.navigator.userAgent)) {
+    let matches = window.navigator.userAgent.match(/Chrome\/([0-9.]+)/i);
+    if (matches.length > 1) {
+      return parseInt(matches[1]);
+    }
+  } else {
+    return 0;
+  }
+};
+
 const delay = (time, callback) => {
   window.setTimeout(callback, time);
 };
@@ -165,5 +176,6 @@ export default {
   forIn,
   layoutParts,
   decodePass,
-  baiduTranslate
+  baiduTranslate,
+  getChromeVersion
 }

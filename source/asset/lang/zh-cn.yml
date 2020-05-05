@@ -138,3 +138,6 @@ codelib:
     stack: 代码栈
   more: 展开
   less: 收起
+notification:
+  welcome: 欢迎光临本站，技术交流可以加我QQ：907881445
+  browser: "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;推荐使用谷歌内核版本不小于 69 的浏览器来浏览本站。"

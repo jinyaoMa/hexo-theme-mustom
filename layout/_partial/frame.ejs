@@ -6,13 +6,16 @@
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
   <meta name="renderer" content="webkit">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
   <meta name="google-site-verification" content="<%= google_site_verification %>">
   <meta name="baidu-site-verification" content="<%= baidu_site_verification %>">
   <meta name="description" content="<%= description %>">
   <meta name="keywords" content="<%= keywords %>">
   <meta name="author" content="<%= author %>">
   <meta name="layout-parts" content="<%= parts %>">
-  <link rel="shortcut icon" type="image/png" href="<%= favicon %>">
+  <link rel="shortcut icon apple-touch-icon" type="image/png" href="<%= favicon %>">
+  <link rel="apple-touch-icon" type="image/png" href="<%= appleIcon %>">
   <link rel="manifest" href="<%= manifest %>">
   <title><%= title %></title>
   <%- adScript ? adScript : '' %>
@@ -44,6 +47,7 @@
         <menus></menus>
         <skin></skin>
         <settings></settings>
+        <div class="m-drawer-mark"></div>
         <!-- END drawer -->
       </div>
       <div class="m-frame">
@@ -66,12 +70,14 @@
             <!-- END content -->
           </div>
           <comment></comment>
+          <empty></empty>
           <!-- END main -->
         </div>
         <div class="m-aside">
           <panels></panels>
           <audioplayer></audioplayer>
           <toc></toc>
+          <div class="m-aside-mark"></div>
           <!-- END aside -->
         </div>
       </div>
@@ -85,6 +91,7 @@
     <adframe></adframe>
     <extension></extension>
     <search></search>
+    <notification></notification>
     <!-- END app -->
   </div>
 </body>

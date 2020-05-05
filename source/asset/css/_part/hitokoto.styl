@@ -4,6 +4,14 @@
   to
     opacity 1
 
+@keyframes hitokoto-flashing
+  0%
+    opacity 1
+  50%
+    opacity 0
+  100%
+    opacity 1
+
 .p-hitokoto
   overflow hidden
   user-select none
@@ -23,6 +31,12 @@
 
 .p-hitokoto-content, .p-hitokoto-name
   user-select text
+
+.p-hitokoto-content
+  &:after
+    content ''
+    border-left 0.1rem solid
+    animation hitokoto-flashing 1.2s ease-in-out infinite
 
 .p-hitokoto-caption
   padding 0 $gap

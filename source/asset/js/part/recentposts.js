@@ -3,7 +3,7 @@ import part from "../common/part.js";
 let tag = 'recentposts';
 let element = null;
 let posts = [];
-let count = 5;
+let count = 10;
 
 const setPost = (post, dom) => {
   let cover = dom.querySelector('.p-recentpost-cover span');

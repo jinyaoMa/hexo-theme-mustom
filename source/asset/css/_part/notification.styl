@@ -1,0 +1,37 @@
+@keyframes notification-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+.p-notification
+  pointer-events none
+  user-select none
+  overflow hidden
+  position fixed
+  top s('calc(3em + %s)', $progress_height)
+  left 0
+  width 100%
+  z-index zIndex(5)
+  padding 1em 0
+  transform translateX(100%)
+  transition transform 1.2s ease-in-out
+  &.active
+    transform translateX(0)
+
+.p-notification-message
+  padding 1em
+  background var(--color-records-progress-back-l)
+  max-width 80%
+  overflow-x auto
+  overflow-y hidden
+  white-space nowrap
+  border-left $gap * 0.5 solid var(--color-recentposts-more-front)
+  float right
+  pointer-events all
+  user-select text
+  animation notification-appear 0.6s ease
+  color var(--color-notification-text)
+  i
+    color var(--color-recentposts-more-front)
+    margin-right 0.5em

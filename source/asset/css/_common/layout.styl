@@ -287,8 +287,18 @@ a
   .headerlink
     pointer-events none
     user-select none
-    &:before
-      content '¶ '
+  h1, h4
+    .headerlink
+      &:before
+        content '❑ '
+  h2, h5
+    .headerlink
+      &:before
+        content '❏ '
+  h3, h6
+    .headerlink
+      &:before
+        content '■ '
   code
     font-weight bold
   .highlight
@@ -350,13 +360,13 @@ a
       text-align center
 
 :root.night
+  img
+    filter brightness(0.8)
   .m-evanyou-canvas
     display initial
   .markdown-body
     a
       color #33ccff
-    img
-      filter brightness(0.8)
     table
       tr
         background-color var(--color-background)
@@ -373,7 +383,7 @@ a
       box-shadow 0 0 4px 2px var(--color-shadow)
     .p-translater-result
       box-shadow 0 2px 1px 1px var(--color-shadow)
-    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-translater-bar, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib
+    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-translater-bar, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib, .p-empty
       box-shadow 0 1px 2px 1px var(--color-shadow)
-    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib
+    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib, .p-empty
       border-width 0

@@ -9,6 +9,7 @@ license:
   image: /asset/img/by-nc-sa.svg
   name: BY-NC-SA
   icon: '<i class="fab fa-creative-commons"></i>'
+appleIcon: /asset/img/android-chrome-192x192.png
 favicon:
   small: /asset/img/icon.small.png
   medium: /asset/img/icon.medium.png
@@ -112,7 +113,7 @@ audioplayer:
 meting:
   server: netease
   type: playlist
-  id: "970057720"
+  id: "4989572738"
   theme: "#ff3300"
   list_height: "297px"
 recentposts:
@@ -141,7 +142,7 @@ post:
 page:
   icon: '<i class="fas fa-file-alt fa-fw"></i>'
 toc:
-  icon: '<i class="fas fa-paragraph fa-fw"></i>'
+  icon: '<i class="fas fa-bookmark fa-fw"></i>'
 search:
   close: '<i class="fas fa-times fa-fw"></i>'
 extension:
@@ -175,17 +176,21 @@ manifest:
       type: image/png
   start_url: /index.html
   theme_color: "#000000"
-  background_color: "#ffffff"
+  background_color: "#ff3300"
   display: standalone
   orientation: portrait
 serviceWorker:
   path: /sw.js
   opts:
-    networkTimeoutSeconds: 5
+    networkTimeoutSeconds: 15
   routes:
-    - pattern: !!js/regexp /(baidu.com|google)/
+    - pattern: !!js/regexp /(baidu.com|google.com|i-meto.com)/
       strategy: networkOnly
-    - pattern: !!js/regexp /\/asset\/part\/.+\.(html)$/
+    - pattern: !!js/regexp /manifest.json(\?.*)?$/
+      strategy: networkFirst
+    - pattern: !!js/regexp /.*\/asset\/lang\/.+\.(json)(\?.*)?$/
+      strategy: networkFirst
+    - pattern: !!js/regexp /.*\/asset\/part\/.+\.(html)(\?.*)?$/
       strategy: cacheFirst
     - pattern: !!js/regexp /.+\.(js|css|jpg|jpeg|png|gif|svg|webp|ico|eot|ttf|woff|woff2|otf|mtn|moc|json)(\?.*)?$/
       strategy: cacheFirst
@@ -196,3 +201,7 @@ adframe:
     qrcode: '<i class="fas fa-qrcode"></i>'
     close: '<i class="fas fa-times-circle"></i>'
   ad: /ad.png
+empty:
+  image: /asset/img/empty.min.png
+notification:
+  icon: '<i class="fas fa-info-circle"></i>'

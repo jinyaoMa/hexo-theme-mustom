@@ -39,6 +39,8 @@ import records from "./part/records.js";
 import gallery from "./part/gallery.js";
 import xcanvas from "./part/xcanvas.js";
 import adframe from "./part/adframe.js";
+import empty from "./part/empty.js";
+import notification from "./part/notification.js";
 
 _run_APlayer();
 _run_AV();
@@ -220,23 +222,37 @@ const setSticky = o => {
 const fixMainHeight = o => {
   util.runOnDesktop(p => {
     let main = root.querySelector('.m-main');
-    let drawer = root.querySelector('.m-drawer');
-    let aside = root.querySelector('.m-aside');
+    let drawer = root.querySelector('.m-drawer-mark');
+    let aside = root.querySelector('.m-aside-mark');
     let footer = root.querySelector('.m-footer');
-    let maxHeight = drawer.scrollHeight > aside.scrollHeight ? drawer.scrollHeight : aside.scrollHeight;
-    main.style.minHeight = (maxHeight - footer.offsetHeight) * 1.35 + 'px';
+    let maxHeight = drawer.offsetTop > aside.offsetTop ? drawer.offsetTop : aside.offsetTop;
+    let emptySpace = (maxHeight - footer.offsetHeight) * 1.3 - main.scrollHeight + empty.getHeight(); // offset 0.3
+    let realEmptyImgHeight = 128;
+    if (emptySpace > 0) {
+      empty.show();
+      if (emptySpace < realEmptyImgHeight) { // real empty image height
+        empty.setHeight(realEmptyImgHeight);
+      } else {
+        empty.setHeight(emptySpace);
+      }
+    } else {
+      empty.setHeight(0);
+      util.delay(600, o => {
+        empty.hide();
+      });
+    }
   });
 };
 
 const scrolling = e => {
   util.runOnDesktop(o => {
     let aside = root.querySelector('.m-aside');
-    aside.scrollTop = window.scrollY * 0.65; // offset 0.35
+    aside.scrollTop = window.scrollY * 0.7; // offset 0.3
 
     let drawer = root.querySelector('.m-drawer');
     //let content = root.querySelector('.m-content');
     //let drawerTop = (drawer.scrollHeight - drawer.offsetHeight) * window.scrollY / (content.offsetHeight + content.offsetTop - window.innerHeight);
-    let drawerTop = window.scrollY * 0.65; // offset 0.35
+    let drawerTop = window.scrollY * 0.7; // offset 0.3
     drawer.scrollTop = drawerTop;
   });
 };
@@ -281,7 +297,6 @@ const final_load = o => util.layoutParts(parts => {
 
   if (/^\/(index.html)?$/.test(pathname())) {
     parts.includes('hitokoto') && hitokoto.init(null, el => {
-      hitokoto.update();
       checklist.hitokoto = true;
       progress.step(stepping);
     });
@@ -474,6 +489,14 @@ const linksStore = {
     if (url !== window.location.href) {
       pjax.run(url, data => {
         history.pushState({ url }, data.title, url);
+        fetch("//busuanzi.ibruce.info/busuanzi", {
+          jsonpCallback: "BusuanziCallback_" + Math.floor(1099511627776 * Math.random())
+        }, result => {
+          footer.update({
+            site_pv: result && result.site_pv ? result.site_pv : '∞',
+            site_uv: result && result.site_uv ? result.site_uv : '∞',
+          });
+        }, true);
       });
     }
     xsearch.off();
@@ -575,7 +598,7 @@ live2d(z => {
           footer.update({
             site_pv: result && result.site_pv ? result.site_pv : '∞',
             site_uv: result && result.site_uv ? result.site_uv : '∞',
-            site_wd: sdata && sdata.word4site ? sdata.word4site : '∞',
+            site_wd: sdata && sdata.word4site ? sdata.word4site : '∞'
           });
         }, true);
         checklist.footer = true;
@@ -646,7 +669,9 @@ live2d(z => {
         pather: false,
         audioplayer: false,
         xcanvas: false,
-        adframe: false
+        adframe: false,
+        empty: false,
+        notification: false
       };
       let looper = window.setInterval(o => {
         let flag = true;
@@ -664,6 +689,10 @@ live2d(z => {
       }, lock_wait);
 
       evanyou.init('.m-evanyou-canvas');
+
+      notification.init(null, o => {
+        checklist.notification = true;
+      });
 
       xcanvas.init({
         noCanvas: noCanvas.value,
@@ -720,6 +749,9 @@ live2d(z => {
       adframe.init(null, el => {
         checklist.adframe = true;
       });
+      empty.init(null, el => {
+        checklist.empty = true;
+      });
       xdrawer.init({
         onclick(state) {
           config.set('closeDrawer', state);
@@ -772,6 +804,7 @@ live2d(z => {
             progress.to(90);
             menus.update();
             pather.update();
+            hitokoto.update();
             lang(flag ? 'en' : 'zh-cn', ldata => {
               comment.update(ldata);
               post.updateShare(ldata);
@@ -781,6 +814,17 @@ live2d(z => {
               listen2Links();
               listen2Title();
               progress.to(100);
+
+              if (ldata.notification) {
+                let message = ldata.notification.welcome;
+                let chromeVer = util.getChromeVersion();
+                if (chromeVer < 69) {
+                  message += ldata.notification.browser;
+                }
+                if (notification.isFirstNotify()) {
+                  notification.show(message);
+                }
+              }
             });
           } else if (key === 'transfigure') {
             flag ? root.classList.add('transfigure') : root.classList.remove('transfigure');
@@ -833,6 +877,7 @@ live2d(z => {
           } else if (key === 'langshift') {
             progress.to(90);
             menus.update();
+            hitokoto.update();
             lang(flag ? 'en' : 'zh-cn', ldata => {
               comment.update(ldata);
               post.updateShare(ldata);

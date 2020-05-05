@@ -1,0 +1,80 @@
+@keyframes empty-appear
+  from
+    opacity 0
+  to
+    opacity 1
+
+@keyframes empty-ball
+  0%
+    transform translate3d(0,0,0)
+  $y = 0px
+  for $num in (1 9 17 25 33 41)
+    {$num}\%
+      transform translate3d(32px,$y,0)
+    $num += 4.5
+    $y += 80px
+    {$num}\%
+      transform translate3d(160px,$y,0)
+    $num += 1
+    {$num}\%
+      transform translate3d(100px,$y,0)
+    $num += 1.5
+    $y += 50px
+    {$num}\%
+      transform translate3d(24px,$y,0)
+    $y -= 2px
+  for $num in (51 59 67 75 83 91)
+    $y += 2px
+    {$num}\%
+      transform translate3d(24px,$y,0)
+    $num += 1.5
+    $y -= 50px
+    {$num}\%
+      transform translate3d(100px,$y,0)
+    $num += 1
+    {$num}\%
+      transform translate3d(160px,$y,0)
+    $num += 4.5
+    $y -= 80px
+    {$num}\%
+      transform translate3d(32px,$y,0)
+  100%
+    transform translate3d(0,0,0)
+
+.p-empty
+  height 0
+  overflow hidden
+  margin $gap * 4 0
+  border-radius $gap * 0.5
+  border 1px solid var(--color-clear)
+  background var(--color-clear)
+  line-height 1
+  user-select none
+  pointer-events none
+  animation empty-appear 0.6s ease
+  transition height 0.6s
+  position relative
+  @media (max-width: $app_mobile_width)
+    display none
+  img
+    display block
+    margin 0 auto
+  &:after
+    content ''
+    position absolute
+    top 0
+    width $gap * 2
+    height $gap * 2
+    border-radius 50%
+    background var(--color-text)
+    margin $gap calc(50% - 102px)
+    animation empty-ball 24s linear infinite
+
+:root:not(.night)
+  &.colorful
+    .p-empty img
+      filter sepia(100%)
+      
+:root.night
+  .p-empty img
+    filter invert(90%)
