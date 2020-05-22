@@ -225,6 +225,11 @@ module.exports = function (cfg, site, hexo) {
       });
 
       apiData = apiData.concat(cates.map(cateMap));
+    } else {
+      apiData.push({
+        path: 'api/categories.json',
+        data: JSON.stringify([])
+      });
     }
 
   }
@@ -239,6 +244,11 @@ module.exports = function (cfg, site, hexo) {
       });
 
       apiData = apiData.concat(tags.map(cateMap));
+    } else {
+      apiData.push({
+        path: 'api/tags.json',
+        data: JSON.stringify([])
+      });
     }
 
   }
