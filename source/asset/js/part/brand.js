@@ -6,7 +6,7 @@ let element = null;
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
     if (params) {
       element.querySelector('.p-brand-posts-count').innerText = params.numOfPosts;
       element.querySelector('.p-brand-categories-count').innerText = params.numOfCategories;

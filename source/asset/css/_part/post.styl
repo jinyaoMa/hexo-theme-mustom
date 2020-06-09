@@ -59,6 +59,22 @@
 
 .p-post-content
   padding 3em 0
+  headingContent($num)
+    $result = ''
+    for $x in 1 .. $num
+      if ($x == $num)
+        $result += s('counter(%s) ". "', unquote('h' + $x))
+      else
+        $result += s('counter(%s) "." ', unquote('h' + $x))
+    return unquote($result)
+  for $num in 1 .. 6
+    h{$num}
+      counter-reset unquote('h' + ($num + 1))
+  for $num in 1 .. 6
+    h{$num}:before
+      counter-increment unquote('h' + $num)
+      content headingContent($num)
+      font-weight bolder
 
 .p-post-ending
   color var(--color-post-ending)

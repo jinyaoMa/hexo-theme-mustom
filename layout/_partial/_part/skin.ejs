@@ -1,0 +1,11 @@
+<div class="p-skin HIDE">
+  <div class="p-skin-caption">
+    <%- theme.skinicon %> 
+    <span data-lang="skin.caption"></span>
+  </div>
+  <div class="p-skin-items">
+    <% $forIn(theme.skin, (key, color) => { %>
+      <div data-skin-key="<%- key %>" data-skin-color="<%- color %>" data-lang="skin.items.<%- key %>" data-lang-titled></div>
+    <% }); %>
+  </div>
+</div>

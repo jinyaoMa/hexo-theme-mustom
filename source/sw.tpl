@@ -20,14 +20,13 @@ self.addEventListener('active', function () {
   return self.clients.claim();
 });
 
-var precacheUrls = [];
+var precacheUrls = [
 <%
 precacheUrls.forEach(function (url) {
-%>
-  precacheUrls.push('<%- url %>');
-<%
+%>'<%- url %>',<%
 });
 %>
+];
 toolbox.precache(precacheUrls);
 toolbox.options = <%- JSON.stringify(opts) %>;
 

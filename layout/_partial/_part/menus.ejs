@@ -1,0 +1,18 @@
+<div class="p-menus HIDE">
+  <% $forIn(theme.menus, (name, menu) => { %>
+  <div class="p-menu">
+    <div class="p-menu-caption">
+      <%- theme.menuicons[name] %>
+      <span data-lang="menus.<%- name %>.caption"></span>
+    </div>
+    <div class="p-menu-items">
+      <% $forIn(menu, (key, item) => { %>
+      <a data-menu-key="<%- key %>" href="<%- item.url %>">
+        <%- item.icon %>
+        <span class="p-menu-items-name" data-lang="menus.<%- name %>.items.<%- key %>"></span>
+      </a>
+      <% }); %>
+    </div>
+  </div>
+  <% }); %>
+</div>

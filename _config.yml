@@ -9,7 +9,7 @@ license:
   image: /asset/img/by-nc-sa.svg
   name: BY-NC-SA
   icon: '<i class="fab fa-creative-commons"></i>'
-appleIcon: /asset/img/android-chrome-192x192.png
+appleIcon: /asset/img/author.medium.png
 favicon:
   small: /asset/img/icon.small.png
   medium: /asset/img/icon.medium.png
@@ -80,6 +80,9 @@ menus:
     library:
       url: /library/
       icon: '<i class="fas fa-box fa-fw"></i>'
+    icons:
+      url: /icons/
+      icon: '<i class="fas fa-icons fa-fw"></i>'
     records:
       url: /records/
       icon: '<i class="fas fa-edit fa-fw"></i>'
@@ -159,6 +162,10 @@ codelib:
   icons:
     log: '<i class="fab fa-readme fa-fw"></i>'
     stack: '<i class="fas fa-layer-group fa-fw"></i>'
+iconlib:
+  icons:
+    log: '<i class="fab fa-readme fa-fw"></i>'
+    stack: '<i class="fas fa-grip-horizontal fa-fw"></i>'
 xcanvas:
   icons:
     normal: '<i class="fas fa-video"></i>'
@@ -176,23 +183,21 @@ manifest:
       type: image/png
   start_url: /index.html
   theme_color: "#000000"
-  background_color: "#ff3300"
+  background_color: "#ffffff"
   display: standalone
   orientation: portrait
 serviceWorker:
   path: /sw.js
   opts:
-    networkTimeoutSeconds: 15
+    networkTimeoutSeconds: 5
   routes:
-    - pattern: !!js/regexp /(baidu.com|google.com|i-meto.com)/
+    - pattern: !!js/regexp /(hm.baidu.com|google.com|api.i-meto.com|github)/
       strategy: networkOnly
-    - pattern: !!js/regexp /manifest.json(\?.*)?$/
-      strategy: networkFirst
-    - pattern: !!js/regexp /.*\/asset\/lang\/.+\.(json)(\?.*)?$/
-      strategy: networkFirst
+    - pattern: !!js/regexp /(icon-lib|font-mustom|MPlayer)/
+      strategy: networkOnly
     - pattern: !!js/regexp /.*\/asset\/part\/.+\.(html)(\?.*)?$/
       strategy: cacheFirst
-    - pattern: !!js/regexp /.+\.(js|css|jpg|jpeg|png|gif|svg|webp|ico|eot|ttf|woff|woff2|otf|mtn|moc|json)(\?.*)?$/
+    - pattern: !!js/regexp /.+\.(jpg|jpeg|png|gif|svg|webp|ico|eot|ttf|woff|woff2|otf|mtn|moc)(\?.*)?$/
       strategy: cacheFirst
     - pattern: !!js/regexp /\//
       strategy: networkFirst

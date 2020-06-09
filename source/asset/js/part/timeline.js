@@ -6,7 +6,7 @@ let element = null;
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
 
     if (params && params.posts && params.posts.length) {
       let items = element.querySelector('.p-timeline-items');

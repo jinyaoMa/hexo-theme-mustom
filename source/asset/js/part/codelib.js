@@ -13,7 +13,7 @@ fileicon.className = 'far fa-file-code';
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
 
     if (params) {
       if (params.readme) {

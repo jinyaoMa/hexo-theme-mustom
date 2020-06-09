@@ -6,8 +6,8 @@
 
 .p-adframe
   position fixed
-  left $gap * 3
-  bottom $gap * 7 + $font_size * 2
+  left $gap * 2.5
+  bottom $gap * 2.5
   z-index 3
   user-select none
   animation adframe-appear 0.6s ease
@@ -30,6 +30,7 @@
   display none
   cursor pointer
   animation adframe-appear 0.6s ease
+  transition box-shadow 0.2s
   &:hover
     box-shadow 0 0 $gap * 0.5 var(--color-goingto-shadow)
   &:active
@@ -54,4 +55,3 @@
   img
     width 100%
     display block
-

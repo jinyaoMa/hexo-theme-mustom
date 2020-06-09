@@ -41,6 +41,7 @@ import xcanvas from "./part/xcanvas.js";
 import adframe from "./part/adframe.js";
 import empty from "./part/empty.js";
 import notification from "./part/notification.js";
+import iconlib from "./part/iconlib.js";
 
 _run_APlayer();
 _run_AV();
@@ -75,7 +76,7 @@ const noCanvas = {
   value: (o => {
     let v = storage.get('noCanvas');
     if (v === null) {
-      return false; // default
+      return true; // default
     }
     return v;
   })(),
@@ -103,7 +104,7 @@ const live2d = callback => {
           height: 400,
           position: 'right',
           hOffset: 50,
-          vOffset: 0
+          vOffset: -50
         },
         mobile: {
           show: false
@@ -365,6 +366,23 @@ const final_load = o => util.layoutParts(parts => {
   }
 
   // Extra Operations
+  if (/^\/(icons)\//.test(pathname())) {
+    ajax({
+      url: '//api.github.com/repos/jinyaoMa/icon-lib/readme',
+      method: 'get',
+      headers: {
+        accept: 'application/vnd.github.v3.html'
+      },
+      success(data) {
+        parts.includes('iconlib') && iconlib.init({
+          readme: data
+        }, el => {
+          checklist.iconlib = true;
+          progress.step(stepping);
+        });
+      }
+    });
+  }
   if (/^\/(library)\//.test(pathname())) {
     ajax({
       url: '//api.github.com/repos/jinyaoMa/code-lib/readme',
@@ -698,6 +716,7 @@ live2d(z => {
         noCanvas: noCanvas.value,
         onchange(flag, el) {
           noCanvas.update(flag);
+          settings.transfigure(!flag);
           let l2d = root.querySelector('#live2d-widget');
           let header = root.querySelector('.m-header');
           if (flag) {
@@ -836,6 +855,7 @@ live2d(z => {
             flag && audioplayer.play();
           }
           config.set(key, flag);
+          settings.transfigure(!noCanvas.value);
         }
       }, el => {
         checklist.settings = true;

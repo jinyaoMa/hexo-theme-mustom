@@ -1,0 +1,15 @@
+<div class="p-settings HIDE">
+  <div class="p-settings-caption">
+    <%- theme.settingsicon %>
+    <span data-lang="settings.caption"></span>
+  </div>
+  <div class="p-settings-items">
+    <% $forIn(theme.settings, (key, icon) => { %>
+    <div data-settings-key="<%- key %>">
+      <%- icon %>
+      <div class="p-settings-items-switch"></div>
+      <span class="p-settings-items-name" data-lang="settings.items.<%- key %>"></span>
+    </div>
+    <% }); %>
+  </div>
+</div>

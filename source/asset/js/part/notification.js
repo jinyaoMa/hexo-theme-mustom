@@ -6,11 +6,12 @@ let element = null;
 let firstNotify = true;
 let canHide = true;
 let looper = null;
+const clearTime = 1200;
 
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
     let msg = element.querySelector('.p-notification-message');
     msg.onmouseover = e => {
       canHide = false;
@@ -32,6 +33,12 @@ const show = (text, onClose, time = 10000) => {
       element.classList.remove('active');
       window.clearInterval(looper);
       typeof onClose === 'function' && onClose(element);
+      window.setTimeout(o => {
+        let temp = element.querySelector('.p-notification-text');
+        if (temp.innerHTML === text) {
+          temp.innerHTML = '';
+        }
+      }, clearTime);
     }
   }, time);
   firstNotify && (firstNotify = false);

@@ -8,7 +8,7 @@ let element = null;
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
     _run_socialShare();
 
     if (params && params.post) {

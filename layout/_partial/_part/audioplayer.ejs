@@ -1,0 +1,11 @@
+<div class="p-audioplayer HIDE">
+  <div class="p-audioplayer-caption">
+    <%- theme.audioplayer.icons.caption %>
+    <span data-lang="audioplayer" data-lang-encoded
+      data-lang-params="<%- $encodeHTML(theme.audioplayer.icons.plus) %>"></span>
+  </div>
+  <div class="p-audioplayer-player">
+    <meting-js server="<%- theme.meting.server %>" type="<%- theme.meting.type %>" id="<%- theme.meting.id %>"
+      theme="<%- theme.meting.theme %>" list-max-height="<%- theme.meting.list_height %>"></meting-js>
+  </div>
+</div>

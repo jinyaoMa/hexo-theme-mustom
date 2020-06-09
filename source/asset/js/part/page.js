@@ -6,7 +6,7 @@ let element = null;
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
 
     if (params) {
       params.title && (element.querySelector('.p-page-title').innerText = params.title);

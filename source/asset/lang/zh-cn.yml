@@ -24,6 +24,7 @@ menus:
     caption: 其他
     items:
       library: 代码库
+      icons: 图标字体库
       records: 记录
       gallery: 图库
 skin:
@@ -109,6 +110,7 @@ pather:
   resume: 简历小贴士
   letter: 求职信小贴士
   library: 代码库
+  icons: 图标字体库
   records: 记录
   gallery: 图库
   home: 首页
@@ -136,6 +138,12 @@ codelib:
   captions:
     log: 更新历史
     stack: 代码栈
+  more: 展开
+  less: 收起
+iconlib:
+  captions:
+    log: 更新历史
+    stack: 图标栈
   more: 展开
   less: 收起
 notification:

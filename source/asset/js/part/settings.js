@@ -22,7 +22,7 @@ const setup = o => {
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
     setup();
     if (params) {
       params.onclick && (listener = params.onclick);
@@ -37,8 +37,15 @@ const set = (key, flag) => {
   listener && listener(key, flag);
 }
 
+const transfigure = flag => {
+  if (!element) return;
+  let target = element.querySelector(`[data-settings-key="transfigure"]`);
+  flag ? target.style.display = 'block' : target.style.display = 'none';
+}
+
 export default {
   tag,
   init,
-  set
+  set,
+  transfigure
 };

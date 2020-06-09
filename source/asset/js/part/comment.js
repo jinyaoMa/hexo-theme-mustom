@@ -22,7 +22,7 @@ const valine = {
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
     if (params) {
       let result = util.decodePass(params.valine.pass, params.valine.pointer);
       appid = result.appid;

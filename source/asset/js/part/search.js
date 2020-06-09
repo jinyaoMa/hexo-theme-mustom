@@ -105,7 +105,7 @@ const setup = o => {
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
     if (params) {
       params.search && (search = params.search);
       params.onsearch && (onsearch = params.onsearch);

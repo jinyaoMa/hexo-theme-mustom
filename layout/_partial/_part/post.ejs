@@ -1,0 +1,81 @@
+<div class="p-post HIDE">
+  <div class="p-post-caption">
+    <%- theme.post.icons.caption %>
+    <span data-lang="post.caption"></span>
+  </div>
+  <div class="p-post-main">
+    <div class="p-post-title"></div>
+    <div class="p-post-meta">
+      <div class="p-post-date" data-lang="post.date" data-lang-titled>
+        <%- theme.post.icons.date %>
+        <span></span>
+      </div>
+      <div class="p-post-updated" data-lang="post.updated" data-lang-titled>
+        <%- theme.post.icons.updated %>
+        <span></span>
+      </div>
+      <div class="p-post-categories" data-lang="post.categories" data-lang-titled>
+        <%- theme.post.icons.categories %>
+        <span></span>
+      </div>
+      <div class="p-post-wordcount" data-lang="post.wordcount" data-lang-titled>
+        <%- theme.post.icons.wordcount %>
+        <span></span>
+      </div>
+      <div class="p-post-min2read" data-lang="post.min2readt" data-lang-titled>
+        <%- theme.post.icons.min2read %>
+        <span data-lang="post.min2read" data-lang-params></span>
+      </div>
+      <div class="p-post-viewcount" data-lang="post.viewcount" data-lang-titled>
+        <%- theme.post.icons.viewcount %>
+        <span class="leancloud_visitors" data-flag-title><i class="leancloud-visitors-count">∞</i></span>
+      </div>
+    </div>
+    <div class="p-post-content markdown-body"></div>
+    <div class="p-post-ending">
+      <span data-lang="post.ending.head"></span>
+      <%- theme.post.icons.ending %>
+      <span data-lang="post.ending.tail"></span>
+    </div>
+    <div class="p-post-friend">
+      <div class="p-post-friend-text" data-lang="post.friend.text"></div>
+      <div class="p-post-friend-button" data-lang="post.friend.button"></div>
+      <div class="p-post-friend-qrcode">
+        <div class="p-post-friend-qrcode-qq">
+          <img src="<%- theme.post.qrcode.qq %>">
+          <div data-lang="post.friend.qq"></div>
+        </div>
+        <div class="p-post-friend-qrcode-wechat">
+          <img src="<%- theme.post.qrcode.wechat %>">
+          <div data-lang="post.friend.wechat"></div>
+        </div>
+      </div>
+    </div>
+    <div class="p-post-share"></div>
+    <div class="p-post-license">
+      <div class="p-post-license-author">
+        <span class="label" data-lang="post.license.labels.author"></span>
+        <span class="p-post-license-author-text"><%= config.author %></span>
+      </div>
+      <div class="p-post-license-link">
+        <span class="label" data-lang="post.license.labels.link"></span>
+        <span class="p-post-license-link-text"></span>
+      </div>
+      <div class="p-post-license-notice">
+        <span class="label" data-lang="post.license.labels.notice"></span>
+        <span class="p-post-license-notice-text" data-lang="post.license.text" data-lang-params="<%- $encodeHTML(`
+          <a target="_blank" href="${theme.license.url}" title="${theme.license.name}">
+            ${theme.license.icon}
+            <span>${theme.license.name}</span>
+          </a>
+        `) %>" data-lang-encoded></span>
+      </div>
+    </div>
+    <div class="p-post-tags"></div>
+    <div class="p-post-navigator">
+      <div class="p-post-navigator-prev"></div>
+      <div class="p-post-navigator-next"></div>
+      <div class="p-post-navigator-clear"></div>
+    </div>
+  </div>
+</div>

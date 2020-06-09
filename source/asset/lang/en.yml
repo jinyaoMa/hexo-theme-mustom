@@ -24,6 +24,7 @@ menus:
     caption: OTHERS
     items:
       library: Code Library
+      icons: Icon Font Library
       records: Records
       gallery: Gallery
 skin:
@@ -109,6 +110,7 @@ pather:
   resume: Resume Tips
   letter: Cover Letter Tips
   library: Code Library
+  icons: Icon Font Library
   records: Records
   gallery: Gallery
   home: Home
@@ -134,8 +136,14 @@ records:
     audio: Audio
 codelib:
   captions:
-    log: LOGS
-    stack: STACK
+    log: UPDATE HISTORY
+    stack: CODE STACK
+  more: MORE
+  less: LESS
+iconlib:
+  captions:
+    log: UPDATE HISTORY
+    stack: ICON STACK
   more: MORE
   less: LESS
 notification:

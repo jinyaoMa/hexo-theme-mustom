@@ -14,7 +14,7 @@
   <meta name="keywords" content="<%= keywords %>">
   <meta name="author" content="<%= author %>">
   <meta name="layout-parts" content="<%= parts %>">
-  <link rel="shortcut icon apple-touch-icon" type="image/png" href="<%= favicon %>">
+  <link rel="shortcut icon" type="image/png" href="<%= favicon %>">
   <link rel="apple-touch-icon" type="image/png" href="<%= appleIcon %>">
   <link rel="manifest" href="<%= manifest %>">
   <title><%= title %></title>
@@ -36,62 +36,63 @@
   <!-- Outside App -->
   <div class="m-app">
     <div class="m-header">
-      <xdrawer></xdrawer>
-      <xsearch></xsearch>
-      <sitename></sitename>
+      <%- partial('_part/xdrawer') %>
+      <%- partial('_part/xsearch') %>
+      <%- partial('_part/sitename') %>
       <!-- END header -->
     </div>
     <div class="m-center">
       <div class="m-drawer">
-        <brand></brand>
-        <menus></menus>
-        <skin></skin>
-        <settings></settings>
+        <%- partial('_part/brand') %>
+        <%- partial('_part/menus') %>
+        <%- partial('_part/skin') %>
+        <%- partial('_part/settings') %>
         <div class="m-drawer-mark"></div>
         <!-- END drawer -->
       </div>
       <div class="m-frame">
         <div class="m-main">
           <div class="m-heaper">
-            <xaside></xaside>
-            <pather></pather>
+            <%- partial('_part/xaside') %>
+            <%- partial('_part/pather') %>
             <!-- END heaper -->
           </div>
-          <translater></translater>
+          <%- partial('_part/translater') %>
           <div class="m-content">
-            <hitokoto></hitokoto>
-            <recentposts></recentposts>
-            <timeline></timeline>
-            <post></post>
-            <page></page>
-            <codelib></codelib>
-            <records></records>
-            <gallery></gallery>
+            <%- partial('_part/hitokoto') %>
+            <%- partial('_part/recentposts') %>
+            <%- partial('_part/timeline') %>
+            <%- partial('_part/post') %>
+            <%- partial('_part/page') %>
+            <%- partial('_part/codelib') %>
+            <%- partial('_part/records') %>
+            <%- partial('_part/gallery') %>
+            <%- partial('_part/iconlib') %>
             <!-- END content -->
           </div>
-          <comment></comment>
-          <empty></empty>
+          <%- partial('_part/comment') %>
+          <%- partial('_part/empty') %>
           <!-- END main -->
         </div>
         <div class="m-aside">
-          <panels></panels>
-          <audioplayer></audioplayer>
-          <toc></toc>
+          <%- partial('_part/panels') %>
+          <%- partial('_part/audioplayer') %>
+          <%- partial('_part/toc') %>
           <div class="m-aside-mark"></div>
           <!-- END aside -->
         </div>
       </div>
     </div>
     <div class="m-footer">
-      <footer></footer>
+      <%- partial('_part/footer') %>
       <!-- END footer -->
     </div>
-    <xcanvas></xcanvas>
-    <goingto></goingto>
-    <adframe></adframe>
-    <extension></extension>
-    <search></search>
-    <notification></notification>
+    <%- partial('_part/xcanvas') %>
+    <%- partial('_part/goingto') %>
+    <%- partial('_part/extension') %>
+    <%- partial('_part/adframe') %>
+    <%- partial('_part/search') %>
+    <%- partial('_part/notification') %>
     <!-- END app -->
   </div>
 </body>

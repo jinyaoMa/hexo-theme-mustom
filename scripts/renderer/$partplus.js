@@ -16,8 +16,7 @@ module.exports = function (data, options) {
         config: this.config,
         theme: this.theme.config,
         $encodeHTML,
-        $forIn,
-        version: this.env.version
+        $forIn
       };
     } else if (/.*(source\\browser.ejs)$/.test(data.path)) {
       // Set Options
@@ -27,5 +26,8 @@ module.exports = function (data, options) {
       };
     }
   }
+  options = Object.assign(options, {
+    version: this.env.version
+  });
   return ejs.render(data.text, options);
 };

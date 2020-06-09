@@ -1,0 +1,27 @@
+<div class="p-footer HIDE">
+  <div class="p-footer-copyright">
+    <span class="p-footer-copyright-year">&copy; <%= config.year ? config.year : '2019' %> - <%= (new Date()).getFullYear() %></span>
+    <span class="p-footer-copyright-author"><%= config.author %></span>
+  </div>
+  <div class="p-footer-powered" data-lang="footer.powered" data-lang-params="<%- $encodeHTML(`
+    <a target="_blank" href="${theme.hexo}">Hexo ${version}</a>
+  `) %>" data-lang-encoded></div>
+  <div class="p-footer-theme" data-lang="footer.theme" data-lang-params="<%- $encodeHTML([`
+    <a target="_blank" href="${theme.theme.url}">${theme.theme.name}</a>
+  `,`
+    <a target="_blank" href="${theme.theme.link}">${theme.theme.author}</a target="_blank">
+  `]) %>" data-lang-encoded></div>
+  <div class="p-footer-count">
+    <%- theme.footer.icons.pv %>
+    <span class="p-footer-pv">∞</span>
+    <%- theme.footer.icons.uv %>
+    <span class="p-footer-uv">∞</span>
+    <%- theme.footer.icons.wd %>
+    <span class="p-footer-wd">∞</span>
+  </div>
+  <div class="p-footer-license">
+    <a href="<%- theme.license.url %>" data-lang="footer.license" data-lang-titled>
+      <img src="<%- theme.license.image %>">
+    </a>
+  </div>
+</div>

@@ -39,13 +39,19 @@ export default function (tag, callback) {
   factory.work();
   */
   
-  ajax({
-    url: `/asset/part/${tag}.html`,
-    method: 'get',
-    dataType: 'document',
-    success(data) {
-      callback && callback(data.body.firstElementChild);
-    }
-  });
+  let dom = document.querySelector(`.p-${tag}`);
+  if (dom) {
+    callback && callback(dom);
+    dom.classList.remove('HIDE');
+  } else {
+    ajax({
+      url: `/asset/part/${tag}.html`,
+      method: 'get',
+      dataType: 'document',
+      success(data) {
+        callback && callback(data.body.firstElementChild);
+      }
+    });
+  }
   
 }

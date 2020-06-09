@@ -10,7 +10,7 @@ const isClose = storage.get(stateKey) || false;
 const init = (params, callback) => {
   part(tag, el => {
     element = el;
-    document.querySelector(tag).replaceWith(element);
+    document.querySelector(tag) && document.querySelector(tag).replaceWith(element);
 
     if (isClose) {
       element.classList.add('close');
