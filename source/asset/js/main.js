@@ -65,8 +65,7 @@ const baiduPush = o => {
   let curProtocol = window.location.protocol.split(':')[0], url;
   if (curProtocol === 'https') {
     url = 'https://zz.bdstatic.com/linksubmit/push.js';
-  }
-  else {
+  } else {
     url = 'http://push.zhanzhang.baidu.com/push.js';
   }
   fetch(url, null, null, true);
@@ -287,7 +286,7 @@ const final_load = o => util.layoutParts(parts => {
       });
       activateSpinner(false);
       applyConfig();
-      baiduPush();
+      //baiduPush();
     }
   }, lock_wait);
   let stepping = 30 / Object.keys(checklist).length;
@@ -505,6 +504,7 @@ const linksStore = {
     e.preventDefault();
     let url = this.href;
     if (url !== window.location.href) {
+      hitokoto.clear();
       pjax.run(url, data => {
         history.pushState({ url }, data.title, url);
         fetch("//busuanzi.ibruce.info/busuanzi", {
@@ -531,7 +531,7 @@ const listen2Links = o => {
   root.querySelectorAll('.highlight a:not([target="_blank"])').forEach(link => {
     link.target = "_blank";
   });
-  root.querySelectorAll('a:not([target="_blank"]):not([href*="extension/"]):not([data-listened="true"]):not(.toc-link):not(.footnote):not([rel*="external"])').forEach(link => {
+  root.querySelectorAll('a:not([target="_blank"]):not([target="_top"]):not([href*="extension/"]):not([data-listened="true"]):not(.toc-link):not(.footnote):not([rel*="external"])').forEach(link => {
     link.onclick = linksStore.setClick;
     link.setAttribute('data-listened', true);
   });

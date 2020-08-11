@@ -8,8 +8,11 @@ let listener = null;
 const setup = o => {
   let target = document.querySelector(':root');
 
+  const mCloseDrawer = document.querySelector('.m-closeDrawer');
+
   // SetClick
   element.removeEventListener('click', setClick);
+  mCloseDrawer.removeEventListener('click', setClick);
   setClick = function () {
     if (target.classList.contains('closeDrawer')) {
       target.classList.remove('closeDrawer');
@@ -22,6 +25,7 @@ const setup = o => {
     }
   };
   element.addEventListener('click', setClick);
+  mCloseDrawer.addEventListener('click', setClick);
 }
 
 const on = o => {

@@ -24,6 +24,16 @@
 
 .p-post-main
   padding $gap * 6
+  position relative
+
+.p-post-readmode
+  position absolute
+  top 0
+  right 0
+  padding 1em
+  cursor pointer
+  &.active
+    color var(--color-link)
 
 .p-post-title, .p-post-content
   user-select text
@@ -42,7 +52,7 @@
   > div
     display inline-block
     margin 0 $gap
-  @media (min-width: $app_mobile_width_min)
+  @media (min-width $app_mobile_width_min)
     a
       display inline-block
       &:after
@@ -107,7 +117,7 @@
   padding 0.5em
   margin-bottom $gap * 2
   transition all 0.3s
-  @media (min-width: $app_mobile_width_min)
+  @media (min-width $app_mobile_width_min)
     &:hover
       opacity 0.88
     &:active
@@ -154,7 +164,7 @@
   > div
     width fit-content
     padding 0 $gap * 1.5
-  @media (min-width: $app_mobile_width_min)
+  @media (min-width $app_mobile_width_min)
     a
       display inline-block
       &:after
@@ -178,7 +188,7 @@
     margin 0 $gap * 2
     &:before
       content '# '
-    @media (min-width: $app_mobile_width_min)
+    @media (min-width $app_mobile_width_min)
       &:after
         content ''
         display block
@@ -199,7 +209,7 @@
   > div
     max-width 50%
     position relative
-  @media (min-width: $app_mobile_width_min)
+  @media (min-width $app_mobile_width_min)
     a
       transition text-shadow 0.3s
       &:hover
@@ -215,9 +225,9 @@
     position absolute
     left 0
     top 0
-    @media (min-width: $app_mobile_width_min)
+    @media (min-width $app_mobile_width_min)
       color var(--color-link)
-    @media (max-width: $app_mobile_width)
+    @media (max-width $app_mobile_width)
       color var(--color-post-ending)
 
 .p-post-navigator-next
@@ -230,15 +240,15 @@
     position absolute
     right 0
     top 0
-    @media (min-width: $app_mobile_width_min)
+    @media (min-width $app_mobile_width_min)
       color var(--color-link)
-    @media (max-width: $app_mobile_width)
+    @media (max-width $app_mobile_width)
       color var(--color-post-ending)
 
 .p-post-navigator-clear
   clear both
 
-@media (max-width: $app_mobile_width)
+@media (max-width $app_mobile_width)
   .p-post
     margin 0
     border-radius 0

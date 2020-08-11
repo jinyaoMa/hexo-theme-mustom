@@ -6,7 +6,8 @@ body, div, span, a, img, p, ul, ol, li, input
 
 @font-face
   font-family 'Source Han Sans CN'
-  src url('/asset/font/SourceHanSansCN.otf')
+  src url('https://cdn.jsdelivr.net/gh/jinyaoMa/jinyaoMa.github.io@master/asset/font/SourceHanSansCN.otf')
+  // src url('/asset/font/SourceHanSansCN.otf')
 
 body
   font-family 'Source Han Sans CN', Arial, Helvetica, sans-serif
@@ -43,7 +44,8 @@ a
   width 100%
   height 100%
   background-color var(--color-link)
-  background-image url('/asset/img/author.medium.png')
+  background-image url('https://cdn.jsdelivr.net/gh/jinyaoMa/jinyaoMa.github.io@master/asset/img/cover.background.png')
+  // background-image url('/asset/img/cover.background.png')
   background-repeat no-repeat
   background-size 50vmin
   background-position center
@@ -107,6 +109,10 @@ a
   margin 0 auto
   // background forestgreen
 
+@media (min-width $app_mobile_width_min)
+  .m-app-inner
+    padding 0 3em
+
 .m-header
   position fixed
   left 0
@@ -123,7 +129,7 @@ a
 
 .m-center
   width 100%
-  margin-top 3em
+  padding-top 3em
 
 .m-drawer
   float left
@@ -169,11 +175,12 @@ a
   @media (min-width $app_mobile_width_min)
     position fixed
     bottom 0
-    right s('calc(50% - %s)', $app_width * 0.5)
+    right s('calc(50% - %s + 3em)', $app_width * 0.5)
     height s('calc(100vh - 3em - %s)', $progress_height)
     overflow hidden
+  // $app_width_special = $app_width + $font_size * 1.5 // 3em / 2
   @media (min-width $app_mobile_width_min) and (max-width $app_width)
-    right 0
+    right 3em // (max-width $app_width_special)
 
 .m-main
   float left
@@ -207,6 +214,20 @@ a
 #live2d-widget
   transition opacity 0.6s
   z-index zIndex(3) !important
+
+.m-aside-clustrmaps
+  user-select none
+  width $aside_width - $gap * 8
+  margin $gap * 4
+  padding $gap * 0.5
+  border-radius $gap * 0.5
+  border 1px solid var(--color-clear)
+  background var(--color-background)
+  overflow hidden
+  @media (max-width $app_mobile_width)
+    width 100%
+    margin 0
+    border-radius 0
 
 .social-share
   .social-share-icon
@@ -361,6 +382,10 @@ a
     .highlight table tr
       background none
 
+:root:not(.gray)
+  .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-translater-bar, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib, .p-empty, .p-iconlib, .m-aside-clustrmaps
+    border-width 0
+
 :root.gray:not(.night)
   .m-evanyou-canvas
     display none
@@ -369,10 +394,11 @@ a
       box-shadow 0 0 4px 2px var(--color-shadow)
     .p-translater-result
       box-shadow 0 2px 1px 1px var(--color-shadow)
-    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-translater-bar, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib, .p-empty, .p-iconlib
+    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-translater-bar, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib, .p-empty, .p-iconlib, .m-aside-clustrmaps
       box-shadow 0 1px 2px 1px var(--color-shadow)
-    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib, .p-empty, .p-iconlib
-      border-width 0
+    .m-heaper, .p-brand, .p-menus, .p-skin, .p-settings, .p-panels, .p-audioplayer, .p-toc, .p-hitokoto, .p-recentposts, .p-timeline, .p-post, .p-page, .p-record, .p-gallery-item, .p-comment, .p-footer, .p-search-dialog-bar, .p-search-dialog-result, .p-codelib, .p-empty, .p-iconlib, .m-aside-clustrmaps
+      border-width 2px
+      border-color #cccccc
   .p-adframe-qrcode, .p-goingto-top, .p-goingto-bottom, .p-xcanvas
     box-shadow 0 0 4px 2px var(--color-shadow)
     &:hover
@@ -388,6 +414,60 @@ a
       .p-extension-button, .p-extension-frame
         box-shadow none
 
+/*
 @media (max-width $float_button_min_app_width)
-  .p-adframe-qrcode, .p-goingto-top, .p-goingto-bottom, .p-xcanvas, .p-extension-button
+  .p-adframe-qrcode, .p-goingto-top, .p-goingto-bottom, .p-xcanvas
     box-shadow 0 0 4px 1px
+*/
+:root.readmode
+  body
+    position fixed
+    width 100%
+  .p-post-main
+    position fixed
+    background var(--color-background)
+    top 0
+    left 0
+    z-index 999999999
+    height 100vh
+    overflow-x hidden
+    overflow-y scroll
+
+@media (max-width $app_mobile_width)
+  :root:not(.closeDrawer)
+    .m-app
+      .m-closeDrawer
+        position fixed
+        top 0
+        left 0
+        width 100%
+        height 100vh
+        background #00000099
+        z-index 999999996
+      .m-drawer
+        position fixed
+        background var(--color-background)
+        z-index 999999996
+        top 0
+        left 0
+        height 100vh
+        overflow-x hidden
+        overflow-y scroll
+        width s('calc(%s - 3em)', $drawer_width)
+        .p-brand-avatar
+          width 4em
+          position absolute
+          top 0
+          left 0
+        .p-brand-detail
+          padding-left 5em
+        .p-brand-name
+          margin-left -5em
+          padding-left 6em
+          text-align left
+          line-height 2.3
+        .p-brand-slogan
+          text-align left
+          padding-left 1.75em
+          font-size 0.7em
+          line-height 3.35

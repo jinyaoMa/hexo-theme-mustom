@@ -61,7 +61,7 @@ comment:
   placeholder: ヾﾉ≧∀≦)o  ~  Come on，write something here!
 translater:
   copy: COPY
-  to: HIGHLIGHT N TRANSLATE
+  to: HIGHLIGHT 'N TRANSLATE
   zh: 中文
   en: English
   jp: 日本語

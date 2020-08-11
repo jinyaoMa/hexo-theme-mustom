@@ -122,6 +122,18 @@ const init = (params, callback) => {
       });
     }
 
+    const readmode = element.querySelector('.p-post-readmode');
+    readmode.onclick = o => {
+      const root = document.documentElement;
+      if (root.classList.contains('readmode')) {
+        root.classList.remove('readmode');
+        readmode.classList.remove('active');
+      } else {
+        root.classList.add('readmode');
+        readmode.classList.add('active');
+      }
+    };
+
     callback && callback(element);
   });
 };

@@ -68,7 +68,8 @@
     margin $gap * 2 0
   width 100%
   transition all 0.6s
-  max-width $app_width - $drawer_width - $aside_width - $main_min_width - $gap - 2px // outer border-width offset
+  @media (min-width $app_mobile_width_min)
+    max-width $app_width - $drawer_width - $aside_width - $main_min_width - $gap - $font_size * 6 - 2px // outer border-width offset
   max-height $main_min_width
   overflow-x hidden
   overflow-y auto

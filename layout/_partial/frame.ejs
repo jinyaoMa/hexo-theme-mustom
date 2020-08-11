@@ -20,8 +20,13 @@
   <title><%= title %></title>
   <%- adScript ? adScript : '' %>
   <%- config.babelify ? '' : $nomjs('nomodule') %>
+  <% if (config.CDN_ENABLE) { %>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/jinyaoMa/jinyaoMa.github.io@master/asset/css/style.css?t=<%= Date.now() %>">
+  <% } else { %>
   <%- $css('style') %>
   <%- $mjs('main') %>
+  <% } %>
 </head>
 
 <body>
@@ -35,66 +40,78 @@
   </div>
   <!-- Outside App -->
   <div class="m-app">
-    <div class="m-header">
-      <%- partial('_part/xdrawer') %>
-      <%- partial('_part/xsearch') %>
-      <%- partial('_part/sitename') %>
-      <!-- END header -->
-    </div>
-    <div class="m-center">
-      <div class="m-drawer">
-        <%- partial('_part/brand') %>
-        <%- partial('_part/menus') %>
-        <%- partial('_part/skin') %>
-        <%- partial('_part/settings') %>
-        <div class="m-drawer-mark"></div>
-        <!-- END drawer -->
+    <div class="m-closeDrawer"></div>
+    <div class="m-app-inner">
+      <div class="m-header">
+        <%- partial('_part/xdrawer') %>
+        <%- partial('_part/xsearch') %>
+        <%- partial('_part/sitename') %>
+        <!-- END header -->
       </div>
-      <div class="m-frame">
-        <div class="m-main">
-          <div class="m-heaper">
-            <%- partial('_part/xaside') %>
-            <%- partial('_part/pather') %>
-            <!-- END heaper -->
-          </div>
-          <%- partial('_part/translater') %>
-          <div class="m-content">
-            <%- partial('_part/hitokoto') %>
-            <%- partial('_part/recentposts') %>
-            <%- partial('_part/timeline') %>
-            <%- partial('_part/post') %>
-            <%- partial('_part/page') %>
-            <%- partial('_part/codelib') %>
-            <%- partial('_part/records') %>
-            <%- partial('_part/gallery') %>
-            <%- partial('_part/iconlib') %>
-            <!-- END content -->
-          </div>
-          <%- partial('_part/comment') %>
-          <%- partial('_part/empty') %>
-          <!-- END main -->
+      <div class="m-center">
+        <div class="m-drawer">
+          <%- partial('_part/brand') %>
+          <%- partial('_part/menus') %>
+          <%- partial('_part/skin') %>
+          <%- partial('_part/settings') %>
+          <div class="m-drawer-mark"></div>
+          <!-- END drawer -->
         </div>
-        <div class="m-aside">
-          <%- partial('_part/panels') %>
-          <%- partial('_part/audioplayer') %>
-          <%- partial('_part/toc') %>
-          <div class="m-aside-mark"></div>
-          <!-- END aside -->
+        <div class="m-frame">
+          <div class="m-main">
+            <div class="m-heaper">
+              <%- partial('_part/xaside') %>
+              <%- partial('_part/pather') %>
+              <!-- END heaper -->
+            </div>
+            <%- partial('_part/translater') %>
+            <div class="m-content">
+              <%- partial('_part/hitokoto') %>
+              <%- partial('_part/recentposts') %>
+              <%- partial('_part/timeline') %>
+              <%- partial('_part/post') %>
+              <%- partial('_part/page') %>
+              <%- partial('_part/codelib') %>
+              <%- partial('_part/records') %>
+              <%- partial('_part/gallery') %>
+              <%- partial('_part/iconlib') %>
+              <!-- END content -->
+            </div>
+            <%- partial('_part/comment') %>
+            <%- partial('_part/empty') %>
+            <!-- END main -->
+          </div>
+          <div class="m-aside">
+            <%- partial('_part/panels') %>
+            <%- partial('_part/audioplayer') %>
+            <% if (config.clustrmaps && config.clustrmaps.enable) { %>
+            <div class="m-aside-clustrmaps">
+              <script id="<%= config.clustrmaps.id %>" src="<%= config.clustrmaps.src %>"></script>
+            </div>
+            <% } %>
+            <%- partial('_part/toc') %>
+            <div class="m-aside-mark"></div>
+            <!-- END aside -->
+          </div>
         </div>
       </div>
+      <div class="m-footer">
+        <%- partial('_part/footer') %>
+        <!-- END footer -->
+      </div>
+      <%- partial('_part/xcanvas') %>
+      <%- partial('_part/goingto') %>
+      <%- partial('_part/extension') %>
+      <%- partial('_part/adframe') %>
+      <%- partial('_part/search') %>
+      <%- partial('_part/notification') %>
+      <!-- END app -->
     </div>
-    <div class="m-footer">
-      <%- partial('_part/footer') %>
-      <!-- END footer -->
-    </div>
-    <%- partial('_part/xcanvas') %>
-    <%- partial('_part/goingto') %>
-    <%- partial('_part/extension') %>
-    <%- partial('_part/adframe') %>
-    <%- partial('_part/search') %>
-    <%- partial('_part/notification') %>
-    <!-- END app -->
   </div>
+  <% if (config.CDN_ENABLE) { %>
+  <script src="https://cdn.jsdelivr.net/gh/jinyaoMa/jinyaoMa.github.io@master/asset/js/main.js?t=<%= Date.now() %>">
+  </script>
+  <% } %>
 </body>
 
 </html>

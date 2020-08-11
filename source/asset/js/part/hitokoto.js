@@ -18,6 +18,12 @@ const init = (params, callback) => {
   });
 };
 
+const clear = o => {
+  window.clearTimeout(timer);
+  window.clearInterval(looper);
+  isLooping = false;
+};
+
 const update = o => {
   if (!element || isLooping) return;
   window.clearTimeout(timer);
@@ -64,5 +70,6 @@ const update = o => {
 export default {
   tag,
   init,
-  update
+  update,
+  clear
 };
